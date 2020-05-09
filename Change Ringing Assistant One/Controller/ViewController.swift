@@ -15,9 +15,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     var methodFinder = MethodFinder()
     var stageFinder = StageFinder()
-    
-    var testonly = "test only changed. twice. three"
-    
+        
     @IBOutlet weak var pickerView: UIPickerView!
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
