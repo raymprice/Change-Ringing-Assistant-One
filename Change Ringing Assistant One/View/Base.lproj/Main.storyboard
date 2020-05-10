@@ -137,6 +137,7 @@
                                                         <state key="normal">
                                                             <string key="title">Follow
 Treble:</string>
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="trebleOption:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RFL-gw-gu8"/>
@@ -281,7 +282,7 @@ Treble:</string>
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1180" y="-1484"/>
+            <point key="canvasLocation" x="1477" y="-1751"/>
         </scene>
     </scenes>
 </document>

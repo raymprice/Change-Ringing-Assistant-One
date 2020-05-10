@@ -15,7 +15,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     var methodFinder = MethodFinder()
     var stageFinder = StageFinder()
-        
+    
     @IBOutlet weak var pickerView: UIPickerView!
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -57,12 +57,20 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // Here they are.
     var currentBellArray: [Int] = [0]
     var currentBellArrayIndex: Int = 0
+    var bellCount: Int = 4  // Numbner of bells in method.
     var selectedBell = 1    // Actual Number of bell selected by user.
     var longPressDetected: Bool = false
     var buttonStarted: Int = 1
     var saveSender: UIButton = UIButton()
-
-//    var saveSender:
+    
+    // Save UIButton data in array.
+    // Entry zero is a dummy entry, so bell 1 (treble) is saveButrtonArray[1].
+    //
+    var saveButtonArray: [UIButton] = [UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton()]
+    var saveButtonTArray: [UIButton] = [UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton()]
+    
+    
+    //    var saveSender:
     
     ////    var methodName = " "    // Text name of current method.
     //
@@ -123,22 +131,37 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
         
+        saveButtonArray[1] = button1
+        saveButtonArray[2] = button2
+        saveButtonArray[3] = button3
+        saveButtonArray[4] = button4
+        saveButtonArray[5] = button5
+        saveButtonArray[6] = button6
+        saveButtonArray[7] = button7
+        saveButtonArray[8] = button8
         
+        saveButtonTArray[2] = button2t
+        saveButtonTArray[3] = button3t
+        saveButtonTArray[4] = button4t
+        saveButtonTArray[5] = button5t
+        saveButtonTArray[6] = button6t
+        saveButtonTArray[7] = button7t
+        saveButtonTArray[8] = button8t
+        
+        saveButtonArray[0].isEnabled = true
         
         bobButton.isEnabled = false
         singleButton.isEnabled = false
         
-//        print("viewDidLoad: set component 0 to row 1")
-//        self.pickerView.selectRow(1, inComponent:0, animated:false)
-//        print("viewDidLoad: reloadComponent(1)")
-//        self.pickerView.reloadComponent(1)
+        //        print("viewDidLoad: set component 0 to row 1")
+        //        self.pickerView.selectRow(1, inComponent:0, animated:false)
+        //        print("viewDidLoad: reloadComponent(1)")
+        //        self.pickerView.reloadComponent(1)
         
         loadArray(bellChosen: selectedBell)
         
         print("viewDidLoad: end")
         print("----------")
-
-
         
     }
     
@@ -147,7 +170,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     //------------------------------------------------------------------------------------------------
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        var bellCount: Int
+        //        var bellCount: Int
         print("----------")
         print("pickerview: component", component, "row", row)
         // Stage name changed. Reload list of methods
@@ -161,10 +184,12 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             button6.isEnabled = true
             button7.isEnabled = true
             button8.isEnabled = true
-            button5t.isEnabled = true
-            button6t.isEnabled = true
-            button7t.isEnabled = true
-            button8t.isEnabled = true
+            if followTreble.currentTitleColor == UIColor.black {
+                button5t.isEnabled = true
+                button6t.isEnabled = true
+                button7t.isEnabled = true
+                button8t.isEnabled = true
+            }
             if bellCount < 8 {
                 button8.isEnabled = false
                 button8t.isEnabled = false
@@ -181,7 +206,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 button5.isEnabled = false
                 button5t.isEnabled = false
             }
-
+            
             print("pickerView: reloadComponent(1)")
             pickerView.reloadComponent(1)
             self.pickerView.selectRow(0, inComponent: 1, animated: true)
@@ -212,32 +237,42 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         self.showCurrentPlace.text = "Place Bell: " + String(selectedBell)
         
         // Reset all buttons to yellow and colour of Place Bell message. Reset bob/single buttons.
-        // Bell 2 obviously starts behind treble.
+        // Bell 2 usually starts behind treble.
         setAllYellow()
-        //        previousCorrectButton = currentPlaceBell
-        switch selectedBell {
-        case 1: button1.backgroundColor = UIColor.green; //print("P1")
-            
-        case 2: button2t.backgroundColor = UIColor.green; //print("P2T")
-            if followTreble.currentTitleColor == UIColor.gray {
-            button2.backgroundColor = UIColor.green
-            button2t.backgroundColor = UIColor(named: "LightGreen")
-        }
-            
-        case 3: button3.backgroundColor = UIColor.green; //print("P3")
-        case 4: button4.backgroundColor = UIColor.green; //print("P4")
-        case 5: button5.backgroundColor = UIColor.green; //print("P5")
-        case 6: button6.backgroundColor = UIColor.green; //print("P6")
-        case 7: button7.backgroundColor = UIColor.green; //print("P7")
-        case 8: button8.backgroundColor = UIColor.green; //print("P8")
-        default:button1.backgroundColor = UIColor.yellow; print("ERROR setting initial green button")
+        
+        //        switch selectedBell {
+        //        case 1: button1.backgroundColor = UIColor.green; //print("P1")
+        //
+        //        case 2: button2t.backgroundColor = UIColor.green; //print("P2T")
+        //            if followTreble.currentTitleColor == UIColor.gray {
+        //            button2.backgroundColor = UIColor.green
+        //            button2t.backgroundColor = UIColor.green
+        //        }
+        //
+        //        case 3: button3.backgroundColor = UIColor.green; //print("P3")
+        //        case 4: button4.backgroundColor = UIColor.green; //print("P4")
+        //        case 5: button5.backgroundColor = UIColor.green; //print("P5")
+        //        case 6: button6.backgroundColor = UIColor.green; //print("P6")
+        //        case 7: button7.backgroundColor = UIColor.green; //print("P7")
+        //        case 8: button8.backgroundColor = UIColor.green; //print("P8")
+        //        default:button1.backgroundColor = UIColor.yellow; print("ERROR setting initial green button")
+        //        }
+        
+        saveButtonArray[selectedBell].backgroundColor = UIColor.green
+        if selectedBell == 2 {
+            if followTreble.currentTitleColor == UIColor.black {
+                button2t.backgroundColor = UIColor.green
+                button2.backgroundColor = UIColor.yellow
+            } else {
+                button2t.backgroundColor = UIColor.green
+            }
         }
         
         self.showCurrentPlace.textColor = UIColor.black
         bobButton.backgroundColor = UIColor.clear
         singleButton.backgroundColor = UIColor.clear
         
-
+        
         let currentStage = pickerView.selectedRow(inComponent: 0)
         let currentMethod = pickerView.selectedRow(inComponent: 1)
         
@@ -317,43 +352,81 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             button6t.isEnabled = true
             button7t.isEnabled = true
             button8t.isEnabled = true
+            print("bellCount", bellCount)
             
-            if (button2.backgroundColor == UIColor.green && button2t.backgroundColor == UIColor(named: "LightGreen")) {
-                button2.backgroundColor = UIColor.yellow
-                button2t.backgroundColor = UIColor.green
+            if bellCount < 8 {
+                button8.isEnabled = false
+                button8t.isEnabled = false
             }
-            if (button3.backgroundColor == UIColor.green && button3t.backgroundColor == UIColor(named: "LightGreen")) {
-                button3.backgroundColor = UIColor.yellow
-                button3t.backgroundColor = UIColor.green
-                
+            if bellCount < 7 {
+                button7.isEnabled = false
+                button7t.isEnabled = false
             }
-            if (button4.backgroundColor == UIColor.green && button4t.backgroundColor == UIColor(named: "LightGreen")) {
-                button4.backgroundColor = UIColor.yellow
-                button4t.backgroundColor = UIColor.green
-
+            if bellCount < 6 {
+                button6.isEnabled = false
+                button6t.isEnabled = false
             }
-            if (button5.backgroundColor == UIColor.green && button5t.backgroundColor == UIColor(named: "LightGreen")) {
-                button5.backgroundColor = UIColor.yellow
-                button5t.backgroundColor = UIColor.green
-
+            if bellCount < 5 {
+                button5.isEnabled = false
+                button5t.isEnabled = false
             }
-            if (button6.backgroundColor == UIColor.green && button6t.backgroundColor == UIColor(named: "LightGreen")) {
-                button6.backgroundColor = UIColor.yellow
-                button6t.backgroundColor = UIColor.green
-
+            
+            for i in 2...8 {
+                if saveButtonTArray[i].backgroundColor == UIColor.green {
+                    //                        saveButtonTArray[i].backgroundColor = saveButtonArray[i].backgroundColor
+                    saveButtonArray[i].backgroundColor = UIColor.yellow
+                }
             }
-            if (button7.backgroundColor == UIColor.green && button7t.backgroundColor == UIColor(named: "LightGreen")) {
-                button7.backgroundColor = UIColor.yellow
-                button7t.backgroundColor = UIColor.green
-
-            }
-            if (button8.backgroundColor == UIColor.green && button8t.backgroundColor == UIColor(named: "LightGreen")) {
-                button8.backgroundColor = UIColor.yellow
-                button8t.backgroundColor = UIColor.green
-
-            }
-        }
-        else {
+            
+            //            saveButtonTArray[2].backgroundColor = saveButtonArray[2].backgroundColor
+            //            saveButtonArray[2].backgroundColor = UIColor.yellow
+            //            saveButtonTArray[3].backgroundColor = saveButtonArray[3].backgroundColor
+            //            saveButtonArray[3].backgroundColor = UIColor.yellow
+            //            saveButtonTArray[4].backgroundColor = saveButtonArray[4].backgroundColor
+            //            saveButtonArray[4].backgroundColor = UIColor.yellow
+            //            saveButtonTArray[5].backgroundColor = saveButtonArray[5].backgroundColor
+            //            saveButtonArray[5].backgroundColor = UIColor.yellow
+            //            saveButtonTArray[6].backgroundColor = saveButtonArray[6].backgroundColor
+            //            saveButtonArray[6].backgroundColor = UIColor.yellow
+            //            saveButtonTArray[7].backgroundColor = saveButtonArray[7].backgroundColor
+            //            saveButtonArray[7].backgroundColor = UIColor.yellow
+            //            saveButtonTArray[8].backgroundColor = saveButtonArray[8].backgroundColor
+            //            saveButtonArray[8].backgroundColor = UIColor.yellow
+            //            if (button2.backgroundColor == UIColor.green && button2t.backgroundColor == UIColor.green) {
+            //                button2.backgroundColor = UIColor.yellow
+            //                button2t.backgroundColor = UIColor.green
+            //            }
+            //            if (button3.backgroundColor == UIColor.green && button3t.backgroundColor == UIColor.green) {
+            //                button3.backgroundColor = UIColor.yellow
+            //                button3t.backgroundColor = UIColor.green
+            //
+            //            }
+            //            if (button4.backgroundColor == UIColor.green && button4t.backgroundColor == UIColor.green) {
+            //                button4.backgroundColor = UIColor.yellow
+            //                button4t.backgroundColor = UIColor.green
+            //
+            //            }
+            //            if (button5.backgroundColor == UIColor.green && button5t.backgroundColor == UIColor.green) {
+            //                button5.backgroundColor = UIColor.yellow
+            //                button5t.backgroundColor = UIColor.green
+            //
+            //            }
+            //            if (button6.backgroundColor == UIColor.green && button6t.backgroundColor == UIColor.green) {
+            //                button6.backgroundColor = UIColor.yellow
+            //                button6t.backgroundColor = UIColor.green
+            //
+            //            }
+            //            if (button7.backgroundColor == UIColor.green && button7t.backgroundColor == UIColor.green) {
+            //                button7.backgroundColor = UIColor.yellow
+            //                button7t.backgroundColor = UIColor.green
+            //
+            //            }
+            //            if (button8.backgroundColor == UIColor.green && button8t.backgroundColor == UIColor.green) {
+            //                button8.backgroundColor = UIColor.yellow
+            //                button8t.backgroundColor = UIColor.green
+            //
+            //            }
+        } else {
             
             followTreble.setTitleColor(UIColor.gray, for: .normal)
             print("trebleOption: check treble now inactive")
@@ -365,101 +438,119 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             button7t.isEnabled = false
             button8t.isEnabled = false
             
-            if button2t.backgroundColor == UIColor.green {
-                button2t.backgroundColor = UIColor(named: "LightGreen")
-                button2.backgroundColor = UIColor.green
+            
+            for i in 2...8 {
+                if saveButtonTArray[i].backgroundColor != UIColor.yellow
+                    //                       || (saveButtonArray[i].backgroundColor == UIColor.green &&
+                    //                            saveButtonTArray[i].backgroundColor == UIColor.green)
+                {
+                    saveButtonArray[i].backgroundColor = saveButtonTArray[i].backgroundColor
+                    if saveButtonTArray[i].backgroundColor != UIColor.green {
+                        saveButtonTArray[i].backgroundColor = UIColor.yellow
+                    }
+                }
             }
-            if button3t.backgroundColor == UIColor.green {
-                button3t.backgroundColor = UIColor(named: "LightGreen")
-                button3.backgroundColor = UIColor.green
-            }
-            if button4t.backgroundColor == UIColor.green {
-                button4t.backgroundColor = UIColor(named: "LightGreen")
-                button4.backgroundColor = UIColor.green
-            }
-            if button5t.backgroundColor == UIColor.green {
-                button5t.backgroundColor = UIColor(named: "LightGreen")
-                button5.backgroundColor = UIColor.green
-            }
-            if button6t.backgroundColor == UIColor.green {
-                button6t.backgroundColor = UIColor(named: "LightGreen")
-                button6.backgroundColor = UIColor.green
-            }
-            if button7t.backgroundColor == UIColor.green {
-                button7t.backgroundColor = UIColor(named: "LightGreen")
-                button7.backgroundColor = UIColor.green
-            }
-            if button8t.backgroundColor == UIColor.green {
-                button8t.backgroundColor = UIColor(named: "LightGreen")
-                button8.backgroundColor = UIColor.green
-            }
+            
+            //            if button2t.backgroundColor == UIColor.green {
+            //                button2t.backgroundColor = UIColor.green
+            //                button2.backgroundColor = UIColor.green
+            //            }
+            //            if button3t.backgroundColor == UIColor.green {
+            //                button3t.backgroundColor = UIColor.green
+            //                button3.backgroundColor = UIColor.green
+            //            }
+            //            if button4t.backgroundColor == UIColor.green {
+            //                button4t.backgroundColor = UIColor.green
+            //                button4.backgroundColor = UIColor.green
+            //            }
+            //            if button5t.backgroundColor == UIColor.green {
+            //                button5t.backgroundColor = UIColor.green
+            //                button5.backgroundColor = UIColor.green
+            //            }
+            //            if button6t.backgroundColor == UIColor.green {
+            //                button6t.backgroundColor = UIColor.green
+            //                button6.backgroundColor = UIColor.green
+            //            }
+            //            if button7t.backgroundColor == UIColor.green {
+            //                button7t.backgroundColor = UIColor.green
+            //                button7.backgroundColor = UIColor.green
+            //            }
+            //            if button8t.backgroundColor == UIColor.green {
+            //                button8t.backgroundColor = UIColor.green
+            //                button8.backgroundColor = UIColor.green
+            //            }
         }
     }
     //------------------------------------------------------------------------------------------------
     @IBAction func longPressSeen(_ sender: UILongPressGestureRecognizer) {
         
-//        print("longPressSeen, senderstate", sender.state)
-//        print("Sender.mindur", sender.minimumPressDuration)
-//        print(UIGestureRecognizer.State.self)
+        //        print("longPressSeen, senderstate", sender.state)
+        //        print("Sender.mindur", sender.minimumPressDuration)
+        //        print(UIGestureRecognizer.State.self)
         
         if (sender.state == UIGestureRecognizer.State.ended) {
-            longPressDetected = true
+            //            longPressDetected = true
             
-//            saveSender.tintColor = UIColor.red //-------------------------------
-
+            //            saveSender.tintColor = UIColor.red //-------------------------------
+            
             print("Long press Ended")
         } else if (sender.state == UIGestureRecognizer.State.began) {
             print("Long press detected.") // buttonStarted=", buttonStarted)
-//            saveSender.backgroundColor = UIColor(named: "Moss")
-            saveSender.layer.borderWidth = 2
-            saveSender.layer.borderColor = UIColor.red.cgColor
+            //            saveSender.backgroundColor = UIColor(named: "Moss")
+            if saveButtonArray[0].isEnabled == true {
+                saveSender.layer.borderWidth = 2
+                saveSender.layer.borderColor = UIColor.red.cgColor
+                longPressDetected = true
+            }
             
-//            switch buttonStarted {
-//            case 1: self.setButtonColour(senderCode: button1, colourWanted: UIColor.blue)
-//            case 2: self.setButtonColour(senderCode: button2, colourWanted: UIColor.blue)
-//            case 3: self.setButtonColour(senderCode: button3, colourWanted: UIColor.blue)
-//            case 4: self.setButtonColour(senderCode: button4, colourWanted: UIColor.blue)
-//            case 5: self.setButtonColour(senderCode: button5, colourWanted: UIColor.blue)
-//            case 6: self.setButtonColour(senderCode: button6, colourWanted: UIColor.blue)
-//            case 7: self.setButtonColour(senderCode: button7, colourWanted: UIColor.blue)
-//            case 8: self.setButtonColour(senderCode: button8, colourWanted: UIColor.blue)
-//            case 102: self.setButtonColour(senderCode: button2t, colourWanted: UIColor.blue)
-//            case 103: self.setButtonColour(senderCode: button3t, colourWanted: UIColor.blue)
-//            case 104: self.setButtonColour(senderCode: button4t, colourWanted: UIColor.blue)
-//            case 105: self.setButtonColour(senderCode: button5t, colourWanted: UIColor.blue)
-//            case 106: self.setButtonColour(senderCode: button6t, colourWanted: UIColor.blue)
-//            case 107: self.setButtonColour(senderCode: button7t, colourWanted: UIColor.blue)
-//            case 108: self.setButtonColour(senderCode: button8t, colourWanted: UIColor.blue)
-//            default: break
-//            }
-
+            
+            //            switch buttonStarted {
+            //            case 1: self.setButtonColour(senderCode: button1, colourWanted: UIColor.blue)
+            //            case 2: self.setButtonColour(senderCode: button2, colourWanted: UIColor.blue)
+            //            case 3: self.setButtonColour(senderCode: button3, colourWanted: UIColor.blue)
+            //            case 4: self.setButtonColour(senderCode: button4, colourWanted: UIColor.blue)
+            //            case 5: self.setButtonColour(senderCode: button5, colourWanted: UIColor.blue)
+            //            case 6: self.setButtonColour(senderCode: button6, colourWanted: UIColor.blue)
+            //            case 7: self.setButtonColour(senderCode: button7, colourWanted: UIColor.blue)
+            //            case 8: self.setButtonColour(senderCode: button8, colourWanted: UIColor.blue)
+            //            case 102: self.setButtonColour(senderCode: button2t, colourWanted: UIColor.blue)
+            //            case 103: self.setButtonColour(senderCode: button3t, colourWanted: UIColor.blue)
+            //            case 104: self.setButtonColour(senderCode: button4t, colourWanted: UIColor.blue)
+            //            case 105: self.setButtonColour(senderCode: button5t, colourWanted: UIColor.blue)
+            //            case 106: self.setButtonColour(senderCode: button6t, colourWanted: UIColor.blue)
+            //            case 107: self.setButtonColour(senderCode: button7t, colourWanted: UIColor.blue)
+            //            case 108: self.setButtonColour(senderCode: button8t, colourWanted: UIColor.blue)
+            //            default: break
+            //            }
+            
         }
     }
     
     //------------------------------------------------------------------------------------------------
     @IBAction func buttonDown(_ sender: UIButton) {
-//        print("saveSender at start of buttonDown", saveSender)
-//        saveSender.tintColor = UIColor.systemPurple
-//        sender.tintColor = UIColor.red
-//        var saveSender: UIButton = UIButton()
-//        sender.backgroundColor = UIColor.purple
-//        let saveSenderBackgroundColor = sender.backgroundColor
-//        print(saveSender.tintColor!)
-//        saveSender.tintColor = UIColor.red
-//        print("saveSenderBackgroundColor", saveSenderBackgroundColor as Any)
+        //        print("saveSender at start of buttonDown", saveSender)
+        //        saveSender.tintColor = UIColor.systemPurple
+        //        sender.tintColor = UIColor.red
+        //        var saveSender: UIButton = UIButton()
+        //        sender.backgroundColor = UIColor.purple
+        //        let saveSenderBackgroundColor = sender.backgroundColor
+        //        print(saveSender.tintColor!)
+        //        saveSender.tintColor = UIColor.red
+        //        print("saveSenderBackgroundColor", saveSenderBackgroundColor as Any)
         print("buttonDown: sender=", sender.tag)
         saveSender = sender
-
-//        buttonStarted = sender.tag
+        saveButtonArray[0].isEnabled = true
+        
+        //        buttonStarted = sender.tag
         setAllYellow()
     }
     
     
     //------------------------------------------------------------------------------------------------
-//    @IBAction func buttonPressStarted(_ sender: UIButton) {
-//        buttonStarted = sender.tag
-//        print("buttonPressStarted: button", buttonStarted)
-//    }
+    //    @IBAction func buttonPressStarted(_ sender: UIButton) {
+    //        buttonStarted = sender.tag
+    //        print("buttonPressStarted: button", buttonStarted)
+    //    }
     //------------------------------------------------------------------------------------------------
     @IBAction func buttonPressed(_ sender: UIButton) {
         
@@ -472,6 +563,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         let currentStage = pickerView.selectedRow(inComponent: 0)
         let currentMethod = pickerView.selectedRow(inComponent: 1)
         
+        saveButtonArray[0].isEnabled = false
+        
         print("longPressDetected", longPressDetected)
         
         if longPressDetected {
@@ -480,7 +573,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             
             
             saveSender.layer.borderWidth = 0
-//            saveSender.layer.borderColor = UIColor.red.cgColor
+            //            saveSender.layer.borderColor = UIColor.red.cgColor
             
             selectedBell = sender.tag
             if selectedBell > 100 {
@@ -515,83 +608,94 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             if sender.tag == correctBell {
                 self.setButtonColour(senderCode: sender, colourWanted: UIColor.green)
                 if followsTreble {
-                    switch correctBell {
-                    case 2:
-                        self.setButtonColour(senderCode: button2t, colourWanted: UIColor(named: "LightGreen")!)
-                    case 3:
-                        self.setButtonColour(senderCode: button3t, colourWanted: UIColor(named: "LightGreen")!)
-                    case 4:
-                        self.setButtonColour(senderCode: button4t, colourWanted: UIColor(named: "LightGreen")!)
-                    case 5:
-                        self.setButtonColour(senderCode: button5t, colourWanted: UIColor(named: "LightGreen")!)
-                    case 6:
-                        self.setButtonColour(senderCode: button6t, colourWanted: UIColor(named: "LightGreen")!)
-                    case 7:
-                        self.setButtonColour(senderCode: button7t, colourWanted: UIColor(named: "LightGreen")!)
-                    case 8:
-                        self.setButtonColour(senderCode: button8t, colourWanted: UIColor(named: "LightGreen")!)
-                    default:
-                        break
-                    }
+                    setButtonColour(senderCode: saveButtonTArray[correctBell], colourWanted: UIColor.green)
+//                    switch correctBell {
+//                    case 2:
+//                        self.setButtonColour(senderCode: button2t, colourWanted: UIColor.green)
+//                    case 3:
+//                        self.setButtonColour(senderCode: button3t, colourWanted: UIColor.green)
+//                    case 4:
+//                        self.setButtonColour(senderCode: button4t, colourWanted: UIColor.green)
+//                    case 5:
+//                        self.setButtonColour(senderCode: button5t, colourWanted: UIColor.green)
+//                    case 6:
+//                        self.setButtonColour(senderCode: button6t, colourWanted: UIColor.green)
+//                    case 7:
+//                        self.setButtonColour(senderCode: button7t, colourWanted: UIColor.green)
+//                    case 8:
+//                        self.setButtonColour(senderCode: button8t, colourWanted: UIColor.green)
+//                    default:
+//                        break
+//                    }
                 }
             }
             else {
                 self.setButtonColour(senderCode: sender, colourWanted: UIColor.red)
                 
-                switch correctBell {
-                case 1:
-                    self.setButtonColour(senderCode: button1, colourWanted: UIColor.green)
-                case 2:
-                    self.setButtonColour(senderCode: button2, colourWanted: UIColor.green)
-                case 3:
-                    self.setButtonColour(senderCode: button3, colourWanted: UIColor.green)
-                case 4:
-                    self.setButtonColour(senderCode: button4, colourWanted: UIColor.green)
-                case 5:
-                    self.setButtonColour(senderCode: button5, colourWanted: UIColor.green)
-                case 6:
-                    self.setButtonColour(senderCode: button6, colourWanted: UIColor.green)
-                case 7:
-                    self.setButtonColour(senderCode: button7, colourWanted: UIColor.green)
-                case 8:
-                    self.setButtonColour(senderCode: button8, colourWanted: UIColor.green)
-                case 102:
-                    self.setButtonColour(senderCode: button2t, colourWanted: UIColor.green)
-                case 103:
-                    self.setButtonColour(senderCode: button3t, colourWanted: UIColor.green)
-                case 104:
-                    self.setButtonColour(senderCode: button4t, colourWanted: UIColor.green)
-                case 105:
-                    self.setButtonColour(senderCode: button5t, colourWanted: UIColor.green)
-                case 106:
-                    self.setButtonColour(senderCode: button6t, colourWanted: UIColor.green)
-                case 107:
-                    self.setButtonColour(senderCode: button7t, colourWanted: UIColor.green)
-                case 108:
-                    self.setButtonColour(senderCode: button8t, colourWanted: UIColor.green)
-                    
-                default:
-                    button1.backgroundColor = UIColor.yellow
+                if correctBell < 100 {
+                    setButtonColour(senderCode: saveButtonArray[correctBell], colourWanted: UIColor.green)
+                } else {
+                    setButtonColour(senderCode: saveButtonTArray[correctBell - 100], colourWanted: UIColor.green)
+
                 }
+                
+//                switch correctBell {
+//                case 1:
+//                    self.setButtonColour(senderCode: button1, colourWanted: UIColor.green)
+//                case 2:
+//                    self.setButtonColour(senderCode: button2, colourWanted: UIColor.green)
+//                case 3:
+//                    self.setButtonColour(senderCode: button3, colourWanted: UIColor.green)
+//                case 4:
+//                    self.setButtonColour(senderCode: button4, colourWanted: UIColor.green)
+//                case 5:
+//                    self.setButtonColour(senderCode: button5, colourWanted: UIColor.green)
+//                case 6:
+//                    self.setButtonColour(senderCode: button6, colourWanted: UIColor.green)
+//                case 7:
+//                    self.setButtonColour(senderCode: button7, colourWanted: UIColor.green)
+//                case 8:
+//                    self.setButtonColour(senderCode: button8, colourWanted: UIColor.green)
+//                case 102:
+//                    self.setButtonColour(senderCode: button2t, colourWanted: UIColor.green)
+//                case 103:
+//                    self.setButtonColour(senderCode: button3t, colourWanted: UIColor.green)
+//                case 104:
+//                    self.setButtonColour(senderCode: button4t, colourWanted: UIColor.green)
+//                case 105:
+//                    self.setButtonColour(senderCode: button5t, colourWanted: UIColor.green)
+//                case 106:
+//                    self.setButtonColour(senderCode: button6t, colourWanted: UIColor.green)
+//                case 107:
+//                    self.setButtonColour(senderCode: button7t, colourWanted: UIColor.green)
+//                case 108:
+//                    self.setButtonColour(senderCode: button8t, colourWanted: UIColor.green)
+//                    
+//                default:
+//                    button1.backgroundColor = UIColor.yellow
+//                }
+                
                 if followsTreble {
-                    switch correctBell {
-                    case 2:
-                        self.setButtonColour(senderCode: button2t, colourWanted: UIColor(named: "LightGreen")!)
-                    case 3:
-                        self.setButtonColour(senderCode: button3t, colourWanted: UIColor(named: "LightGreen")!)
-                    case 4:
-                        self.setButtonColour(senderCode: button4t, colourWanted: UIColor(named: "LightGreen")!)
-                    case 5:
-                        self.setButtonColour(senderCode: button5t, colourWanted: UIColor(named: "LightGreen")!)
-                    case 6:
-                        self.setButtonColour(senderCode: button6t, colourWanted: UIColor(named: "LightGreen")!)
-                    case 7:
-                        self.setButtonColour(senderCode: button7t, colourWanted: UIColor(named: "LightGreen")!)
-                    case 8:
-                        self.setButtonColour(senderCode: button8t, colourWanted: UIColor(named: "LightGreen")!)
-                    default:
-                        break
-                    }
+                    setButtonColour(senderCode: saveButtonTArray[correctBell], colourWanted: UIColor.green)
+
+//                    switch correctBell {
+//                    case 2:
+//                        self.setButtonColour(senderCode: button2t, colourWanted: UIColor.green)
+//                    case 3:
+//                        self.setButtonColour(senderCode: button3t, colourWanted: UIColor.green)
+//                    case 4:
+//                        self.setButtonColour(senderCode: button4t, colourWanted: UIColor.green)
+//                    case 5:
+//                        self.setButtonColour(senderCode: button5t, colourWanted: UIColor.green)
+//                    case 6:
+//                        self.setButtonColour(senderCode: button6t, colourWanted: UIColor.green)
+//                    case 7:
+//                        self.setButtonColour(senderCode: button7t, colourWanted: UIColor.green)
+//                    case 8:
+//                        self.setButtonColour(senderCode: button8t, colourWanted: UIColor.green)
+//                    default:
+//                        break
+//                    }
                     
                 }
             }
