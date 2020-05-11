@@ -218,13 +218,19 @@ Treble:</string>
                                         <rect key="frame" x="0.0" y="150" width="808" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place Bell: 1." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6D-is-OgZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="400" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="264" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4eV-oP-pne" userLabel="Bell Sequence">
+                                                <rect key="frame" x="272" y="0.0" width="264" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Handstroke" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1Y-kV-jV1">
-                                                <rect key="frame" x="408" y="0.0" width="400" height="20.5"/>
+                                                <rect key="frame" x="544" y="0.0" width="264" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -252,6 +258,7 @@ Treble:</string>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="bellSequence" destination="4eV-oP-pne" id="X3c-1H-e15"/>
                         <outlet property="bobButton" destination="ecF-v4-lBp" id="BhC-rk-VTC"/>
                         <outlet property="button1" destination="cYD-Fm-n3D" id="D3n-oZ-QvU"/>
                         <outlet property="button2" destination="5Jj-gf-wgC" id="ig7-bX-mrZ"/>

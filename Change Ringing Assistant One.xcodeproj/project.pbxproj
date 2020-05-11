@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5715221824688BA700AA208C /* single.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5715221724688BA700AA208C /* single.wav */; };
+		5715221A24688BB500AA208C /* bob.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5715221924688BB500AA208C /* bob.wav */; };
 		574EF2F92459FA24003A7635 /* bob.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 574EF2F82459FA24003A7635 /* bob.mp3 */; };
 		574EF2FB2459FA31003A7635 /* single.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 574EF2FA2459FA30003A7635 /* single.mp3 */; };
 		5758379324647ADD00E8D47C /* StageFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5758379224647ADD00E8D47C /* StageFinder.swift */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5715221724688BA700AA208C /* single.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = single.wav; sourceTree = "<group>"; };
+		5715221924688BB500AA208C /* bob.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bob.wav; sourceTree = "<group>"; };
 		574EF2F82459FA24003A7635 /* bob.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bob.mp3; sourceTree = "<group>"; };
 		574EF2FA2459FA30003A7635 /* single.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = single.mp3; sourceTree = "<group>"; };
 		5758379224647ADD00E8D47C /* StageFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageFinder.swift; sourceTree = "<group>"; };
@@ -50,8 +54,10 @@
 		574EF2FC2459FA3E003A7635 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				5715221724688BA700AA208C /* single.wav */,
 				574EF2F82459FA24003A7635 /* bob.mp3 */,
 				574EF2FA2459FA30003A7635 /* single.mp3 */,
+				5715221924688BB500AA208C /* bob.wav */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -174,8 +180,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5715221A24688BB500AA208C /* bob.wav in Resources */,
 				574EF2F92459FA24003A7635 /* bob.mp3 in Resources */,
 				57EA25051FC703AB001B222E /* LaunchScreen.storyboard in Resources */,
+				5715221824688BA700AA208C /* single.wav in Resources */,
 				574EF2FB2459FA31003A7635 /* single.mp3 in Resources */,
 				57731456245EC9130032EAFA /* Assets.xcassets in Resources */,
 				57EA25001FC703AB001B222E /* Main.storyboard in Resources */,

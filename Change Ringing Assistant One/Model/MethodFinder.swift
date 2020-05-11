@@ -16,23 +16,23 @@ struct MethodFinder {
     // Bells MUST be in numerical order.
     //-------------------------
     
-/******
+    /******
      Dummy method.
      
-    MethodData(a: "Method Name",
-               b: 0,  // bell count,
-               c: [
-                [1, 1,2,3,4,5,5,4,3,2,1,901],
-                [2, 102,1,1,2,3,4,105,5,4,3,902],
-                [3, 3,4,5,105,4,3,2,1,1,102,903],
-                [4, 4,103,2,1,1,2,3,104,5,5,904],
-                [5, 5,5,104,3,2,1,1,2,103,4,905]
-        ],
-               d: false, // BOB allowed.
-               e: false  // SINGLE allowed
-    ),
- 
- *****/
+     MethodData(a: "Method Name",
+     b: 0,  // bell count,
+     c: [
+     [1, 1,2,3,4,5,5,4,3,2,1,901],
+     [2, 102,1,1,2,3,4,105,5,4,3,902],
+     [3, 3,4,5,105,4,3,2,1,1,102,903],
+     [4, 4,103,2,1,1,2,3,104,5,5,904],
+     [5, 5,5,104,3,2,1,1,2,103,4,905]
+     ],
+     d: false, // BOB allowed.
+     e: false  // SINGLE allowed
+     ),
+     
+     *****/
     
     
     
@@ -43,39 +43,36 @@ struct MethodFinder {
             MethodData(a: "Plain Hunt",
                        b: 4,
                        c: [
-                        [1, 1,2,3,4,4,3,2,1,     901],
-                        [2, 102,1,1,2,3,104,4,3, 902],
-                        [3, 3,4,104,3,2,1,1,102, 903],
-                        [4, 4,103,2,1,1,2,103,4, 904]
+                        [0,12,0,12,0,12,0,12]
                 ],
                        d: false,
                        e: false
             ),
-        
-        MethodData(a: "Plain Bob",
-                   b: 4,
-                   c: [
-                    [1, 1,2,3,4,4,3,2,1, 901],
-                    [2, 102,1,1,2,103,4,4,3, 904],
-                    [3, 3,4,104,3,2,1,1,102, 902],
-                    [4, 4,103,2,1,1,2,103,4, 903]
-            ],
-                   d: false,
-                   e: false
+            
+            MethodData(a: "Plain Bob",
+                       b: 4,
+                       c: [
+                        [1, 1,2,3,4,4,3,2,1, 901],
+                        [2, 102,1,1,2,103,4,4,3, 904],
+                        [3, 3,4,104,3,2,1,1,102, 902],
+                        [4, 4,103,2,1,1,2,103,4, 903]
+                ],
+                       d: false,
+                       e: false
             ),
-        
-        
-        MethodData(a: "Reverse Bob",
-                   b: 4,
-                   c: [
-                    [1, 1,2,3,4,4,3,2,1, 901],
-                    [2, 102,1,1,2,1,2,103,4, 904],
-                    [3, 3,4,104,3,3,104,4,3, 902],
-                    [4, 4,103,2,1,2,1,1,102, 903]
-            ],
-                   d: false,
-                   e: false)
-        
+            
+            
+            MethodData(a: "Reverse Bob",
+                       b: 4,
+                       c: [
+                        [1, 1,2,3,4,4,3,2,1, 901],
+                        [2, 102,1,1,2,1,2,103,4, 904],
+                        [3, 3,4,104,3,3,104,4,3, 902],
+                        [4, 4,103,2,1,2,1,1,102, 903]
+                ],
+                       d: false,
+                       e: false)
+            
         ],
         
         
@@ -112,11 +109,9 @@ struct MethodFinder {
             MethodData(a: "Grandsire Doubles",
                        b: 5,
                        c: [
-                        [1,  1,2,3,4,5,5,4,3,     500,   2,1,901],
-                        [2,  102,1,1,2,3,4,105,5, 500,   4,753,853,   3,703,902],
-                        [3,  3,103,2,1,1,2,3,104, 500,   5,754,854,   5,700,904],
-                        [4,  4,5,104,3,2,1,1,2,   500, 103,752,852,   4,700,905],
-                        [5,  5,4,5,105,4,3,2,1,   500,   1,102,702, 103,700,903]
+                        [3,1,5,1,5,1,5,1,5,1],
+                        [10,9,3],
+                        [10,9,3,123]
                 ],
                        d: true,
                        e: true
@@ -174,7 +169,7 @@ struct MethodFinder {
                        e: false
             ),
             
-
+            
             MethodData(a: "Plain Bob",
                        b: 6,
                        c: [
@@ -186,7 +181,7 @@ struct MethodFinder {
                         [6, 6,5,104,3,2,1,1,2,3,104,5,500,6, 705,805, 905]
                 ],
                        d: true, // BOB allowed.
-                       e: true  // SINGLE allowed
+                e: true  // SINGLE allowed
             ),
             
             MethodData(a: "Cambridge Surprise Minor",
@@ -318,6 +313,17 @@ struct MethodFinder {
     }
     
     //--------------------------------------------------
+    // Receive stage as number, method as number. Return method data as MethodData streucture.
+    //--------------------------------------------------
+    
+    func findMethodData(requestStage: Int, requestRow: Int) -> MethodData {
+        let returnMethodData = methodList[requestStage][requestRow]
+        print("findMethodData: return", returnMethodData)
+        return returnMethodData
+    }
+    
+    
+    //--------------------------------------------------
     // Receive stage as number, method as number. Return bobvalid, singlevalid.
     //--------------------------------------------------
     func findValidCalls(requestStage: Int, requestRow: Int) -> (Bool, Bool) {
@@ -328,99 +334,190 @@ struct MethodFinder {
     }
     
     //--------------------------------------------------
-    // Receive stage as number, method as number, placebell. Return array of positions.
+    // Receive stage as number, method as number. Return array of positions.
     //--------------------------------------------------
-    func findBellArray(requestStage: Int, requestRow: Int, requestBell: Int) -> [Int] {
+    func findBellArray(requestStage: Int, requestRow: Int) -> [Int] {
         
-        let bellInArray = requestBell - 1
-        let methodArray = methodList[requestStage][requestRow].methodArray[bellInArray]
-        print("findBellArray: request", requestStage, requestRow, requestBell)
+        let methodArray = methodList[requestStage][requestRow].methodArray[1]
+        print("findBellArray: request", requestStage, requestRow)
         return methodArray
     }
     
     //------------------------------------------------------------------------------------------------
-    // Move on in map.
+    // Find next correct bell.
+    // Receive: MethodData object.
+    //          User bell number.
+    //          Current bell position. e.g. 1 = lead
+    //          Change number.
+    //          Current sequence of bells, e.g. rounds = 12345678.
+    //          Current place bell.
+    // Return:  Next position for user bell. -> returnBellPosition
+    //          Flag if treble is in front.  -> returnFollowsTreble
+    //          New sequence of bells.       -> returnBellSequence
+    //          New place bell               -> returnPlaceBell
     //------------------------------------------------------------------------------------------------
-    mutating func findNextPlace (requestStage: Int, requestRow: Int, requestArray: [Int], requestArrayIndex: Int, bobRequested: Bool, singleRequested: Bool) -> ([Int], Int, Bool, Bool) {
-        // Return: Array, Array Pointer, Call started, Call ended.
-        
-        var nextBellFound = false
-        var returnArray = requestArray
-        var returnArrayIndex = requestArrayIndex
-        var callStarted = false
-        var callEnded = false
-        //        mapPointer = re
-        var newPlaceBell = 0
-        //        workArray = requestArray
+    func findNextPosition(currentMethodData: MethodData,
+                          currentUserBell: Int,
+                          currentBellPosition: Int,
+                          currentChangeNumber: Int,
+                          currentBellSequence: String,
+                          currentPlaceBell: Int) -> (Int, Bool, String, Int) {
         
         
-        while nextBellFound == false {
-            
-            returnArrayIndex = returnArrayIndex + 1
-            var nextPlaceNumber = returnArray[returnArrayIndex]
-            print("findNextPlace - Start SWITCH for moving on in array...", nextPlaceNumber)
-            
-            //----------------------
-            switch nextPlaceNumber {
-                
-            // 9nn - move to new array, at the start of it.
-            case _ where (nextPlaceNumber > 900
-                || ((nextPlaceNumber < 900 && nextPlaceNumber > 800) && bobRequested == true)
-                || ((nextPlaceNumber < 800 && nextPlaceNumber > 700) && singleRequested == true)
-                ):
-                newPlaceBell = nextPlaceNumber - ((nextPlaceNumber / 100) * 100)
-                if newPlaceBell > 50 {
-                    newPlaceBell = newPlaceBell - 50
-                } else {
-                    returnArrayIndex = 1
-                    callEnded = true
-                    print("findNextPlace - 'Call Ended' set.")
+        let newPlaceCode = currentMethodData.methodArray[0][currentChangeNumber]
+        print("findNextPosition: placecode", newPlaceCode)
+        let stringPlaceCode = String(newPlaceCode)
+        var returnBellSequence = currentBellSequence
+        var returnPlaceBell = currentPlaceBell
+        
+        var returnBellPosition: Int = currentBellPosition
+        var returnFollowsTreble: Bool = false
+        var ix: Int = 1
+        
+        repeat {
+            if stringPlaceCode.contains(String(ix)) {
+                print("findnextposition: ", ix, "found in", stringPlaceCode)
+                if ix == currentUserBell {
+                    print("findnextposition: ", currentUserBell, "not moving.")
                 }
-                (returnArray) = findBellArray(requestStage: requestStage, requestRow: requestRow, requestBell: newPlaceBell)
+                ix = ix + 1
+            } else {
+                let index1 = returnBellSequence.index(returnBellSequence.startIndex, offsetBy: ix - 1)
+                let index2 = returnBellSequence.index(returnBellSequence.startIndex, offsetBy: ix)
+                let save1 = returnBellSequence.prefix(ix - 1)
+                let save2 = returnBellSequence[index1...index1]
+                let save3 = returnBellSequence[index2...index2]
+                let save4 = returnBellSequence.suffix(returnBellSequence.count - ix - 1)
+                print(save1, save2, save3, save4)
+                returnBellSequence = String(save1 + save3 + save2 + save4)
+                print("findnextposition: sequence now", returnBellSequence)
                 
-                //                workArray = nextArray
-                print("findNextPlace - End of place bell, new place bell is", newPlaceBell)
                 
-                nextPlaceNumber = returnArray[returnArrayIndex]
-                
-                if nextPlaceNumber < 200 {
-                    nextBellFound = true
+                if ix == currentBellPosition {
+                    returnBellPosition = currentBellPosition + 1
+                    if save3 == "1" {
+                        returnFollowsTreble = true
+                    }
+                    print("moved up", returnBellPosition, returnFollowsTreble)
+                    
+                }
+                if ix + 1 == currentBellPosition {
+                    returnBellPosition = currentBellPosition - 1
+                    if save1.suffix(1) == "1" {
+                        returnFollowsTreble = true
+                    }
+                    print("moved down", returnBellPosition, returnFollowsTreble)
                 }
                 
+                ix = ix + 2
                 
-            // Check for BOB/SINGLE to be announced.
-            case _ where nextPlaceNumber == 500:
-                if (bobRequested == true || singleRequested == true) {
-                    print("findNextPlace - Code 500 and Call active.")
-                    callStarted = true
-                } else {
-                    print("findNextPlace - Bypass BOB/SINGLE call.")
-                }
-                
-            // 700/800 - dummy end of call.
-            case _ where (nextPlaceNumber == 800 && bobRequested == true):
-                print("findnextPlace - dummy end of BOB")
-                callEnded = true
-            case _ where (nextPlaceNumber == 700 && singleRequested == true):
-                print("findnextPlace - dummy end of SINGLE")
-                callEnded = true
-                
-            // Zero is a dummy filler.
-            case 0:
-                print("findNextPlace - dummy filler.")
-                
-                
-                
-            default:
-                print("findNextPlace - DEFAULT process, nextPlaceNumber is", nextPlaceNumber)
-                if nextPlaceNumber < 200 {
-                    nextBellFound = true
-                    newPlaceBell = nextPlaceNumber
-                }
             }
-        }
-        print("findNextPlace - return", returnArray , returnArrayIndex, callStarted, callEnded)
+        } while ix < currentBellSequence.count
         
-        return (returnArray, returnArrayIndex, callStarted, callEnded)
+        // Check for final change in array, which implies a new place bell.
+        if currentChangeNumber == currentMethodData.methodArray[0].count {
+            returnPlaceBell = returnBellPosition
+            print("findNextPosition: new place bell", returnPlaceBell)
+            
+        }
+        
+        return (returnBellPosition, returnFollowsTreble, returnBellSequence, returnPlaceBell)
+        
     }
+    
 }
+
+
+
+
+
+
+/*
+ 
+ //------------------------------------------------------------------------------------------------
+ // Move on in map.
+ //------------------------------------------------------------------------------------------------
+ mutating func findNextPlace (requestStage: Int, requestRow: Int, requestArray: [Int], requestArrayIndex: Int, bobRequested: Bool, singleRequested: Bool) -> ([Int], Int, Bool, Bool) {
+ // Return: Array, Array Pointer, Call started, Call ended.
+ 
+ var nextBellFound = false
+ var returnArray = requestArray
+ var returnArrayIndex = requestArrayIndex
+ var callStarted = false
+ var callEnded = false
+ //        mapPointer = re
+ var newPlaceBell = 0
+ //        workArray = requestArray
+ 
+ 
+ while nextBellFound == false {
+ 
+ returnArrayIndex = returnArrayIndex + 1
+ var nextPlaceNumber = returnArray[returnArrayIndex]
+ print("findNextPlace - Start SWITCH for moving on in array...", nextPlaceNumber)
+ 
+ //----------------------
+ switch nextPlaceNumber {
+ 
+ // 9nn - move to new array, at the start of it.
+ case _ where (nextPlaceNumber > 900
+ || ((nextPlaceNumber < 900 && nextPlaceNumber > 800) && bobRequested == true)
+ || ((nextPlaceNumber < 800 && nextPlaceNumber > 700) && singleRequested == true)
+ ):
+ newPlaceBell = nextPlaceNumber - ((nextPlaceNumber / 100) * 100)
+ if newPlaceBell > 50 {
+ newPlaceBell = newPlaceBell - 50
+ } else {
+ returnArrayIndex = 1
+ callEnded = true
+ print("findNextPlace - 'Call Ended' set.")
+ }
+ (returnArray) = findBellArray(requestStage: requestStage, requestRow: requestRow, requestBell: newPlaceBell)
+ 
+ //                workArray = nextArray
+ print("findNextPlace - End of place bell, new place bell is", newPlaceBell)
+ 
+ nextPlaceNumber = returnArray[returnArrayIndex]
+ 
+ if nextPlaceNumber < 200 {
+ nextBellFound = true
+ }
+ 
+ 
+ // Check for BOB/SINGLE to be announced.
+ case _ where nextPlaceNumber == 500:
+ if (bobRequested == true || singleRequested == true) {
+ print("findNextPlace - Code 500 and Call active.")
+ callStarted = true
+ } else {
+ print("findNextPlace - Bypass BOB/SINGLE call.")
+ }
+ 
+ // 700/800 - dummy end of call.
+ case _ where (nextPlaceNumber == 800 && bobRequested == true):
+ print("findnextPlace - dummy end of BOB")
+ callEnded = true
+ case _ where (nextPlaceNumber == 700 && singleRequested == true):
+ print("findnextPlace - dummy end of SINGLE")
+ callEnded = true
+ 
+ // Zero is a dummy filler.
+ case 0:
+ print("findNextPlace - dummy filler.")
+ 
+ 
+ 
+ default:
+ print("findNextPlace - DEFAULT process, nextPlaceNumber is", nextPlaceNumber)
+ if nextPlaceNumber < 200 {
+ nextBellFound = true
+ newPlaceBell = nextPlaceNumber
+ }
+ }
+ }
+ print("findNextPlace - return", returnArray , returnArrayIndex, callStarted, callEnded)
+ 
+ return (returnArray, returnArrayIndex, callStarted, callEnded)
+ }
+ }
+ */
