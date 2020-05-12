@@ -59,6 +59,9 @@
                                                         <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <state key="normal" title="Lead"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="2"/>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="buttonDown:" destination="BYZ-38-t0r" eventType="touchDown" id="JFa-XU-jfe"/>
                                                             <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="L3t-za-bPD"/>
@@ -289,7 +292,7 @@ Treble:</string>
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1477" y="-1751"/>
+            <point key="canvasLocation" x="1602" y="-1755"/>
         </scene>
     </scenes>
 </document>

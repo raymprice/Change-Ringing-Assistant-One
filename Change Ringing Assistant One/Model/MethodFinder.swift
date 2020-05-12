@@ -43,7 +43,7 @@ struct MethodFinder {
             MethodData(a: "Plain Hunt",
                        b: 4,
                        c: [
-                        [0,12,0,12,0,12,0,12]
+                        [0,14,0,14,0,14,0,14]
                 ],
                        d: false,
                        e: false
@@ -95,11 +95,9 @@ struct MethodFinder {
             MethodData(a: "Plain Bob Doubles",
                        b: 5,
                        c: [
-                        [1, 1,2,3,4,5,5,4,3,2,     500,  1,901],
-                        [2, 102,1,1,2,3,4,105,5,4, 500,  3,802,904],
-                        [3, 3,4,5,105,4,3,2,1,1,   500,102,803,902],
-                        [4, 4,103,2,1,1,2,3,104,5, 500,  5,905],
-                        [5, 5,5,104,3,2,1,1,2,103, 500,  4,804,903]
+                        [5,1,5,1,5,1,5,1,5,125],
+                        [10,0,143],
+                        [0]
                 ],
                        d: true,
                        e: false
@@ -351,77 +349,136 @@ struct MethodFinder {
     //          Change number.
     //          Current sequence of bells, e.g. rounds = 12345678.
     //          Current place bell.
-    // Return:  Next position for user bell. -> returnBellPosition
+    // Return:  Method array, amended        -> returnMethodArray
+    //          Next position for user bell. -> returnBellPosition
     //          Flag if treble is in front.  -> returnFollowsTreble
     //          New sequence of bells.       -> returnBellSequence
-    //          New place bell               -> returnPlaceBell
+    //          New place bell               -> returnPlaceBell - zero if no change.
+    //          Call started                 -> returnCallStarted - true if call begins.
     //------------------------------------------------------------------------------------------------
-    func findNextPosition(currentMethodData: MethodData,
+    func findNextPosition(currentMethodArray: [[Int]],
                           currentUserBell: Int,
                           currentBellPosition: Int,
                           currentChangeNumber: Int,
                           currentBellSequence: String,
-                          currentPlaceBell: Int) -> (Int, Bool, String, Int) {
+                          currentPlaceBell: Int,
+                          bobRequested: Bool,
+                          singleRequested: Bool) -> ([[Int]], Int, Bool, String, Int, Bool) {
         
         
-        let newPlaceCode = currentMethodData.methodArray[0][currentChangeNumber]
-        print("findNextPosition: placecode", newPlaceCode)
+        let newPlaceCode = currentMethodArray[0][currentChangeNumber]
+        print("findNextPosition: placecode", newPlaceCode, "Parms", currentUserBell, currentBellPosition, currentChangeNumber, currentBellSequence, currentPlaceBell, bobRequested, singleRequested)
         let stringPlaceCode = String(newPlaceCode)
         var returnBellSequence = currentBellSequence
-        var returnPlaceBell = currentPlaceBell
+        var returnPlaceBell: Int = 0
         
+        var returnMethodArray = currentMethodArray
         var returnBellPosition: Int = currentBellPosition
         var returnFollowsTreble: Bool = false
+        var returnCallStarted: Bool = false
+        
         var ix: Int = 1
         
         repeat {
+            let index1 = returnBellSequence.index(returnBellSequence.startIndex, offsetBy: ix - 1)
+            let index2 = returnBellSequence.index(returnBellSequence.startIndex, offsetBy: ix)
+            let save1 = returnBellSequence.prefix(ix - 1)
+            print("save1", save1)
+            print("---------->>>>>", stringPlaceCode, String(ix))
             if stringPlaceCode.contains(String(ix)) {
                 print("findnextposition: ", ix, "found in", stringPlaceCode)
-                if ix == currentUserBell {
-                    print("findnextposition: ", currentUserBell, "not moving.")
-                }
-                ix = ix + 1
-            } else {
-                let index1 = returnBellSequence.index(returnBellSequence.startIndex, offsetBy: ix - 1)
-                let index2 = returnBellSequence.index(returnBellSequence.startIndex, offsetBy: ix)
-                let save1 = returnBellSequence.prefix(ix - 1)
-                let save2 = returnBellSequence[index1...index1]
-                let save3 = returnBellSequence[index2...index2]
-                let save4 = returnBellSequence.suffix(returnBellSequence.count - ix - 1)
-                print(save1, save2, save3, save4)
-                returnBellSequence = String(save1 + save3 + save2 + save4)
-                print("findnextposition: sequence now", returnBellSequence)
-                
-                
                 if ix == currentBellPosition {
-                    returnBellPosition = currentBellPosition + 1
-                    if save3 == "1" {
-                        returnFollowsTreble = true
-                    }
-                    print("moved up", returnBellPosition, returnFollowsTreble)
-                    
-                }
-                if ix + 1 == currentBellPosition {
-                    returnBellPosition = currentBellPosition - 1
+                    print("findnextposition: ", currentUserBell, "not moving.")
                     if save1.suffix(1) == "1" {
                         returnFollowsTreble = true
                     }
-                    print("moved down", returnBellPosition, returnFollowsTreble)
                 }
-                
+                ix = ix + 1
+            } else {
+                if ix < returnBellSequence.count {
+                    let save2 = returnBellSequence[index1...index1]
+                    let save3 = returnBellSequence[index2...index2]
+                    let save4 = returnBellSequence.suffix(returnBellSequence.count - ix - 1)
+                    print("save1-2-3-4", save1, save2, save3, save4)
+                    
+                    returnBellSequence = String(save1 + save3 + save2 + save4)
+                    print("findnextposition: sequence now", returnBellSequence)
+                    
+                    
+                    if ix == currentBellPosition {
+                        returnBellPosition = currentBellPosition + 1
+                        if save3 == "1" {
+                            returnFollowsTreble = true
+                        }
+                        print("moved up", returnBellPosition, returnFollowsTreble)
+                        
+                    }
+                    if ix + 1 == currentBellPosition {
+                        returnBellPosition = currentBellPosition - 1
+                        if save1.suffix(1) == "1" {
+                            returnFollowsTreble = true
+                        }
+                        print("moved down", returnBellPosition, returnFollowsTreble)
+                    
+                    }
+                }
                 ix = ix + 2
                 
             }
-        } while ix < currentBellSequence.count
+        } while ix <= returnBellSequence.count
         
         // Check for final change in array, which implies a new place bell.
-        if currentChangeNumber == currentMethodData.methodArray[0].count {
+        print(currentChangeNumber, currentMethodArray[0].count)
+        
+        if currentChangeNumber == currentMethodArray[0].count - 1 {
             returnPlaceBell = returnBellPosition
             print("findNextPosition: new place bell", returnPlaceBell)
             
         }
         
-        return (returnBellPosition, returnFollowsTreble, returnBellSequence, returnPlaceBell)
+        // See if a bob or single can be called after the current change.
+        if bobRequested {
+            let bobArray = currentMethodArray[1]
+            let bobCallFrequency = bobArray[0]
+            let bobCallFirst = bobArray[1] - 3
+            print("Bob call?", returnMethodArray[0], currentChangeNumber, bobCallFirst, bobCallFrequency)
+            if (currentChangeNumber == bobCallFirst || currentChangeNumber == bobCallFirst + bobCallFrequency) {
+                returnCallStarted = true
+                print("*****BOB*****")
+                
+                for i in 1...currentMethodArray.count - 2 {
+                    returnMethodArray[0][currentChangeNumber + i + 1] = returnMethodArray[1][i + 1]
+                    print("-------->", returnMethodArray[0])
+                }
+                print("Bob array", returnMethodArray[0])
+                
+            }
+        }
+        
+        if singleRequested {
+            let singleArray = currentMethodArray[2]
+            let singleCallFrequency = singleArray[0]
+            let singleCallFirst = singleArray[1] - 3
+            print("SINGLE call?", returnMethodArray[0], currentChangeNumber, singleCallFirst, singleCallFrequency)
+            if (currentChangeNumber == singleCallFirst || currentChangeNumber == singleCallFirst + singleCallFrequency) {
+                returnCallStarted = true
+                print("*****SINGLE*****")
+                
+                for i in 1...currentMethodArray.count - 2 {
+                    returnMethodArray[0][currentChangeNumber + i + 1] = returnMethodArray[2][i + 1]
+                    print("----------->", returnMethodArray[0])
+                }
+                print("Single array", returnMethodArray[0])
+            }
+        }
+        
+        
+        
+        
+        
+        print("return",returnBellPosition, returnFollowsTreble, returnBellSequence, returnPlaceBell)
+        
+        return (returnMethodArray, returnBellPosition, returnFollowsTreble, returnBellSequence, returnPlaceBell, returnCallStarted)
         
     }
     
