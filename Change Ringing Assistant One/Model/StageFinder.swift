@@ -37,7 +37,7 @@ struct StageFinder {
     }
     
     //--------------------------------------------------
-    // Receive stage as number, return name of stage.
+    // Receive stage as number, return bell count.
     //--------------------------------------------------
     func findStageBells(requestStage: Int) -> Int {
         let returnBellCount = stageData[requestStage].stageBellCount

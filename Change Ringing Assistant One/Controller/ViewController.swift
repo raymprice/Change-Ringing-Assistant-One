@@ -77,7 +77,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     // Global Variables are not (allegedly) good.
     // Here they are.
-    var currentMethodData: MethodData = MethodData(a: "", b: 0, c: [[0]], d: false, e: false)
+    var currentMethodData: MethodData = MethodData(a: "", b: 0, c: " ", d: [[0]], e: false, f: false)
     
     // Copy of array from currentMethodData. This can be altered by calls, then reset from currentMethodData.
     var currentMethodArray: [[Int]] = [[0]]
@@ -212,7 +212,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             button6.isEnabled = true
             button7.isEnabled = true
             button8.isEnabled = true
-            if followTreble.currentTitleColor == UIColor.black {
+            if currentTrebleChecking == false {
                 button5t.isEnabled = true
                 button6t.isEnabled = true
                 button7t.isEnabled = true
@@ -267,8 +267,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         bobButton.isEnabled = currentMethodData.bobValid
         singleButton.isEnabled = currentMethodData.singleValid
         
-        self.showCurrentPlace.textColor = UIColor.black
-        self.showCurrentPlace.text = "Place Bell: " + String(currentSelectedBell)
+//        self.showCurrentPlace.textColor = UIColor.black
+//        self.showCurrentPlace.text = "Place Bell: " + String(currentSelectedBell)
+        self.showCurrentPlace.text = currentMethodData.methodStructure
         
         self.showHandOrBack.text = "Handstroke next"
         
@@ -289,7 +290,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             }
         }
         
-        self.showCurrentPlace.textColor = UIColor.black
+//        self.showCurrentPlace.textColor = UIColor.black
         bobButton.backgroundColor = UIColor.clear
         singleButton.backgroundColor = UIColor.clear
         
@@ -450,7 +451,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         print("buttonDown: sender=", sender.tag)
         saveSender = sender
         buttonDownDetected = true
-        self.showCurrentPlace.textColor = UIColor.black
+//        self.showCurrentPlace.textColor = UIColor.black
         setAllYellow()
     }
     
@@ -535,8 +536,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             currentBellSequence = newBellSequence
             currentMethodArray = newMethodArray
             
-            if ((newFollowsTreble == false && (sender.tag == correctBellPosition))
-                || (newFollowsTreble && (sender.tag - 100 == correctBellPosition))) {
+            if ((newFollowsTreble == false && sender.tag == correctBellPosition)
+                || (newFollowsTreble && sender.tag - 100 == correctBellPosition)
+                || (currentTrebleChecking == false && sender.tag == correctBellPosition))  {
                 self.setButtonColour(senderCode: sender, colourWanted: UIColor.green)
                 if newFollowsTreble {
                     setButtonColour(senderCode: saveButtonTArray[correctBellPosition], colourWanted: UIColor.green)
@@ -562,8 +564,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 saveButtonArray[newPlaceBell].layer.borderColor = UIColor.black.cgColor
                 
                 currentPlaceBell = newPlaceBell
-                self.showCurrentPlace.text = "Place Bell: " + String(currentPlaceBell)
-                self.showCurrentPlace.textColor = UIColor.red
+//                self.showCurrentPlace.text = "Place Bell: " + String(currentPlaceBell)
+//                self.showCurrentPlace.textColor = UIColor.red
                 currentChangeNumber = 0
                 currentMethodArray = currentMethodData.methodArray
             } else {
@@ -616,13 +618,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 self.showHandOrBack.text = "Handstroke next"
             }
             
-//            self.showCurrentPlace.textColor = UIColor.black
-//            if currentBellArrayIndex == 2 {
-//                self.showCurrentPlace.text = "Place Bell: " + String(String(currentBellArray[0]).first!)
-//                if currentBellArray[0] <= 12 {
-//                    self.showCurrentPlace.textColor = UIColor.red
-//                }
-//            }
+
             
             currentBellPosition = newBellPosition
             buttonDownDetected = false

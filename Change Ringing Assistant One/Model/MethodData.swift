@@ -9,18 +9,20 @@
 import Foundation
 
 struct MethodData {
-    let methodName: String
-    let bellCount: Int
-    let methodArray: [[Int]]
-    let bobValid: Bool
-    let singleValid: Bool
+    var methodName: String
+    var bellCount: Int
+    var methodStructure: String
+    var methodArray: [[Int]]
+    var bobValid: Bool
+    var singleValid: Bool
     
-    init(a: String, b:Int, c:[[Int]], d:Bool, e:Bool) {
+    init(a: String, b:Int, c:String, d:[[Int]], e:Bool, f:Bool) {
         methodName = a
         bellCount = b
-        methodArray = c
-        bobValid = d
-        singleValid = e
+        methodStructure = c
+        methodArray = d
+        bobValid = e
+        singleValid = f
     }
 }
 

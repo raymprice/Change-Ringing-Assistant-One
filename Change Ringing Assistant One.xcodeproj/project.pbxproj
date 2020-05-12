@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5715221824688BA700AA208C /* single.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5715221724688BA700AA208C /* single.wav */; };
 		5715221A24688BB500AA208C /* bob.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5715221924688BB500AA208C /* bob.wav */; };
+		574954E7246AE0EF0070FAF6 /* PlaceBellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574954E6246AE0EF0070FAF6 /* PlaceBellData.swift */; };
 		574EF2F92459FA24003A7635 /* bob.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 574EF2F82459FA24003A7635 /* bob.mp3 */; };
 		574EF2FB2459FA31003A7635 /* single.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 574EF2FA2459FA30003A7635 /* single.mp3 */; };
 		5758379324647ADD00E8D47C /* StageFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5758379224647ADD00E8D47C /* StageFinder.swift */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		5715221724688BA700AA208C /* single.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = single.wav; sourceTree = "<group>"; };
 		5715221924688BB500AA208C /* bob.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bob.wav; sourceTree = "<group>"; };
+		574954E6246AE0EF0070FAF6 /* PlaceBellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceBellData.swift; sourceTree = "<group>"; };
 		574EF2F82459FA24003A7635 /* bob.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bob.mp3; sourceTree = "<group>"; };
 		574EF2FA2459FA30003A7635 /* single.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = single.mp3; sourceTree = "<group>"; };
 		5758379224647ADD00E8D47C /* StageFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageFinder.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				578B5A65245B53CC00356460 /* MethodData.swift */,
+				574954E6246AE0EF0070FAF6 /* PlaceBellData.swift */,
 				578B5A67245B557700356460 /* MethodFinder.swift */,
 				57E5125924643A7C006FC54C /* StageData.swift */,
 				5758379224647ADD00E8D47C /* StageFinder.swift */,
@@ -197,6 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				574954E7246AE0EF0070FAF6 /* PlaceBellData.swift in Sources */,
 				5758379324647ADD00E8D47C /* StageFinder.swift in Sources */,
 				578B5A66245B53CC00356460 /* MethodData.swift in Sources */,
 				57EA24FD1FC703AB001B222E /* ViewController.swift in Sources */,
