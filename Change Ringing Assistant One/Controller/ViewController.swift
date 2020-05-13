@@ -41,7 +41,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var pickerView: UIPickerView!
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        print("numberOfComponents: 2")
+//        print("numberOfComponents: 2")
         return 2
     }
     
@@ -55,7 +55,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             let currentStage = pickerView.selectedRow(inComponent: 0)
             returnRowsInComponent = methodFinder.methodCount(requestStage: currentStage)
         }
-        print("numberOfRowsInComponent:", component, returnRowsInComponent)
+//        print("numberOfRowsInComponent:", component, returnRowsInComponent)
         return returnRowsInComponent
         
     }
@@ -63,13 +63,13 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == 0 {
             let returnStageName = stageFinder.findStageName(requestStage: row)
-            print("titleForRow:", component, row, "->", returnStageName)
+//            print("titleForRow:", component, row, "->", returnStageName)
             return returnStageName
         } else {
             let currentStage = pickerView.selectedRow(inComponent: 0)
             
             let returnMethodName = methodFinder.findName(requestStage: currentStage, requestRow: row)
-            print("titleForRow:", component, row, "->", returnMethodName)
+//            print("titleForRow:", component, row, "->", returnMethodName)
             return returnMethodName
         }
         

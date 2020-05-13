@@ -23,7 +23,7 @@ struct StageFinder {
     //--------------------------------------------------
     func findStageCount(requestStage: Int) -> Int {
         let returnStageCount = stageData.count
-        print("findStageCount: request", requestStage, "->", returnStageCount)
+//        print("findStageCount: request", requestStage, "->", returnStageCount)
         return returnStageCount
     }
     
@@ -32,7 +32,7 @@ struct StageFinder {
     //--------------------------------------------------
     func findStageName(requestStage: Int) -> String {
         let returnStageName = stageData[requestStage].stageName
-        print("findStageName: ", requestStage, returnStageName)
+//        print("findStageName: ", requestStage, returnStageName)
         return returnStageName
     }
     
@@ -41,7 +41,7 @@ struct StageFinder {
     //--------------------------------------------------
     func findStageBells(requestStage: Int) -> Int {
         let returnBellCount = stageData[requestStage].stageBellCount
-        print("findStageName: ", requestStage, returnBellCount)
+//        print("findStageName: ", requestStage, returnBellCount)
         return returnBellCount
     }
 }
