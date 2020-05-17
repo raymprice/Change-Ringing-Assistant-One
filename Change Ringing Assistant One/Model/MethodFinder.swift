@@ -38,287 +38,44 @@ struct MethodFinder {
     let placeBellData = [
         //Minimus
         [
-            //            PlaceBellData(a: "Plain Hunt", b: "x14x14x14x14", c: [0], d: [0]),
             PlaceBellData(a: "Plain Hunt", b: "x1x1x1x1", c: [0], d: [0]),
-            PlaceBellData(a: "Plain Bob", b: "x4x4x4x2", c: [0], d: [0])
+            PlaceBellData(a: "Plain Bob", b: "x4x4x4x2", c: [0], d: [0]),
+			PlaceBellData(a: "Reverse Bob", b: "&-1-3,14", c: [0], d: [0])
         ],
         //Doubles.
         [
+//			PlaceBellData(a: "Grandsire Doubles", b: "+1.5.1.5.1", c: [10,9,3], d: [10,9,3,123]),
+
             PlaceBellData(a: "Plain Hunt Doubles", b: "5.1.5.1.5.1.5.1.5.1", c: [0], d: [0]),
-            PlaceBellData(a: "Plain Bob Doubles", b: "&5.1.5.1.5,125", c: [10,0,143], d: [0])
+            PlaceBellData(a: "Plain Bob Doubles", b: "&5.1.5.1.5,25", c: [10,0,143], d: [0]),
+            PlaceBellData(a: "St Simon's Doubles", b: "&5.1.5.3.5,25", c: [10,0,143], d: [0]),
+            PlaceBellData(a: "St Martin's Doubles", b: "&5.1.5.23.5,25", c: [10,0,143], d: [0]),
+			PlaceBellData(a: "Grandsire Doubles", b: "+3.1.5.1.5.1.5.1.5.1", c: [10,9,3], d: [10,9,3,123]),
+			PlaceBellData(a: "Stedman Doubles", b: "3.1.5.3.1.3.1.3.5.1.3.1", c: [0], d: [6,0,345])
         ],
         // Minor
         [
-            PlaceBellData(a: "Plain Hunt Minor", b: "x16x16x16x16x16x16", c: [0], d: [0]),
+            PlaceBellData(a: "Plain Hunt Minor", b: "x6x6x6x6x6x6", c: [0], d: [0]),
             PlaceBellData(a: "Plain Bob Minor", b: "a x1x1x1x1x1x.12", c: [12,0,14], d: [12,0,1234]),
-            PlaceBellData(a: "Cambridge Surprise Minor", b: "b -3-14-12-3-14-5-14-3-12-14-3-12", c: [24,0,14], d: [24,1,1224])
+            PlaceBellData(a: "Cambridge Surprise Minor", b: "b -3-4-2-3-4-5-4-3-2-4-3-12", c: [24,0,14], d: [24,1,1234]),
+			PlaceBellData(a: "Beverley Surprise Minor", b: "&-36-14-12-36.14-34.56,12", c: [24,0,14], d: [24,0,1234]),
+			PlaceBellData(a: "Bourne Surprise Minor", b: "&-3-4-2-3-34-3,12", c: [24,0,14], d: [24,0,1234]),
+            PlaceBellData(a: "London Surprise Minor", b: "&36-36.14-12-36.14-14.36,12", c: [24,0,56], d: [24,0,1256])
         ],
         // Triples
         [
-            PlaceBellData(a: "Plain Hunt Triples", b: "x17x17x17x17x17x17x17", c: [0], d: [0])
+            PlaceBellData(a: "Plain Hunt Triples", b: "x17x17x17x17x17x17x17", c: [0], d: [0]),
+			PlaceBellData(a: "Grandsire Triples", b: "+3.1.7.1.7.1.7.1.7.1.7.1.7.1", c: [14,13,3], d: [14,13,3,123]),
+			PlaceBellData(a: "Plain Bob triples", b: "&7.1.7.1.7.1.7,2", c: [14,0,14], d: [14,0,1234]),
+			PlaceBellData(a: "Stedman Triples", b: "&3.1.7.3.1.3", c: [6,3,5], d: [6,3,567])
         ],
         // Major
         [
-            PlaceBellData(a: "Plain Hunt Triples", b: "x18x18x18x18x18x18x18x18", c: [0], d: [0])
+            PlaceBellData(a: "Plain Hunt Major", b: "x18x18x18x18x18x18x18x18", c: [0], d: [0]),
+			PlaceBellData(a: "Plain Bob Major", b: "&-1-1-1-1,2", c: [16,0,14], d: [16,0,1234]),
+            PlaceBellData(a: "Cambridge Surprise Major", b: "&-38-4-258-36-4-58-6-78,2", c: [32,0,12], d: [32,0,1234])
         ]
     ]
-    
-    
-    
-    //    let methodList = [
-    //        // Minimus methods.
-    //        [
-    //            MethodData(a: "Plain Hunt",
-    //                       b: 4,
-    //                       c: [
-    //                        [0,14,0,14,0,14,0,14]
-    //                ],
-    //                       d: false,
-    //                       e: false
-    //            ),
-    //
-    //            MethodData(a: "Plain Bob",
-    //                       b: 4,
-    //                       c: [
-    //                        [1, 1,2,3,4,4,3,2,1, 901],
-    //                        [2, 102,1,1,2,103,4,4,3, 904],
-    //                        [3, 3,4,104,3,2,1,1,102, 902],
-    //                        [4, 4,103,2,1,1,2,103,4, 903]
-    //                ],
-    //                       d: false,
-    //                       e: false
-    //            ),
-    //
-    //
-    //            MethodData(a: "Reverse Bob",
-    //                       b: 4,
-    //                       c: [
-    //                        [1, 1,2,3,4,4,3,2,1, 901],
-    //                        [2, 102,1,1,2,1,2,103,4, 904],
-    //                        [3, 3,4,104,3,3,104,4,3, 902],
-    //                        [4, 4,103,2,1,2,1,1,102, 903]
-    //                ],
-    //                       d: false,
-    //                       e: false)
-    //
-    //        ],
-    //
-    //
-    //
-    //        // Doubles methods.
-    //        [
-    //            MethodData(a: "Plain Hunt Doubles",
-    //                       b: 5,
-    //                       c: [
-    //                        [1, 1,2,3,4,5,5,4,3,2,1,901],
-    //                        [2, 102,1,1,2,3,4,105,5,4,3,902],
-    //                        [3, 3,4,5,105,4,3,2,1,1,102,903],
-    //                        [4, 4,103,2,1,1,2,3,104,5,5,904],
-    //                        [5, 5,5,104,3,2,1,1,2,103,4,905]
-    //                ],
-    //                       d: false,
-    //                       e: false
-    //            ),
-    //
-    //            MethodData(a: "Plain Bob Doubles",
-    //                       b: 5,
-    //                       c: [
-    //                        [5,1,5,1,5,1,5,1,5,125],
-    //                        [10,0,143],
-    //                        [0]
-    //                ],
-    //                       d: true,
-    //                       e: false
-    //
-    //            ),
-    //
-    //            MethodData(a: "Grandsire Doubles",
-    //                       b: 5,
-    //                       c: [
-    //                        [3,1,5,1,5,1,5,1,5,1],
-    //                        [10,9,3],
-    //                        [10,9,3,123]
-    //                ],
-    //                       d: true,
-    //                       e: true
-    //            ),
-    //            MethodData(a: "St Simon's Doubles",
-    //                       b: 5,
-    //                       c: [
-    //                        [1,  1,  2,  3,  4, 5, 5,  4,  3,  2, 500,  1,801, 901],
-    //                        [2,102,  1,  1,  2, 1, 2,  1,  2,103, 500,  4,804, 903],
-    //                        [3,  3,  4,  5,105, 4, 3,  3,104,  5, 500,  5,805, 905],
-    //                        [4,  4,103,  2,  1, 2, 1,  2,  1,  1, 500,102,303, 902],
-    //                        [5,  5,  5,104,  3, 3, 4,105,  5,  4, 500,  3,802, 904]
-    //                ],
-    //                       d: true,
-    //                       e: false
-    //            ),
-    //            MethodData(a: "St Martin's Doubles",
-    //                       b: 5,
-    //                       c: [
-    //                        [1,  1,  2,  3,  4, 5, 5,  4,  3,  2, 500,  1,801, 901],
-    //                        [2,102,  1,  1,  2, 2, 1,  1,  2,103, 500,  4,804, 903],
-    //                        [3,  3,  4,  5,105, 4, 3,  3,104,  5, 500,  5,805, 905],
-    //                        [4,  4,103,  2,  1, 1, 2,  2,  1,  1, 500,102,803, 902],
-    //                        [5,  5,  5,104,  3, 3, 4,105,  5,  4, 500,  3,802, 904]
-    //                ],
-    //                       d: true,
-    //                       e: false
-    //            ),
-    //            MethodData(a: "Stedman Doubles",
-    //                       b: 5,
-    //                       c: [
-    //                        [1,  1,2,3,4,5,500,4,755,  700,5,4,5,5,4,500,  5,705,904],
-    //                        [2,  2,1,1,2,1,500,1,  0,  700,2,3,3,4,5,500,  4,704,905],
-    //                        [3,  3,3,2,1,2,500,3,  0,  700,3,2,1,2,3,500,  3,700,902],
-    //                        [4,  4,5,4,3,3,500,2,  0,  700,1,1,2,1,1,500,  2,700,903],
-    //                        [5,  5,4,5,5,4,500,5,751,  700,4,5,4,3,2,500,  1,700,901]
-    //                ],
-    //                       d: false,
-    //                       e: true)
-    //        ],
-    //        // Minor methods.
-    //        [
-    //
-    //            MethodData(a: "Plain Hunt Minor",
-    //                       b: 6,
-    //                       c: [
-    //                        [1,1,2,3,4,5,6,6,5,4,3,2,1,901],
-    //                        [2,102,1,1,2,3,4,5,106,6,5,4,3,902],
-    //                        [3,3,4,5,6,106,5,4,3,2,1,1,102,903],
-    //                        [4,4,103,2,1,1,2,3,4,105,6,6,5,904],
-    //                        [5,5,6,6,105,4,3,2,1,1,2,103,4,905],
-    //                        [6,6,5,104,3,2,1,1,2,3,104,5,6,906]
-    //                ],
-    //                       d: false,
-    //                       e: false
-    //            ),
-    //
-    //
-    //            MethodData(a: "Plain Bob",
-    //                       b: 6,
-    //                       c: [
-    //                        [1, 1,2,3,4,5,6,6,5,4,3,2,    500,1, 901],
-    //                        [2, 102,1,1,2,3,4,5,106,6,5,4,500,3, 703,802, 904],
-    //                        [3, 3,4,5,6,106,5,4,3,2,1,1,500,102, 702,803, 902],
-    //                        [4, 4,103,2,1,1,2,3,4,105,6,6,500,5, 704,804, 906],
-    //                        [5, 5,6,6,105,4,3,2,1,1,2,103,500,4, 703,803, 903],
-    //                        [6, 6,5,104,3,2,1,1,2,3,104,5,500,6, 705,805, 905]
-    //                ],
-    //                       d: true, // BOB allowed.
-    //                e: true  // SINGLE allowed
-    //            ),
-    //
-    //            MethodData(a: "Cambridge Surprise Minor",
-    //                       b: 6,
-    //                       c: [
-    //                        [1,   1,  2,  1,  2,  3,  4,  3,  4,  5,  6,  5,  6,  6,  5,  6,  5,  4,  3,  4,  3,  2,  1,  2, 500,   1, 901],
-    //                        [2, 102,  1,102,  1,  1,  2,  2,  1,  2,  1,  1,  2,  1,  2,  3,  4,105,  6,105,  6,  5,  6,  6, 500,   5,706, 806, 906],
-    //                        [3,   3,  4,  5,  6,  5,  6,  5,  6,106,  5,106,  5,  5,106,  5,106,  6,  5,  6,  5,  6,  5,  4, 500,   3,703, 802, 904],
-    //                        [4,   4,103,  3,  4,104,  3,104,  3,  3,  4,  4,  3,  4,  3,  2,  1,  2,  1,  1,  2,103,  4,  5, 500,   6,705, 805, 905],
-    //                        [5,   5,  6,  6,  5,  6,105,  6,105,  4,  3,  2,  1,  2,  1,  1,  2,  1,  2,  2,  1,  1,102,  1, 500, 102,702, 803, 902],
-    //                        [6,   6,  5,  4,103,  2,  1,  1,  2,  1,  2,  3,  4,  3,  4,  4,  3,  3,104,  3,104,  4,  3,103, 500,   4,704, 804, 903]
-    //                ],
-    //                       d: true,
-    //                       e: true
-    //            )
-    //
-    //        ],
-    //        // Triples methods.
-    //
-    //        [
-    //
-    //            MethodData(a: "Grandsire Triples",
-    //                       b: 7,
-    //                       c: [
-    //                        [1,   1,  2,  3,  4,  5,  6,  7,  7,  6,  5,  4,  3, 500,   2,701,801,  1,    901],
-    //                        [2, 102,  1,  1,  2,  3,  4,  5,  6,107,  7,  6,  5, 500,   4,753,853,  3,703,902],
-    //                        [3,   3,103,  2,  1,  1,  2,  3,  4,  5,106,  7,  7, 500,   6,754,854,  5,    904],
-    //                        [4,   4,  5,104,  3,  2,  1,  1,  2,  3,  4,105,  6, 500,   7,756,856,  7,    906],
-    //                        [5,   5,  4,  5,  6,  7,107,  6,  5,  4,  3,  2,  1, 500,   1,102,702,803,    903],
-    //                        [6,   6,  7,  6,105,  4,  3,  2,  1,  1,  2,  3,104, 500,   5,757,857,  6,    907],
-    //                        [7,   7,  6,  7,  7,106,  5,  4,  3,  2,  1,  1,  2, 500, 103,752,852,  4,    905]
-    //                ],
-    //                       d: true,
-    //                       e: true
-    //            ),
-    //            MethodData(a: "Plain Bob Triples",
-    //                       b: 7,
-    //                       c: [
-    //                        [1, 1,2,3,4,5,6,7,7,6,5,4,3,2,     500,  1,701,801,901],
-    //                        [2, 102,1,1,2,3,4,5,6,107,7,6,5,4, 500,  3,703,802,904],
-    //                        [3, 3,4,5,6,7,107,6,5,4,3,2,1,1,   500,102,702,803,902],
-    //                        [4, 4,103,2,1,1,2,3,4,5,106,7,7,6, 500,  5,706,806,906],
-    //                        [5, 5,6,7,7,106,5,4,3,2,1,1,2,103, 500,  4,704,804,903],
-    //                        [6, 6,5,104,3,2,1,1,2,3,4,105,6,7, 500,  7,707,807,907],
-    //                        [7, 7,7,6,105,4,3,2,1,1,2,3,104,5, 500,  6,705,805,905]
-    //                ],
-    //                       d: true,
-    //                       e: true),
-    //            MethodData(a: "Stedman Triples",
-    //                       b: 7,
-    //                       c: [
-    //                        [1,  1,2,500,3,700,700, 4,5,4,5,4,500,5,757,857, 6,7,6, 907],
-    //                        [4,  4,5,500,4,700,800, 3,3,2,1,1,500,2,700,800, 1,1,2, 903],
-    //                        [3,  3,3,500,2,700,800, 1,2,3,3,2,500,1,700,800, 2,3,3, 902],
-    //                        [2,  2,1,500,1,700,800, 2,1,1,2,3,500,3,700,800, 4,5,4, 905],
-    //                        [5,  5,4,500,5,756,856, 6,7,6,7,6,500,7,700,851, 7,6,7, 906],
-    //                        [6,  6,7,500,6,765,857 ,5,4,5,4,5,500,4,700,800, 3,2,1, 901],
-    //                        [7,  7,6,500,7,700,855, 7,6,7,6,7,500,6,751,855, 5,4,5, 904]
-    //                ],
-    //                       d: true,
-    //                       e: true)
-    //        ],
-    //        // Major methods.
-    //
-    //        [
-    //            MethodData(a: "Plain Hunt",
-    //                       b: 8,
-    //                       c: [
-    //                        [1,   1,  2,  3,  4,  5,  6,  7,  8,  8,  7,  6,  5,  4,  3,  2,     901],
-    //                        [2, 102,  1,  1,  2,  3,  4,  5,  6,  7,108,  8,  7,  6,  5,  4,  3, 902],
-    //                        [3,   3,  4,  5,  6,  7,  8,108,  7,  6,  5,  4,  3,  2,  1,  1,102, 903],
-    //                        [4,   4,103,  2,  1,  1,  2,  3,  4,  5,  6,107,  8,  8,  7,  6,  5, 904],
-    //                        [5,   5,  6,  7,  8,  8,107,  6,  5,  4,  3,  2,  1,  1,  2,103,  4, 905],
-    //                        [6,   6,  5,104,  3,  2,  1,  1,  2,  3,  4,  5,106,  7,  8,  8,  7, 906],
-    //                        [7,   7,  8,  8,  7,106,  5,  4,  3,  2,  1,  1,  2,  3,104,  5,  6, 907],
-    //                        [8,   8,  7,  6,105,  4,  3,  2,  1,  1,  2,  3,  4,105,  6,  7,  8, 908]
-    //                ],
-    //                       d: false,
-    //                       e: false),
-    //
-    //            MethodData(a: "Plain Bob Major",
-    //                       b: 8,
-    //                       c: [
-    //                        [1,   1,  2,  3,  4,  5,  6,  7,  8,  8,  7,  6,  5,  4,  3,  2, 500,  1,701,801,901],
-    //                        [2, 102,  1,  1,  2,  3,  4,  5,  6,  7,108,  8,  7,  6,  5,  4, 500,  3,703,802,904],
-    //                        [3,   3,  4,  5,  6,  7,  8,108,  7,  6,  5,  4,  3,  2,  1,  1, 500,102,702,803,902],
-    //                        [4,   4,103,  2,  1,  1,  2,  3,  4,  5,  6,107,  8,  8,  7,  8, 500,  7,706,806,906],
-    //                        [5,   5,  6,  7,  8,  8,107,  6,  5,  4,  3,  2,  1,  1,  2,103, 500,  4,704,804,903],
-    //                        [6,   6,  5,104,  3,  2,  1,  1,  2,  3,  4,  5,106,  7,  8,  8, 500,  7,707,807,907],
-    //                        [7,   7,  8,  8,  7,106,  5,  4,  3,  2,  1,  1,  2,  3,104,  5, 500,  6,705,805,905],
-    //                        [8,   8,  7,  6,105,  4,  3,  2,  1,  1,  2,  3,  4,105,  6,  7, 500,  8,707,807,907]
-    //                ],
-    //                       d: true,
-    //                       e: true),
-    //            MethodData(a: "Cambridge Surprise Major",
-    //                       b: 8,
-    //                       c: [
-    //                        [1, 1,2,1,2,3,4,3,4,5,6,5,6,7,8,7,8,8,7,8,7,6,5,6,5,4,3,4,3,2,1,2,        500,  1,701,801,901],
-    //                        [2, 102,1,102,1,1,2,2,1,2,1,1,2,1,2,3,4,3,4,5,6,107,8,107,8,7,8,8,7,8,7,6,500,  5,706,806,906],
-    //                        [3, 3,4,5,6,5,6,7,8,7,8,7,8,108,7,108,7,7,108,7,108,8,7,8,7,8,7,6,5,6,5,4,500,  3,703,802,904],
-    //                        [4, 4,103,3,4,104,3,104,3,3,4,4,3,4,3,2,1,2,1,1,2,1,2,3,4,105,6,7,8,7,8,8,500,  7,708,808,908],
-    //                        [5, 5,6,7,8,7,8,8,7,8,107,8,107,6,5,4,3,4,3,2,1,2,1,1,2,1,2,2,1,1,102,1,  500,102,702,803,902],
-    //                        [6, 6,5,4,103,2,1,1,2,1,2,3,4,3,4,5,6,5,6,6,5,5,106,5,106,6,5,105,6,5,6,7,500,  8,707,807,907],
-    //                        [7, 7,8,8,7,8,7,6,105,4,3,2,1,2,1,1,2,1,2,3,4,3,4,4,3,3,104,3,104,4,3,103,500,  4,704,804,903],
-    //                        [8, 8,7,6,5,6,105,5,6,106,5,106,5,5,6,6,5,6,5,4,3,4,3,2,1,2,1,1,2,103,4,5,500,  6,705,805,905]
-    //                ],
-    //                       d: true,
-    //                       e: true)
-    //        ]
-    //
-    //    ]
     
     //--------------------------------------------------
     // Receive stage as number, return number of methods in that stage
@@ -346,8 +103,8 @@ struct MethodFinder {
         var returnMethodData: MethodData = MethodData(a: "", b: 0, c: "", d: [[0],[0],[0]], e: false, f: false)
         returnMethodData.methodName = findName(requestStage: requestStage, requestRow: requestRow)
         returnMethodData.bellCount = stageFinder.findStageBells(requestStage: requestStage)
-        returnMethodData.methodStructure = placeBellData[requestStage][requestRow].placeBellCode
-        returnMethodData.methodArray[0] = convertPlaceBell(methodStructure: placeBellData[requestStage][requestRow].placeBellCode)
+		returnMethodData.methodStructure = placeBellData[requestStage][requestRow].placeBellCode
+		returnMethodData.methodArray[0] = convertPlaceBell(methodStructure: placeBellData[requestStage][requestRow].placeBellCode)
         returnMethodData.methodArray[1] = placeBellData[requestStage][requestRow].bobArray
         returnMethodData.methodArray[2] = placeBellData[requestStage][requestRow].singleArray
         
@@ -434,6 +191,7 @@ struct MethodFinder {
 //                print("workStructure", workStructure)
                 converted.append(Int(workStructure)!)
                 tempStructure = String(tempStructure.suffix(tempStructure.count - workStructure.count + bellsAdded))
+                bellsAdded = 0
                 //                }
             }
             
@@ -583,13 +341,16 @@ struct MethodFinder {
         if bobRequested {
             let bobArray = currentMethodArray[1]
             let bobCallFrequency = bobArray[0]
-            let bobCallFirst = bobArray[1] - 3
+            var bobCallFirst = bobArray[1] - 3
+			if bobCallFirst < 0 {
+				bobCallFirst = bobCallFirst + bobCallFrequency
+			}
             print("Bob call?", returnMethodArray[0], currentChangeNumber, bobCallFirst, bobCallFrequency)
             if (currentChangeNumber == bobCallFirst || currentChangeNumber == bobCallFirst + bobCallFrequency) {
                 returnCallStarted = true
 //                print("*****BOB*****")
                 
-                for i in 1...currentMethodArray.count - 2 {
+                for i in 1...returnMethodArray[1].count - 2 {
                     returnMethodArray[0][currentChangeNumber + i + 1] = returnMethodArray[1][i + 1]
 //                    print("-------->", returnMethodArray[0])
                 }
@@ -601,123 +362,27 @@ struct MethodFinder {
         if singleRequested {
             let singleArray = currentMethodArray[2]
             let singleCallFrequency = singleArray[0]
-            let singleCallFirst = singleArray[1] - 3
+            var singleCallFirst = singleArray[1] - 3
+			if singleCallFirst < 0 {
+				singleCallFirst = singleCallFirst + singleCallFrequency
+			}
             print("SINGLE call?", returnMethodArray[0], currentChangeNumber, singleCallFirst, singleCallFrequency)
             if (currentChangeNumber == singleCallFirst || currentChangeNumber == singleCallFirst + singleCallFrequency) {
                 returnCallStarted = true
                 print("*****SINGLE*****")
                 
-                for i in 1...currentMethodArray.count - 2 {
+                for i in 1...returnMethodArray[2].count - 2 {
                     returnMethodArray[0][currentChangeNumber + i + 1] = returnMethodArray[2][i + 1]
-//                    print("----------->", returnMethodArray[0])
+                    print("----------->", returnMethodArray[0])
                 }
-//                print("Single array", returnMethodArray[0])
+                print("Single array", returnMethodArray[0])
             }
         }
-        
-        
-        
-        
-        
-        print("return",returnBellPosition, returnFollowsTreble, returnBellSequence, returnPlaceBell)
+    
+        print("return",returnMethodArray, returnBellPosition, returnFollowsTreble, returnBellSequence, returnPlaceBell)
         
         return (returnMethodArray, returnBellPosition, returnFollowsTreble, returnBellSequence, returnPlaceBell, returnCallStarted)
         
     }
     
 }
-
-
-
-
-
-
-/*
- 
- //------------------------------------------------------------------------------------------------
- // Move on in map.
- //------------------------------------------------------------------------------------------------
- mutating func findNextPlace (requestStage: Int, requestRow: Int, requestArray: [Int], requestArrayIndex: Int, bobRequested: Bool, singleRequested: Bool) -> ([Int], Int, Bool, Bool) {
- // Return: Array, Array Pointer, Call started, Call ended.
- 
- var nextBellFound = false
- var returnArray = requestArray
- var returnArrayIndex = requestArrayIndex
- var callStarted = false
- var callEnded = false
- //        mapPointer = re
- var newPlaceBell = 0
- //        workArray = requestArray
- 
- 
- while nextBellFound == false {
- 
- returnArrayIndex = returnArrayIndex + 1
- var nextPlaceNumber = returnArray[returnArrayIndex]
- print("findNextPlace - Start SWITCH for moving on in array...", nextPlaceNumber)
- 
- //----------------------
- switch nextPlaceNumber {
- 
- // 9nn - move to new array, at the start of it.
- case _ where (nextPlaceNumber > 900
- || ((nextPlaceNumber < 900 && nextPlaceNumber > 800) && bobRequested == true)
- || ((nextPlaceNumber < 800 && nextPlaceNumber > 700) && singleRequested == true)
- ):
- newPlaceBell = nextPlaceNumber - ((nextPlaceNumber / 100) * 100)
- if newPlaceBell > 50 {
- newPlaceBell = newPlaceBell - 50
- } else {
- returnArrayIndex = 1
- callEnded = true
- print("findNextPlace - 'Call Ended' set.")
- }
- (returnArray) = findBellArray(requestStage: requestStage, requestRow: requestRow, requestBell: newPlaceBell)
- 
- //                workArray = nextArray
- print("findNextPlace - End of place bell, new place bell is", newPlaceBell)
- 
- nextPlaceNumber = returnArray[returnArrayIndex]
- 
- if nextPlaceNumber < 200 {
- nextBellFound = true
- }
- 
- 
- // Check for BOB/SINGLE to be announced.
- case _ where nextPlaceNumber == 500:
- if (bobRequested == true || singleRequested == true) {
- print("findNextPlace - Code 500 and Call active.")
- callStarted = true
- } else {
- print("findNextPlace - Bypass BOB/SINGLE call.")
- }
- 
- // 700/800 - dummy end of call.
- case _ where (nextPlaceNumber == 800 && bobRequested == true):
- print("findnextPlace - dummy end of BOB")
- callEnded = true
- case _ where (nextPlaceNumber == 700 && singleRequested == true):
- print("findnextPlace - dummy end of SINGLE")
- callEnded = true
- 
- // Zero is a dummy filler.
- case 0:
- print("findNextPlace - dummy filler.")
- 
- 
- 
- default:
- print("findNextPlace - DEFAULT process, nextPlaceNumber is", nextPlaceNumber)
- if nextPlaceNumber < 200 {
- nextBellFound = true
- newPlaceBell = nextPlaceNumber
- }
- }
- }
- print("findNextPlace - return", returnArray , returnArrayIndex, callStarted, callEnded)
- 
- return (returnArray, returnArrayIndex, callStarted, callEnded)
- }
- }
- */

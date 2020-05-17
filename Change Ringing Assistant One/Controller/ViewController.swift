@@ -9,9 +9,7 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate{
-    
-    
+class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, XMLParserDelegate{
     
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animate(alongsideTransition: { context in
@@ -20,7 +18,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     func setOrientation() {
-        
         if UIApplication.shared.statusBarOrientation.isLandscape {
             print("Landscape")
             self.followTreble.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
@@ -30,16 +27,15 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             self.followTreble.setTitle("F-T:", for: .normal)
         }
     }
-    
-    
-    
+
     var player: AVAudioPlayer!
-    
     var methodFinder = MethodFinder()
     var stageFinder = StageFinder()
     
     @IBOutlet weak var pickerView: UIPickerView!
+
     
+// Functions to handle pickerview.
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
 //        print("numberOfComponents: 2")
         return 2
@@ -99,6 +95,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     var currentPlaceBell: Int = 1   // place bell that selected bell is processing.
     
     var currentTrebleChecking: Bool = true // enable row 2 use, check for treble in front.
+	var principalMethod: Bool = false
     var saveSender: UIButton = UIButton()   // Button the user just pressed.
     
     var buttonDownDetected: Bool = false // set true when buttonDown occurs.
@@ -107,18 +104,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     var singleRequested: Bool = false
     var callActive: Bool = false
 
-
-    
-    
-    
-//    var currentBellArray: [Int] = [0]
-//    var currentBellArrayIndex: Int = 0
-//    var bellCount: Int = 4  // Number of bells in method.
-//    var selectedBell = 1    // Actual Number of bell selected by user.
-//    var buttonStarted: Int = 1
-    
     // Save UIButton data in array.
-    // Entry zero is a dummy entry, so bell 1 (treble) is saveButrtonArray[1].
     //
     var saveButtonArray: [UIButton] = [UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton()]
     var saveButtonTArray: [UIButton] = [UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton(), UIButton()]
@@ -174,8 +160,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         saveButtonTArray[7] = button7t
         saveButtonTArray[8] = button8t
         
-//        saveButtonArray[0].isEnabled = true
-        
         bobButton.isEnabled = false
         singleButton.isEnabled = false
         
@@ -183,8 +167,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 
         print("viewDidLoad: end")
         print("----------")
-        
-    }
+}
     
     //------------------------------------------------------------------------------------------------
     // See what the user changed - stage or method.
@@ -212,7 +195,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             button6.isEnabled = true
             button7.isEnabled = true
             button8.isEnabled = true
-            if currentTrebleChecking == false {
+            if currentTrebleChecking == true {
                 button5t.isEnabled = true
                 button6t.isEnabled = true
                 button7t.isEnabled = true
@@ -266,6 +249,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         bobButton.isEnabled = currentMethodData.bobValid
         singleButton.isEnabled = currentMethodData.singleValid
+		bobRequested = false
+		singleRequested = false
         
 //        self.showCurrentPlace.textColor = UIColor.black
 //        self.showCurrentPlace.text = "Place Bell: " + String(currentSelectedBell)
@@ -274,6 +259,19 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         self.showHandOrBack.text = "Handstroke next"
         
         setAllYellow()
+		
+		if currentMethodData.methodName.contains("Stedman") {
+			principalMethod = true
+			print(currentMethodData.methodName)
+			currentTrebleChecking = true
+			followTreble.isEnabled = false
+		} else {
+			principalMethod = false
+			currentTrebleChecking = false
+			followTreble.isEnabled = true
+		}
+		
+		trebleOption(followTreble)
         
         if currentSelectedBell < 100 {
             saveButtonArray[currentSelectedBell].backgroundColor = UIColor.green
@@ -301,36 +299,27 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
     }
     
-    //---------------------------------------------------------------------
-//    func loadArray(bellChosen: Int) {
-//
-//        let currentStage = pickerView.selectedRow(inComponent: 0)
-//        let currentMethod = pickerView.selectedRow(inComponent: 1)
-//
-//        currentBellArray = methodFinder.findBellArray(requestStage: currentStage, requestRow: currentMethod, requestBell: bellChosen)
-//
-//        currentBellArrayIndex = 2
-//        print("loadArray:", currentBellArray, currentBellArrayIndex)
-//
-//    }
-//
     //------------------------------------------------------------------------------------------
     func setAllYellow() {
-        button1.backgroundColor = UIColor.yellow
-        button2.backgroundColor = UIColor.yellow
-        button3.backgroundColor = UIColor.yellow
-        button4.backgroundColor = UIColor.yellow
-        button5.backgroundColor = UIColor.yellow
-        button6.backgroundColor = UIColor.yellow
-        button7.backgroundColor = UIColor.yellow
-        button8.backgroundColor = UIColor.yellow
-        button2t.backgroundColor = UIColor.yellow
-        button3t.backgroundColor = UIColor.yellow
-        button4t.backgroundColor = UIColor.yellow
-        button5t.backgroundColor = UIColor.yellow
-        button6t.backgroundColor = UIColor.yellow
-        button7t.backgroundColor = UIColor.yellow
-        button8t.backgroundColor = UIColor.yellow
+        let blist = [button1,button2,button3,button4,button5,button6,button7,button8,button2t,button3t,button4t,button5t,button6t,button7t,button8t]
+        for bname in blist {
+            bname!.backgroundColor = UIColor.yellow
+        }
+//        button1.backgroundColor = UIColor.yellow
+//        button2.backgroundColor = UIColor.yellow
+//        button3.backgroundColor = UIColor.yellow
+//        button4.backgroundColor = UIColor.yellow
+//        button5.backgroundColor = UIColor.yellow
+//        button6.backgroundColor = UIColor.yellow
+//        button7.backgroundColor = UIColor.yellow
+//        button8.backgroundColor = UIColor.yellow
+//        button2t.backgroundColor = UIColor.yellow
+//        button3t.backgroundColor = UIColor.yellow
+//        button4t.backgroundColor = UIColor.yellow
+//        button5t.backgroundColor = UIColor.yellow
+//        button6t.backgroundColor = UIColor.yellow
+//        button7t.backgroundColor = UIColor.yellow
+//        button8t.backgroundColor = UIColor.yellow
     }
     
     //------------------------------------------------------------------------------------------------
@@ -540,7 +529,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 || (newFollowsTreble && sender.tag - 100 == correctBellPosition)
                 || (currentTrebleChecking == false && sender.tag == correctBellPosition))  {
                 self.setButtonColour(senderCode: sender, colourWanted: UIColor.green)
-                if newFollowsTreble {
+                if newFollowsTreble && principalMethod == false {
                     setButtonColour(senderCode: saveButtonTArray[correctBellPosition], colourWanted: UIColor.green)
                 }
             }
@@ -548,16 +537,19 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 self.setButtonColour(senderCode: sender, colourWanted: UIColor.red)
                 
                 // Set correct button to green.
-                if newFollowsTreble {
+                if newFollowsTreble && principalMethod != true {
                     setButtonColour(senderCode: saveButtonTArray[correctBellPosition], colourWanted: UIColor.green)
                 } else {
-                    setButtonColour(senderCode: saveButtonTArray[correctBellPosition], colourWanted: UIColor.green)
+                    setButtonColour(senderCode: saveButtonArray[correctBellPosition], colourWanted: UIColor.green)
                 }
             }
             
             if newPlaceBell != 0 {
                 
                 print("new place bell was", currentPlaceBell, "now", newPlaceBell)
+                showHandOrBack.text = " >>>Lead End<<<"
+                showHandOrBack.layer.borderWidth = 1
+                showHandOrBack.layer.borderColor = UIColor.red.cgColor
                 saveButtonArray[currentPlaceBell].layer.borderWidth = 0
 //                saveSender.layer.borderColor = UIColor.black.cgColor
                 saveButtonArray[newPlaceBell].layer.borderWidth = 2
@@ -570,6 +562,12 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 currentMethodArray = currentMethodData.methodArray
             } else {
                 currentChangeNumber = currentChangeNumber + 1
+                showHandOrBack.layer.borderWidth = 0
+                if self.showHandOrBack.text == "Backstroke next" {
+                    self.showHandOrBack.text = "Handstroke next"
+                } else {
+                    self.showHandOrBack.text = "Backstroke next"
+                }
             }
             
 //            var bobRequested = false
@@ -611,12 +609,12 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 //                bobButton.backgroundColor = UIColor.clear
 //                singleButton.backgroundColor = UIColor.clear
 //            }
-            
-            if self.showHandOrBack.text == "Handstroke next" {
-                self.showHandOrBack.text = "Backstroke next"
-            } else {
-                self.showHandOrBack.text = "Handstroke next"
-            }
+//
+//            if self.showHandOrBack.text == "Handstroke next" {
+//                self.showHandOrBack.text = "Backstroke next"
+//            } else {
+//                self.showHandOrBack.text = "Handstroke next"
+//            }
             
 
             

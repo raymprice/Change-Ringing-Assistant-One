@@ -16,7 +16,7 @@ struct PlaceBellData {
     
     init(a: String, b:String, c:[Int], d:[Int]) {
         methodName = a
-        placeBellCode = b
+		placeBellCode = b
         bobArray = c
         singleArray = d
     }

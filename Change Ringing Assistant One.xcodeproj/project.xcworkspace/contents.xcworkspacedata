@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Change Ringing Assistant One.xcodeproj">
+      location = "group:XML6.xml">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>
