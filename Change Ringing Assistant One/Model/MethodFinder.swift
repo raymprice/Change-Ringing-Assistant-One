@@ -54,7 +54,7 @@ struct MethodFinder {
 			PlaceBellData(a: "St Martin's Bob Doubles", b: "&5.1.5.23.5,25", c: [10,0,145], d: [0]),
 //			PlaceBellData(a: "Grandsire Doubles", b: "+3.1.5.1.5.1.5.1.5.1", c: [10,9,3], d: [10,9,3,123]),
 
-			PlaceBellData(a: "Grandsire Doubles", b: "3,1.5.1.5.1", c: [10,9,3], d: [10,9,3,123]),
+			PlaceBellData(a: "Grandsire Doubles", b: "&3,1.5.1.5.1", c: [10,9,3], d: [10,9,3,123]),
 			PlaceBellData(a: "Stedman Doubles", b: "3.1.5.3.1.3.1.3.5.1.3.1", c: [0], d: [6,0,345])
 		],
 		// Minor
@@ -187,7 +187,8 @@ struct MethodFinder {
 		var returnMethodData: MethodData = MethodData(a: "", b: 0, c: "", d: [[0],[0],[0]], e: false, f: false)
 		returnMethodData.methodName = findName(requestStage: requestStage, requestRow: requestRow)
 		returnMethodData.bellCount = stageFinder.findStageBells(requestStage: requestStage)
-		
+		returnMethodData.methodStructure = placeBellData[requestStage][requestRow].placeBellCode!
+
 		returnMethodData.methodArray[0] = convertPlaceBell(methodStructure: placeBellData[requestStage][requestRow].placeBellCode!)
 		returnMethodData.methodArray[1] = placeBellData[requestStage][requestRow].bobArray!
 		returnMethodData.methodArray[2] = placeBellData[requestStage][requestRow].singleArray!
@@ -213,6 +214,7 @@ struct MethodFinder {
 		var foundComma: Bool = false
 		var foundDotOrX: Bool = false
 		var foundAnd: Bool = false
+		var nonSymmetryCount: Int = 0
 		var xxx: Int = 0 // Safety net, prevent endless loop.
 		
 		//        print(tempStructure)
@@ -234,6 +236,14 @@ struct MethodFinder {
 				foundComma = true
 				if !foundDotOrX {
 					print("comma found before dot or x or - ==================================")
+					tempStructure = String(tempStructure.suffix(tempStructure.count - 1))
+
+					if foundAnd {
+						tempStructure += ","
+						print("added comma", tempStructure)
+						nonSymmetryCount = converted.count
+						
+					}
 				} else {
 					
 					//                print("comma found. ")
@@ -241,10 +251,13 @@ struct MethodFinder {
 					tempStructure = String(tempStructure.suffix(tempStructure.count - 1))
 					
 					let j = converted.count - 2
-					for i in (0...j).reversed() {
+										
+					for i in (nonSymmetryCount...j).reversed() {
 						converted.append(converted[i])
 						//                    print(converted)
 					}
+					nonSymmetryCount = 0
+
 				}
 				
 			case _ where (work1 == "." || work1 == " "):
