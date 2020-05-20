@@ -39,48 +39,48 @@ struct MethodFinder {
 		//Minimus
 		[
 			PlaceBellData(a: "Plain Hunt", b: "x1x1x1x1", c: [0], d: [0]),
-			PlaceBellData(a: "Plain Bob minimus", b: "x4x4x4x2", c: [0], d: [0]),
-			PlaceBellData(a: "Reverse Bob minimus", b: "&-1-3,14", c: [0], d: [0])
+			PlaceBellData(a: "Plain Bob", b: "x4x4x4x2", c: [0], d: [0]),
+			PlaceBellData(a: "Reverse Bob", b: "&-1-3,14", c: [0], d: [0])
 		],
 		//Doubles.
 		[
 			//			PlaceBellData(a: "Grandsire Doubles", b: "+1.5.1.5.1", c: [10,9,3], d: [10,9,3,123]),
 			
-			PlaceBellData(a: "Plain Hunt Doubles", b: "5.1.5.1.5.1.5.1.5.1", c: [0], d: [0]),
-			PlaceBellData(a: "Plain Bob Doubles", b: "&5.1.5.1.5,25", c: [10,0,145], d: [0]),
-			PlaceBellData(a: "Reverse Bob Doubles"),
+			PlaceBellData(a: "Plain Hunt", b: "5.1.5.1.5.1.5.1.5.1", c: [0], d: [0]),
+			PlaceBellData(a: "Plain Bob", b: "&5.1.5.1.5,25", c: [10,0,145], d: [0]),
+			PlaceBellData(a: "Reverse Bob"),
 			
-			PlaceBellData(a: "St Simon's Bob Doubles", b: "&5.1.5.3.5,25", c: [10,0,145], d: [0]),
-			PlaceBellData(a: "St Martin's Bob Doubles", b: "&5.1.5.23.5,25", c: [10,0,145], d: [0]),
+			PlaceBellData(a: "St Simon's Bob", b: "&5.1.5.3.5,25", c: [10,0,145], d: [0]),
+			PlaceBellData(a: "St Martin's Bob", b: "&5.1.5.23.5,25", c: [10,0,145], d: [0]),
 //			PlaceBellData(a: "Grandsire Doubles", b: "+3.1.5.1.5.1.5.1.5.1", c: [10,9,3], d: [10,9,3,123]),
 
-			PlaceBellData(a: "Grandsire Doubles", b: "&3,1.5.1.5.1", c: [10,9,3], d: [10,9,3,123]),
-			PlaceBellData(a: "Stedman Doubles", b: "3.1.5.3.1.3.1.3.5.1.3.1", c: [0], d: [6,0,345])
+			PlaceBellData(a: "Grandsire", b: "&3,1.5.1.5.1", c: [10,9,3], d: [10,9,3,123]),
+			PlaceBellData(a: "Stedman", b: "3.1.5.3.1.3.1.3.5.1.3.1", c: [0], d: [6,0,345])
 		],
 		// Minor
 		[
-			PlaceBellData(a: "Plain Hunt Minor", b: "x6x6x6x6x6x6", c: [0], d: [0]),
-			PlaceBellData(a: "Plain Bob Minor", b: "a x1x1x1x1x1x.12", c: [12,0,14], d: [12,0,1234]),
-			PlaceBellData(a: "St Clement's College Bob Minor"),
-			PlaceBellData(a: "Cambridge Surprise Minor", b: "b -3-4-2-3-4-5-4-3-2-4-3-12", c: [24,0,14], d: [24,1,1234]),
-			PlaceBellData(a: "Beverley Surprise Minor", b: "&-36-14-12-36.14-34.56,12", c: [24,0,14], d: [24,0,1234]),
-			PlaceBellData(a: "Bourne Surprise Minor", b: "&-3-4-2-3-34-3,12", c: [24,0,14], d: [24,0,1234]),
-			PlaceBellData(a: "London Surprise Minor", b: "&36-36.14-12-36.14-14.36,12", c: [24,0,56], d: [24,0,1256])
+			PlaceBellData(a: "Plain Hunt", b: "x6x6x6x6x6x6", c: [0], d: [0]),
+			PlaceBellData(a: "Plain Bob", b: "a x1x1x1x1x1x.12", c: [12,0,14], d: [12,0,1234]),
+			PlaceBellData(a: "St Clement's College Bob"),
+			PlaceBellData(a: "Cambridge Surprise", b: "b -3-4-2-3-4-5-4-3-2-4-3-12", c: [24,0,14], d: [24,1,1234]),
+			PlaceBellData(a: "Beverley Surprise", b: "&-36-14-12-36.14-34.56,12", c: [24,0,14], d: [24,0,1234]),
+			PlaceBellData(a: "Bourne Surprise", b: "&-3-4-2-3-34-3,12", c: [24,0,14], d: [24,0,1234]),
+			PlaceBellData(a: "London Surprise", b: "&36-36.14-12-36.14-14.36,12", c: [24,0,56], d: [24,0,1256])
 		],
 		// Triples
 		[
-			PlaceBellData(a: "Plain Hunt Triples", b: "x17x17x17x17x17x17x17", c: [0], d: [0]),
-			PlaceBellData(a: "Grandsire Triples", b: "+3.1.7.1.7.1.7.1.7.1.7.1.7.1", c: [14,13,3], d: [14,13,3,123]),
-			PlaceBellData(a: "Plain Bob triples", b: "&7.1.7.1.7.1.7,2", c: [14,0,14], d: [14,0,1234]),
-			PlaceBellData(a: "Single Oxford Bob Triples"),
-			PlaceBellData(a: "St Clement's College Bob Triples"),
-			PlaceBellData(a: "Stedman Triples", b: "&3.1.7.3.1.3.1.3.7.1.3.1", c: [6,3,5], d: [6,3,567])
+			PlaceBellData(a: "Plain Hunt", b: "x17x17x17x17x17x17x17", c: [0], d: [0]),
+			PlaceBellData(a: "Grandsire", b: "+3.1.7.1.7.1.7.1.7.1.7.1.7.1", c: [14,13,3], d: [14,13,3,123]),
+			PlaceBellData(a: "Plain Bob", b: "&7.1.7.1.7.1.7,2", c: [14,0,14], d: [14,0,1234]),
+			PlaceBellData(a: "Single Oxford Bob"),
+			PlaceBellData(a: "St Clement's College Bob"),
+			PlaceBellData(a: "Stedman", b: "&3.1.7.3.1.3.1.3.7.1.3.1", c: [6,3,5], d: [6,3,567])
 		],
 		// Major
 		[
-			PlaceBellData(a: "Plain Hunt Major", b: "x18x18x18x18x18x18x18x18", c: [0], d: [0]),
-			PlaceBellData(a: "Plain Bob Major", b: "&-1-1-1-1,2", c: [16,0,14], d: [16,0,1234]),
-			PlaceBellData(a: "Cambridge Surprise Major", b: "&-38-4-258-36-4-58-6-78,2", c: [32,0,12], d: [32,0,1234])
+			PlaceBellData(a: "Plain Hunt", b: "x18x18x18x18x18x18x18x18", c: [0], d: [0]),
+			PlaceBellData(a: "Plain Bob", b: "&-1-1-1-1,2", c: [16,0,14], d: [16,0,1234]),
+			PlaceBellData(a: "Cambridge Surprise", b: "&-38-4-258-36-4-58-6-78,2", c: [32,0,12], d: [32,0,1234])
 		]
 	]
 	
@@ -90,12 +90,16 @@ struct MethodFinder {
 		var tempPlaceBellCode: String
 		var tempBobArray: [Int]
 		var tempSingleArray: [Int]
+		var stageName: String
 		for i in 0..<placeBellData.count {
-			for j in 0..<placeBellData[i].count {
+			stageName = stageFinder.findStageName(requestStage: i)
+				for j in 0..<placeBellData[i].count {
 
 				if (placeBellData[i][j].methodSymmetry == nil || placeBellData[i][j].placeBellCode == nil || placeBellData[i][j].bobArray == nil || placeBellData[i][j].singleArray == nil) {
-					
-					let xmlIndex = cccbrData.firstIndex(where: { $0.cccbrTitle.lowercased() == placeBellData[i][j].methodName.lowercased()})
+					let fullName = placeBellData[i][j].methodName.lowercased() + " " + stageName.lowercased()
+					print(fullName)
+					let xmlIndex = cccbrData.firstIndex(where: { $0.cccbrTitle.lowercased() == fullName})
+//						placeBellData[i][j].methodName.lowercased()})
 					if xmlIndex != nil {
 						print("Extracting details for", placeBellData[i][j].methodName, "from", cccbrData[xmlIndex!])
 						

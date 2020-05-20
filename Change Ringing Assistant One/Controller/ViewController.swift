@@ -70,31 +70,60 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 	func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
 		var returnRowsInComponent: Int
 		
-		if component == 0 {
-			let currentStage = pickerView.selectedRow(inComponent: 0)
+		if component == 1 { //Changed//
+			let currentStage = pickerView.selectedRow(inComponent: 1) //Changed//
 			returnRowsInComponent = stageFinder.findStageCount(requestStage: currentStage)
 		} else {
-			let currentStage = pickerView.selectedRow(inComponent: 0)
-			returnRowsInComponent = methodFinder.methodCount(requestStage: currentStage)
+//			let currentStage = pickerView.selectedRow(inComponent: 1) //Changed//
+			returnRowsInComponent = methodFinder.methodCount(requestStage: 0) //  currentStage)
 		}
 		//        print("numberOfRowsInComponent:", component, returnRowsInComponent)
 		return returnRowsInComponent
 		
 	}
 	
-	func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-		if component == 0 {
-			let returnStageName = stageFinder.findStageName(requestStage: row)
-			//            print("titleForRow:", component, row, "->", returnStageName)
-			return returnStageName
-		} else {
-			let currentStage = pickerView.selectedRow(inComponent: 0)
+//	func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//		if component == 1 { //Changed//
+//			let returnStageName = stageFinder.findStageName(requestStage: row)
+//			//            print("titleForRow:", component, row, "->", returnStageName)
+//			return returnStageName
+//		} else {
+//			let currentStage = pickerView.selectedRow(inComponent: 1) //Changed//
+//
+//			let returnMethodName = methodFinder.findName(requestStage: currentStage, requestRow: row)
+//			//            print("titleForRow:", component, row, "->", returnMethodName)
+//			return returnMethodName
+//		}
+//
+//	}
+	
+
+	func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+		var pickerLabel: UILabel? = (view as? UILabel)
+		if pickerLabel == nil {
+			pickerLabel = UILabel()
+
+			if component == 1 { //Changed//
+				
+				//		pickerLabel?.font = UIFont.systemFont(ofSize: 20.0)
+				pickerLabel?.textAlignment = .center
 			
-			let returnMethodName = methodFinder.findName(requestStage: currentStage, requestRow: row)
-			//            print("titleForRow:", component, row, "->", returnMethodName)
-			return returnMethodName
+			
+				pickerLabel?.text = stageFinder.findStageName(requestStage: row)
+				//		  pickerLabel?.textColor = UIColor.red
+			} else { //Changed//
+				let currentStage = pickerView.selectedRow(inComponent: 1)
+				
+				//		pickerLabel?.font = UIFont.systemFont(ofSize: 20.0)
+				pickerLabel?.textAlignment = .center
+			
+			
+				pickerLabel?.text = methodFinder.findName(requestStage: currentStage, requestRow: row)
+				//		  pickerLabel?.textColor = UIColor.red
+			}
 		}
 		
+		return pickerLabel!
 	}
 	
 	// Global Variables are not (allegedly) good.
@@ -103,17 +132,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 	
 	// Copy of array from currentMethodData. This can be altered by calls, then reset from currentMethodData.
 	var currentMethodArray: [[Int]] = [[0]]
+	// methodName = a, bellCount = b, methodArray = c, bobValid = d, singleValid = e
 	
-	/*
-	methodName = a
-	bellCount = b
-	methodArray = c
-	bobValid = d
-	singleValid = e
-	*/
-	
-	var currentBellSequence: String = "1234" // Current sequence of bells, initial value ROUNDS.
-	
+	var currentBellSequence: String = "1234" // Current sequence of bells, initial value ROUNDS on 4.
 	var currentSelectedBell: Int = 1 // Bell the user has chosen. 1 -> 8.
 	var currentBellPosition: Int = 1    // Position of currentSelectedBell, 1 = lead.
 	var currentBellFollowsTreble: Bool = false  // is the current bell following treble?
@@ -165,7 +186,28 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 		
 		print("viewDidLoad: start")
 		
+		loadXMLData()
 		
+		setOrientation()
+		
+		self.pickerView.delegate = self
+		self.pickerView.dataSource = self
+		
+		saveData()
+		
+		startMethod()
+		
+		print("viewDidLoad: end")
+		print("----------------")
+		
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	// Load CCCBR XML data.
+	//------------------------------------------------------------------------------------------------
+	
+	func loadXMLData() {
+	
 		//		if let path = Bundle.main.url(forResource: "XML6", withExtension: "xml") {
 		if let path = Bundle.main.url(forResource: "CCCBRData", withExtension: "xml") {
 			
@@ -175,69 +217,26 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 			}
 		}
 		print("XML count", cccbrMethods.count)
-		
-		//		func searchElephantIndex(name: String, elephArray: [elephants]) -> Int? {
-		//		  return elephArray.firstIndex { $0.name == name }
-		//		}
-		
-		//		let xmlIndex = cccbrMethods.firstIndex(where: { $0.cccbrTitle == "Plain Bob Doubles"})
-		//		print(cccbrMethods[xmlIndex!])
-		
+
+		// Use CCCBR data to load my data array.
 		methodFinder.loadXMLData(cccbrData: cccbrMethods)
-		
-		setOrientation()
-		
-		self.pickerView.delegate = self
-		self.pickerView.dataSource = self
-		
-		saveButtonArray[1] = button1
-		saveButtonArray[2] = button2
-		saveButtonArray[3] = button3
-		saveButtonArray[4] = button4
-		saveButtonArray[5] = button5
-		saveButtonArray[6] = button6
-		saveButtonArray[7] = button7
-		saveButtonArray[8] = button8
-		
-		saveButtonTArray[2] = button2t
-		saveButtonTArray[3] = button3t
-		saveButtonTArray[4] = button4t
-		saveButtonTArray[5] = button5t
-		saveButtonTArray[6] = button6t
-		saveButtonTArray[7] = button7t
-		saveButtonTArray[8] = button8t
-		
-		bobButton.isEnabled = false
-		singleButton.isEnabled = false
-		
-		startMethod()
-		
-		print("viewDidLoad: end")
-		print("----------")
-		
+	
 	}
 	
-	
-	// 1
+	//------------------------------------------------------------------------------------------------
 	func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
 		
 		//	func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-		
-		//		var methodOrSet: String = ""
-		//		print(elementName)
-		
-		
+				
 		if elementName == "method" {
 			xmlMethodOrSet = elementName
 			xmlTitle = String()
-			//			xmlStage = String()
 			xmlNotation = String()
 			xmlSymmetry = String()
 			xmlLeadHeadCode = String()
 		}
 		if elementName == "methodSet" {
 			xmlMethodOrSet = elementName
-			//			let name = attributeDict["name"]
 			xmlTitle = String()
 			xmlStage = String()
 			xmlClassification = String()
@@ -258,10 +257,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 			}
 		}
 		self.elementName = elementName
-		
 	}
-	
-	// 2
+	//------------------------------------------------------------------------------------------------
 	func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
 		if elementName == "method" {
 			xmlMethodOrSet = "methodSet"
@@ -272,8 +269,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 			xmlMethodOrSet = ""
 		}
 	}
-	
-	// 3
+	//------------------------------------------------------------------------------------------------
 	func parser(_ parser: XMLParser, foundCharacters string: String) {
 		let data = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 		
@@ -285,7 +281,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 				if listoftags.contains(self.elementName) {
 					print("FOUND ", self.elementName, "in", xmlMethodOrSet, "<<<<<-----<<<<<-----<<<<<-----<<<<<")
 				}
-				
 			}
 			
 			if xmlMethodOrSet == "methodSet" {
@@ -293,49 +288,47 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 				if listoftags.contains(self.elementName) {
 					print("FOUND ", self.elementName, "<<<<<-----<<<<<-----<<<<<-----<<<<<")
 				}
-				
 			}
 			
-			
-			
-			if self.elementName == "title" {
-				xmlTitle += data
-			}
-			if self.elementName == "notation" {
-				xmlNotation += data
-			}
-			if self.elementName == "stage" {
-				xmlStage += data
-			}
-			if self.elementName == "classification" {
-				//				print("classification data", data)
-				xmlClassification += data
-			}
-			if self.elementName == "lengthOfLead" {
-				xmlLengthOfLead += data
-			}
-			if self.elementName == "numberOfHunts" {
-				xmlNumberOfHunts += data
-			}
-			if self.elementName == "symmetry" {
-				xmlSymmetry += data
-			}
-			if self.elementName == "leadHeadCode" {
-				xmlLeadHeadCode += data
+			switch self.elementName {
+			case "title": xmlTitle += data
+			case "notation": xmlNotation += data
+			case "stage": xmlStage += data
+			case "classification": xmlClassification += data
+			case "lengthOfLead": xmlLengthOfLead += data
+			case "numberOfHunts": xmlNumberOfHunts += data
+			case "symmetry": xmlSymmetry += data
+			case "leadHeadCode": xmlLeadHeadCode += data
+			default: break
 			}
 		}
-		
-		
-		
-		//		func parser(parser: XMLParser, foundAttributeDeclarationWithName attributeName: String, forElement elementName: String, type: String?, defaultValue: String?) {
-		////			if (ifDirOK && ifCityNameOK){
-		//				print("---------->>>>> foundAttributeDeclarationWithName", attributeName)
-		////			}
-		//		}
-		
 	}
 	
+	//------------------------------------------------------------------------------------------------
+	// Store button data.
+	//------------------------------------------------------------------------------------------------
 	
+	func saveData() {
+	
+		saveButtonArray[1] = button1
+		saveButtonArray[2] = button2
+		saveButtonArray[3] = button3
+		saveButtonArray[4] = button4
+		saveButtonArray[5] = button5
+		saveButtonArray[6] = button6
+		saveButtonArray[7] = button7
+		saveButtonArray[8] = button8
+		saveButtonTArray[2] = button2t
+		saveButtonTArray[3] = button3t
+		saveButtonTArray[4] = button4t
+		saveButtonTArray[5] = button5t
+		saveButtonTArray[6] = button6t
+		saveButtonTArray[7] = button7t
+		saveButtonTArray[8] = button8t
+		
+		bobButton.isEnabled = false
+		singleButton.isEnabled = false
+	}
 	
 	//------------------------------------------------------------------------------------------------
 	// See what the user changed - stage or method.
@@ -346,7 +339,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 		print("----------")
 		print("pickerview: component", component, "row", row)
 		// Stage name changed. Reload list of methods
-		if component == 0 {
+		if component == 1 { //Changed//
 			currentStageBellCount = stageFinder.findStageBells(requestStage: row)
 			print("pickerView: bellCount", currentStageBellCount)
 			
@@ -394,9 +387,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 			//				button5t.isEnabled = false
 			//			}
 			
-			print("pickerView: reloadComponent(1)")
-			pickerView.reloadComponent(1)
-			self.pickerView.selectRow(0, inComponent: 1, animated: true)
+			print("pickerView: reloadComponent(0)") //Changed//
+			pickerView.reloadComponent(0) //Changed//
+			self.pickerView.selectRow(0, inComponent: 0, animated: true) //Changed//
 			//        }
 			//        else {
 			//            // Method changed.
@@ -412,8 +405,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 	//--------------------
 	func startMethod() {
 		
-		let currentStage = pickerView.selectedRow(inComponent: 0)
-		let currentMethod = pickerView.selectedRow(inComponent: 1)
+		let currentStage = pickerView.selectedRow(inComponent: 1) //Changed//
+		let currentMethod = pickerView.selectedRow(inComponent: 0) //Changed//
 		
 		
 		currentMethodData = methodFinder.findMethodData(requestStage: currentStage, requestRow: currentMethod)
@@ -691,8 +684,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 		print("callStarted#3", callActive)
 		
 		
-		let currentStage = pickerView.selectedRow(inComponent: 0)
-		let currentMethod = pickerView.selectedRow(inComponent: 1)
+		let currentStage = pickerView.selectedRow(inComponent: 1) //Changed//
+		let currentMethod = pickerView.selectedRow(inComponent: 0) //Changed//
 		
 		print("longPressDetected", longPressDetected, buttonDownDetected, currentPlaceBell)
 		
