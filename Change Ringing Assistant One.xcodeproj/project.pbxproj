@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		5715221824688BA700AA208C /* single.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5715221724688BA700AA208C /* single.wav */; };
 		5715221A24688BB500AA208C /* bob.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5715221924688BB500AA208C /* bob.wav */; };
-		5729365E246C431000D66897 /* testdata.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5729365D246C431000D66897 /* testdata.txt */; };
 		574954E7246AE0EF0070FAF6 /* PlaceBellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574954E6246AE0EF0070FAF6 /* PlaceBellData.swift */; };
 		574EF2F92459FA24003A7635 /* bob.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 574EF2F82459FA24003A7635 /* bob.mp3 */; };
 		574EF2FB2459FA31003A7635 /* single.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 574EF2FA2459FA30003A7635 /* single.mp3 */; };
@@ -30,7 +29,6 @@
 /* Begin PBXFileReference section */
 		5715221724688BA700AA208C /* single.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = single.wav; sourceTree = "<group>"; };
 		5715221924688BB500AA208C /* bob.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bob.wav; sourceTree = "<group>"; };
-		5729365D246C431000D66897 /* testdata.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = testdata.txt; sourceTree = "<group>"; };
 		574954E6246AE0EF0070FAF6 /* PlaceBellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceBellData.swift; sourceTree = "<group>"; };
 		574EF2F82459FA24003A7635 /* bob.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bob.mp3; sourceTree = "<group>"; };
 		574EF2FA2459FA30003A7635 /* single.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = single.mp3; sourceTree = "<group>"; };
@@ -94,7 +92,6 @@
 				578B5A65245B53CC00356460 /* MethodData.swift */,
 				574954E6246AE0EF0070FAF6 /* PlaceBellData.swift */,
 				578B5A67245B557700356460 /* MethodFinder.swift */,
-				5729365D246C431000D66897 /* testdata.txt */,
 				57E5125924643A7C006FC54C /* StageData.swift */,
 				5758379224647ADD00E8D47C /* StageFinder.swift */,
 			);
@@ -202,7 +199,6 @@
 				574EF2F92459FA24003A7635 /* bob.mp3 in Resources */,
 				57EA25051FC703AB001B222E /* LaunchScreen.storyboard in Resources */,
 				5715221824688BA700AA208C /* single.wav in Resources */,
-				5729365E246C431000D66897 /* testdata.txt in Resources */,
 				574EF2FB2459FA31003A7635 /* single.mp3 in Resources */,
 				57731456245EC9130032EAFA /* Assets.xcassets in Resources */,
 				57EA25001FC703AB001B222E /* Main.storyboard in Resources */,

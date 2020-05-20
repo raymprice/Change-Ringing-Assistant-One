@@ -61,6 +61,7 @@ struct MethodFinder {
 		[
 			PlaceBellData(a: "Plain Hunt Minor", b: "x6x6x6x6x6x6", c: [0], d: [0]),
 			PlaceBellData(a: "Plain Bob Minor", b: "a x1x1x1x1x1x.12", c: [12,0,14], d: [12,0,1234]),
+			PlaceBellData(a: "St Clement's College Bob Minor"),
 			PlaceBellData(a: "Cambridge Surprise Minor", b: "b -3-4-2-3-4-5-4-3-2-4-3-12", c: [24,0,14], d: [24,1,1234]),
 			PlaceBellData(a: "Beverley Surprise Minor", b: "&-36-14-12-36.14-34.56,12", c: [24,0,14], d: [24,0,1234]),
 			PlaceBellData(a: "Bourne Surprise Minor", b: "&-3-4-2-3-34-3,12", c: [24,0,14], d: [24,0,1234]),
@@ -72,6 +73,7 @@ struct MethodFinder {
 			PlaceBellData(a: "Grandsire Triples", b: "+3.1.7.1.7.1.7.1.7.1.7.1.7.1", c: [14,13,3], d: [14,13,3,123]),
 			PlaceBellData(a: "Plain Bob triples", b: "&7.1.7.1.7.1.7,2", c: [14,0,14], d: [14,0,1234]),
 			PlaceBellData(a: "Single Oxford Bob Triples"),
+			PlaceBellData(a: "St Clement's College Bob Triples"),
 			PlaceBellData(a: "Stedman Triples", b: "&3.1.7.3.1.3.1.3.7.1.3.1", c: [6,3,5], d: [6,3,567])
 		],
 		// Major
@@ -84,23 +86,18 @@ struct MethodFinder {
 	
 	mutating func loadXMLData(cccbrData: [CCCBRData]) {
 		print("loadXMLData: Start")
-		//		print(placeBellData)
-		//		print("-------------------------------------")
 		
 		var tempPlaceBellCode: String
 		var tempBobArray: [Int]
 		var tempSingleArray: [Int]
 		for i in 0..<placeBellData.count {
-			//			print(">>>>>", placeBellData[i])
 			for j in 0..<placeBellData[i].count {
-				print("-------------------------------------")
-				print("Array contents old:", placeBellData[i][j])
 
 				if (placeBellData[i][j].methodSymmetry == nil || placeBellData[i][j].placeBellCode == nil || placeBellData[i][j].bobArray == nil || placeBellData[i][j].singleArray == nil) {
 					
 					let xmlIndex = cccbrData.firstIndex(where: { $0.cccbrTitle.lowercased() == placeBellData[i][j].methodName.lowercased()})
 					if xmlIndex != nil {
-						print(">>>>>found", cccbrData[xmlIndex!])
+						print("Extracting details for", placeBellData[i][j].methodName, "from", cccbrData[xmlIndex!])
 						
 						if placeBellData[i][j].methodSymmetry == nil {
 							placeBellData[i][j].methodSymmetry = cccbrData[xmlIndex!].cccbrSymmetry
@@ -110,7 +107,6 @@ struct MethodFinder {
 							tempPlaceBellCode = cccbrData[xmlIndex!].cccbrNotation
 							if cccbrData[xmlIndex!].cccbrSymmetry == "palindromic" {
 								tempPlaceBellCode = "&" + tempPlaceBellCode
-								print("placebellcode calculated", tempPlaceBellCode)
 								placeBellData[i][j].placeBellCode = tempPlaceBellCode
 							}
 						}
@@ -125,7 +121,6 @@ struct MethodFinder {
 							default:
 								tempBobArray = [0]
 							}
-							print("BobArray calculated", tempBobArray)
 							placeBellData[i][j].bobArray = tempBobArray
 							
 						}
@@ -136,17 +131,14 @@ struct MethodFinder {
 							case "1":
 								tempSingleArray = [tempLOLS, 0, 14]
 							case "2":
-								tempSingleArray = [tempLOLS, tempLOLS - 1, 3]
+								tempSingleArray = [tempLOLS, tempLOLS - 1, 3, 123]
 							default:
 								tempSingleArray = [0]
 							}
-							print("singleArray calculated", tempSingleArray)
 							placeBellData[i][j].singleArray = tempSingleArray
 						}
-						print("Array contents new:", placeBellData[i][j])
-
 						
-						
+						print(placeBellData[i][j].placeBellCode as Any, placeBellData[i][j].bobArray as Any, placeBellData[i][j].singleArray as Any)
 						
 					} else {
 						print("!!!!!method not found in XML :", placeBellData[i][j].methodName)
@@ -166,7 +158,6 @@ struct MethodFinder {
 	//--------------------------------------------------
 	func methodCount(requestStage: Int) -> Int {
 		let methodCount = placeBellData[requestStage].count
-		//        print("methodCount: request", requestStage, "->", methodCount)
 		return methodCount
 	}
 	
@@ -175,7 +166,6 @@ struct MethodFinder {
 	//--------------------------------------------------
 	func findName(requestStage: Int, requestRow: Int) -> String {
 		let returnName = String(placeBellData[requestStage][requestRow].methodName)
-		//        print("findName: request", requestStage, requestRow, "->", returnName)
 		return returnName
 	}
 	
@@ -195,7 +185,6 @@ struct MethodFinder {
 		
 		(returnMethodData.bobValid, returnMethodData.singleValid) = findValidCalls(requestStage: requestStage, requestRow: requestRow)
 		
-		print("findMethodData: return", returnMethodData)
 		return returnMethodData
 	}
 	
@@ -211,20 +200,15 @@ struct MethodFinder {
 		let numbers = CharacterSet(charactersIn: "0123456789")
 		var newChangeFound: Bool = true
 		var bellsAdded: Int = 0
-		var foundComma: Bool = false
+//		var foundComma: Bool = false
 		var foundDotOrX: Bool = false
 		var foundAnd: Bool = false
 		var nonSymmetryCount: Int = 0
 		var xxx: Int = 0 // Safety net, prevent endless loop.
 		
-		//        print(tempStructure)
-		// If symmetry, may need to add &
-		
-		
 		repeat {
 			work1 = String(tempStructure.prefix(1))
 			//    break
-			//            print("work1 =", work1)
 			switch work1 {
 			case _ where (work1 == "&"):
 				foundAnd = true
@@ -233,28 +217,23 @@ struct MethodFinder {
 				tempStructure = String(tempStructure.suffix(tempStructure.count - 1))
 				
 			case _ where work1 == "," :
-				foundComma = true
+//				foundComma = true
 				if !foundDotOrX {
-					print("comma found before dot or x or - ==================================")
 					tempStructure = String(tempStructure.suffix(tempStructure.count - 1))
 
 					if foundAnd {
 						tempStructure += ","
-						print("added comma", tempStructure)
 						nonSymmetryCount = converted.count
 						
 					}
 				} else {
 					
-					//                print("comma found. ")
-					//                print(tempStructure.count, converted.count)
 					tempStructure = String(tempStructure.suffix(tempStructure.count - 1))
 					
 					let j = converted.count - 2
 										
 					for i in (nonSymmetryCount...j).reversed() {
 						converted.append(converted[i])
-						//                    print(converted)
 					}
 					nonSymmetryCount = 0
 
@@ -270,60 +249,46 @@ struct MethodFinder {
 				newChangeFound = true
 				converted.append(0)
 				tempStructure = String(tempStructure.suffix(tempStructure.count - 1))
-				//                print(tempStructure)
 				
 			case _ where (work1.rangeOfCharacter(from: numbers.inverted) != nil):
-				//                print("ignore :", work1)
 				tempStructure = String(tempStructure.suffix(tempStructure.count - 1))
 				
 				
 			// If this point is reached, a number has been found.
 			default:
-				//                print(tempStructure.count)
-				//        tempStructure = String(tempStructure.suffix(tempStructure.count - 1))
-				//                if tempStructure.count > 0 {
 				
 				workStructure = tempStructure
 				if newChangeFound {
 					let workInt = Int(work1)!
-					//                    print((workInt / 2) * 2)
 					if ((workInt / 2) * 2) == workInt {
-						//                        print("even number")
 						workStructure = "1" + workStructure
 						bellsAdded += 1
 						newChangeFound = false
 					}
 				}
-				//                print("tempStructure", tempStructure)
 				
 				while (workStructure.rangeOfCharacter(from: numbers.inverted) != nil) {
 					workStructure = String(workStructure.prefix(workStructure.count - 1))
 				}
-				//                print("workStructure", workStructure)
 				converted.append(Int(workStructure)!)
 				tempStructure = String(tempStructure.suffix(tempStructure.count - workStructure.count + bellsAdded))
 				bellsAdded = 0
 				//                }
 			}
 			
-			
-			//            print(tempStructure.count)
 			if tempStructure.count == 0 {
 				break
 			}
-			
-			
 			
 			xxx += 1
 			if xxx > 49 {
 				print(">>>>>>>>>>>>>>>>>>>>>>loop break forced<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
 				break
 			}
-			//            print(converted)
 			
-		} while xxx < 50 // doneIt == false
+		} while xxx < 50
 		
-		print("Converted array: ---------->", converted)
+//		print("Converted array: ---------->", converted)
 		return converted
 	}
 	
@@ -339,19 +304,9 @@ struct MethodFinder {
 		if placeBellData[requestStage][requestRow].singleArray!.count > 1 {
 			returnSingleValid = true
 		}
-		//        print("findValidCalls: request", requestStage, requestRow, "->", returnBobValid, returnSingleValid)
 		return (returnBobValid, returnSingleValid)
 	}
 	
-	//--------------------------------------------------
-	// Receive stage as number, method as number. Return array of positions.
-	//--------------------------------------------------
-	//    func findBellArray(requestStage: Int, requestRow: Int) -> [Int] {
-	//
-	//        let methodArray = methodList[requestStage][requestRow].methodArray[1]
-	//        print("findBellArray: request", requestStage, requestRow)
-	//        return methodArray
-	//    }
 	
 	//------------------------------------------------------------------------------------------------
 	// Find next correct bell.
@@ -395,12 +350,8 @@ struct MethodFinder {
 			let index1 = returnBellSequence.index(returnBellSequence.startIndex, offsetBy: ix - 1)
 			let index2 = returnBellSequence.index(returnBellSequence.startIndex, offsetBy: ix)
 			let save1 = returnBellSequence.prefix(ix - 1)
-			//            print("save1", save1)
-			//            print("---------->>>>>", stringPlaceCode, String(ix))
 			if stringPlaceCode.contains(String(ix)) {
-				//                print("findnextposition: ", ix, "found in", stringPlaceCode)
 				if ix == currentBellPosition {
-					//                    print("findnextposition: ", currentUserBell, "not moving.")
 					if save1.suffix(1) == "1" {
 						returnFollowsTreble = true
 					}
@@ -411,10 +362,8 @@ struct MethodFinder {
 					let save2 = returnBellSequence[index1...index1]
 					let save3 = returnBellSequence[index2...index2]
 					let save4 = returnBellSequence.suffix(returnBellSequence.count - ix - 1)
-					//                    print("save1-2-3-4", save1, save2, save3, save4)
 					
 					returnBellSequence = String(save1 + save3 + save2 + save4)
-					//                    print("findnextposition: sequence now", returnBellSequence)
 					
 					
 					if ix == currentBellPosition {
@@ -422,7 +371,6 @@ struct MethodFinder {
 						if save3 == "1" {
 							returnFollowsTreble = true
 						}
-						//                        print("moved up", returnBellPosition, returnFollowsTreble)
 						
 					}
 					if ix + 1 == currentBellPosition {
@@ -430,7 +378,6 @@ struct MethodFinder {
 						if save1.suffix(1) == "1" {
 							returnFollowsTreble = true
 						}
-						//                        print("moved down", returnBellPosition, returnFollowsTreble)
 						
 					}
 				}
@@ -440,12 +387,9 @@ struct MethodFinder {
 		} while ix <= returnBellSequence.count
 		
 		// Check for final change in array, which implies a new place bell.
-		//        print(currentChangeNumber, currentMethodArray[0].count)
 		
 		if currentChangeNumber == currentMethodArray[0].count - 1 {
 			returnPlaceBell = returnBellPosition
-			//            print("findNextPosition: new place bell", returnPlaceBell)
-			
 		}
 		
 		// See if a bob or single can be called after the current change.
@@ -459,14 +403,11 @@ struct MethodFinder {
 			print("Bob call?", returnMethodArray[0], currentChangeNumber, bobCallFirst, bobCallFrequency)
 			if (currentChangeNumber == bobCallFirst || currentChangeNumber == bobCallFirst + bobCallFrequency) {
 				returnCallStarted = true
-				//                print("*****BOB*****")
 				
 				for i in 1...returnMethodArray[1].count - 2 {
 					returnMethodArray[0][currentChangeNumber + i + 1] = returnMethodArray[1][i + 1]
 					//                    print("-------->", returnMethodArray[0])
 				}
-				print("Bob array", returnMethodArray[0])
-				
 			}
 		}
 		
@@ -480,16 +421,13 @@ struct MethodFinder {
 			print("SINGLE call?", returnMethodArray[0], currentChangeNumber, singleCallFirst, singleCallFrequency)
 			if (currentChangeNumber == singleCallFirst || currentChangeNumber == singleCallFirst + singleCallFrequency) {
 				returnCallStarted = true
-				print("*****SINGLE*****")
 				
 				for i in 1...returnMethodArray[2].count - 2 {
 					returnMethodArray[0][currentChangeNumber + i + 1] = returnMethodArray[2][i + 1]
 					print("----------->", returnMethodArray[0])
 				}
-				print("Single array", returnMethodArray[0])
 			}
 		}
-		
 		print("return",returnMethodArray, returnBellPosition, returnFollowsTreble, returnBellSequence, returnPlaceBell)
 		
 		return (returnMethodArray, returnBellPosition, returnFollowsTreble, returnBellSequence, returnPlaceBell, returnCallStarted)

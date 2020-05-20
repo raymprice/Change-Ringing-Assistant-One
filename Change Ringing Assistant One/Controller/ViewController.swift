@@ -434,7 +434,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 		print("-------------------+++++++++++++++++++++++++++++")
 		print(currentMethodData)
 		self.showCurrentPlace.text = currentMethodData.methodStructure
-		print(self.showCurrentPlace.text)
+		print(self.showCurrentPlace.text as Any)
 		
 		self.showHandOrBack.text = "Handstroke next"
 		

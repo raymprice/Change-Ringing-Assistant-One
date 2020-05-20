@@ -1,6 +1,0 @@
-Id	Method	First rung	Refs	FCHs	Stage	Symmetry	Little	LLen	Leadhead	Place Notation
-34041	St Remigius Place Singles				3	P		6	p	3	1	3	1	3	123
-34042	Reverse St Remigius Place Singles				3	P		6	r	3	1	123	1	3	1
-36071	Reverse Oxford Treble Place Singles	1973-04-29	RW:1973/412		3	P		12	r	3	1	1	1	3	1	1	1	3	1	123	1
-10550	Plain Bob Doubles	1782-09-26	RW:1944/334		5	P		10	p	5	1	5	1	5	1	5	1	5	125
-10587	Grandsire Doubles	1777-03-07	RW:1970/450 V3/89		5	P		10	a	3	1	5	1	5	1	5	1	5	1
