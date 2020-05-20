@@ -139,7 +139,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wcf-aI-dWf" userLabel="Stack Bottom Buttons">
                                                 <rect key="frame" x="0.0" y="56" width="808" height="48"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="gsQ-AV-cIF">
+                                                    <button opaque="NO" tag="99" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="gsQ-AV-cIF">
                                                         <rect key="frame" x="0.0" y="0.0" width="94" height="48"/>
                                                         <state key="normal">
                                                             <string key="title">Follow

@@ -366,6 +366,7 @@ struct MethodFinder {
 					let save2 = returnBellSequence[index1...index1]
 					let save3 = returnBellSequence[index2...index2]
 					let save4 = returnBellSequence.suffix(returnBellSequence.count - ix - 1)
+					print("save1234", save1, save2, save3, save4)
 					
 					returnBellSequence = String(save1 + save3 + save2 + save4)
 					
@@ -432,7 +433,7 @@ struct MethodFinder {
 				}
 			}
 		}
-		print("return",returnMethodArray, returnBellPosition, returnFollowsTreble, returnBellSequence, returnPlaceBell)
+		print("return",returnMethodArray, returnBellPosition, returnFollowsTreble, returnBellSequence, returnPlaceBell, returnCallStarted)
 		
 		return (returnMethodArray, returnBellPosition, returnFollowsTreble, returnBellSequence, returnPlaceBell, returnCallStarted)
 		
