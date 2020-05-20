@@ -62,10 +62,10 @@ struct MethodFinder {
 			PlaceBellData(a: "Plain Hunt", b: "x6x6x6x6x6x6", c: [0], d: [0]),
 			PlaceBellData(a: "Plain Bob", b: "a x1x1x1x1x1x.12", c: [12,0,14], d: [12,0,1234]),
 			PlaceBellData(a: "St Clement's College Bob"),
-			PlaceBellData(a: "Cambridge Surprise", b: "b -3-4-2-3-4-5-4-3-2-4-3-12", c: [24,0,14], d: [24,1,1234]),
-			PlaceBellData(a: "Beverley Surprise", b: "&-36-14-12-36.14-34.56,12", c: [24,0,14], d: [24,0,1234]),
-			PlaceBellData(a: "Bourne Surprise", b: "&-3-4-2-3-34-3,12", c: [24,0,14], d: [24,0,1234]),
-			PlaceBellData(a: "London Surprise", b: "&36-36.14-12-36.14-14.36,12", c: [24,0,56], d: [24,0,1256])
+			PlaceBellData(a: "Cambridge Surprise"), //b: "b -3-4-2-3-4-5-4-3-2-4-3-12", c: [24,0,14], d: [24,1,1234]),
+			PlaceBellData(a: "Beverley Surprise"), //b: "&-36-14-12-36.14-34.56,12", c: [24,0,14], d: [24,0,1234]),
+			PlaceBellData(a: "Bourne Surprise"), //b: "&-3-4-2-3-34-3,12", c: [24,0,14], d: [24,0,1234]),
+			PlaceBellData(a: "London Surprise", c: [24,0,56], d: [24,0,1256])
 		],
 		// Triples
 		[
@@ -187,8 +187,11 @@ struct MethodFinder {
 		returnMethodData.methodArray[1] = placeBellData[requestStage][requestRow].bobArray!
 		returnMethodData.methodArray[2] = placeBellData[requestStage][requestRow].singleArray!
 		
+		
 		(returnMethodData.bobValid, returnMethodData.singleValid) = findValidCalls(requestStage: requestStage, requestRow: requestRow)
 		
+		print("findMethodData:", returnMethodData)
+
 		return returnMethodData
 	}
 	
@@ -338,7 +341,8 @@ struct MethodFinder {
 		
 		
 		let newPlaceCode = currentMethodArray[0][currentChangeNumber]
-		print("findNextPosition: placecode", newPlaceCode, "Parms", currentMethodArray, currentUserBell, currentBellPosition, currentChangeNumber, currentBellSequence, currentPlaceBell, bobRequested, singleRequested)
+		print("----------findNextPosition----------")
+		print("newplacecode", newPlaceCode, "currentMethodArray", currentMethodArray, "currentUserBell", currentUserBell, "currentBellPosition", currentBellPosition, "currentChangeNumber", currentChangeNumber, "currentBellSequence", currentBellSequence, "currentPlaceBell", currentPlaceBell,"bob", bobRequested, "singler", singleRequested)
 		let stringPlaceCode = String(newPlaceCode)
 		var returnBellSequence = currentBellSequence
 		var returnPlaceBell: Int = 0
@@ -434,6 +438,8 @@ struct MethodFinder {
 			}
 		}
 		print("return",returnMethodArray, returnBellPosition, returnFollowsTreble, returnBellSequence, returnPlaceBell, returnCallStarted)
+		print("----------findNextPosition----------")
+
 		
 		return (returnMethodArray, returnBellPosition, returnFollowsTreble, returnBellSequence, returnPlaceBell, returnCallStarted)
 		
