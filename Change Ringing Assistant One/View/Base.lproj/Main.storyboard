@@ -244,11 +244,11 @@ Treble:</string>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mtr-or-8CN" userLabel="Stack Picker">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mtr-or-8CN" userLabel="Stack Picker">
                                         <rect key="frame" x="0.0" y="178.5" width="808" height="214.5"/>
                                         <subviews>
                                             <pickerView contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="8pc-iU-kFn">
-                                                <rect key="frame" x="0.0" y="0.0" width="808" height="214.5"/>
+                                                <rect key="frame" x="244" y="0.0" width="320" height="214.5"/>
                                             </pickerView>
                                         </subviews>
                                     </stackView>

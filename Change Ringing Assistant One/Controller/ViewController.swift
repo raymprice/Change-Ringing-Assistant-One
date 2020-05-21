@@ -68,7 +68,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 	
 	func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
 		var returnRowsInComponent: Int
-		print("++++++++++numberOfRowsInComponent++++++++++")
+		//		print("++++++++++numberOfRowsInComponent++++++++++")
 		if component == 1 {
 			let tempStage = pickerView.selectedRow(inComponent: 1)
 			returnRowsInComponent = stageFinder.findStageCount(requestStage: tempStage)
@@ -76,9 +76,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 			//			let currentStage = pickerView.selectedRow(inComponent: 1)
 			returnRowsInComponent = methodFinder.methodCount(requestStage: currentPVStage)
 		}
-		print("numberOfRowsInComponent:", component, returnRowsInComponent)
-		print("----------numberOfRowsInComponent----------")
-
+		//		print("numberOfRowsInComponent:", component, returnRowsInComponent)
+		//		print("----------numberOfRowsInComponent----------")
+		
 		return returnRowsInComponent
 		
 	}
@@ -116,9 +116,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 				let tempStage = pickerView.selectedRow(inComponent: 1)
 				
 				//		pickerLabel?.font = UIFont.systemFont(ofSize: 20.0)
-				pickerLabel?.textAlignment = .center
+				pickerLabel?.textAlignment = .right
 				
-				
+				//				print("---------->>>>>>>>>>", tempStage, row)
 				pickerLabel?.text = methodFinder.findName(requestStage: tempStage, requestRow: row)
 				//		  pickerLabel?.textColor = UIColor.red
 			}
@@ -138,7 +138,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 	var currentBellSequence: String = "12345678" // Current sequence of bells, initial value ROUNDS on 4.
 	var currentSelectedBell: Int = 1 // Bell the user has chosen. 1 -> 8.
 	var currentBellPosition: Int = 1    // Position of currentSelectedBell, 1 = lead.
-//	var currentBellFollowsTreble: Bool = false  // is the current bell following treble?
+	//	var currentBellFollowsTreble: Bool = false  // is the current bell following treble?
 	var currentChangeNumber: Int = 0    // how many changes into current place bell?
 	var currentPlaceBell: Int = 1   // place bell that selected bell is processing.
 	var currentPVStage: Int = 0	// Pickerview number of current stage
@@ -214,7 +214,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 	
 	func loadXMLData() {
 		print("++++++++++loadXMLData++++++++++")
-
+		
 		//		if let path = Bundle.main.url(forResource: "XML6", withExtension: "xml") {
 		if let path = Bundle.main.url(forResource: "CCCBRData", withExtension: "xml") {
 			
@@ -224,10 +224,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 			}
 		}
 		print("XML count", cccbrMethods.count)
+		print("----------loadXMLData----------")
+		
 		
 		// Use CCCBR data to load my data array.
-		methodFinder.loadXMLData(cccbrData: cccbrMethods)
-		print("----------loadXMLData----------")
+		methodFinder.extractXMLData(cccbrData: cccbrMethods)
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -343,13 +344,14 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 	
 	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 		//        var bellCount: Int
-		print("++++++++++pickerview: component", component, "row", row)
+		//		print("++++++++++pickerview: component", component, "row", row)
 		
 		// Stage name changed. Reload list of methods
 		if component == 1 {
 			currentPVStage = row
+			currentPVMethod = 0
 			currentStageBellCount = stageFinder.findStageBells(requestStage: row)
-			print("pickerView: bellCount", currentStageBellCount)
+			//			print("pickerView: bellCount", currentStageBellCount)
 			
 			// Make sure selected bell is not too high for this stage.
 			if currentSelectedBell > currentStageBellCount {
@@ -364,7 +366,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 				lastButtonFollowsTreble = false
 			}
 			
-			print("pickerView: reloadComponent(0)")
+			//			print("pickerView: reloadComponent(0)")
 			pickerView.reloadComponent(0)
 			self.pickerView.selectRow(0, inComponent: 0, animated: true)
 			//        }
@@ -373,9 +375,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 			// Method changed.
 		}
 		resetNewRequest()
-
+		
 		refreshDisplay()
-		print("----------pickerview----------")
+		//		print("----------pickerview----------")
 	}
 	
 	//--------------------
@@ -389,6 +391,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 		singleRequested = false
 		lastButtonPressed = currentSelectedBell
 		lastCorrectButton = currentSelectedBell
+		if currentSelectedBell - ((currentSelectedBell / 100) * 100) == 2 {
+			lastButtonFollowsTreble = true
+		} else {
+			lastButtonFollowsTreble = false
+		}
 		currentBellSequence = String("12345678".prefix(currentStageBellCount))
 		
 		
@@ -418,10 +425,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 		print(currentMethodData)
 		self.showCurrentPlace.text = currentMethodData.methodStructure
 		print(self.showCurrentPlace.text as Any)
-				
+		
 		
 		bellSequence.text = String(currentBellSequence.prefix(currentStageBellCount))
-
+		
 		if currentMethodData.methodName.contains("Stedman") {
 			principalMethod = true
 			print(currentMethodData.methodName)
@@ -444,7 +451,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 			  "currentTrebleChecking", currentTrebleChecking,
 			  "lastButtonFollowsTreble", lastButtonFollowsTreble,
 			  "lastButtonPressed", lastButtonPressed,
-			  "lastCorrectButton", lastCorrectButton)
+			  "lastCorrectButton", lastCorrectButton,
+			  "currentPlaceBell", currentPlaceBell)
 		
 		var newColour: UIColor
 		for i in 1...8 {
@@ -452,11 +460,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 				saveButtonArray[i].isEnabled = false
 				saveButtonArray[i].setTitleColor(UIColor.gray, for: .normal)
 				saveButtonArray[i].layer.borderWidth = 0
-
+				
 				saveButtonTArray[i].isEnabled = false
 				saveButtonTArray[i].setTitleColor(UIColor.gray, for: .normal)
 				saveButtonTArray[i].layer.borderWidth = 0
-
+				
 			} else {
 				saveButtonArray[i].isEnabled = true
 				saveButtonArray[i].setTitleColor(UIColor.black, for: .normal)
@@ -470,32 +478,54 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 				
 				saveButtonArray[i].layer.borderWidth = 0
 				saveButtonTArray[i].layer.borderWidth = 0
-
+				
 				if i == currentPlaceBell {
 					saveButtonArray[i].layer.borderWidth = 2
 					saveButtonArray[i].layer.borderColor = UIColor.black.cgColor
 				}
-				
-				if lastButtonPressed == lastCorrectButton {
-					newColour = UIColor.green
-				} else {
-					newColour = UIColor.red
-					if lastCorrectButton < 100 {
-						saveButtonArray[lastCorrectButton].backgroundColor = UIColor.green
-					} else {
-						saveButtonTArray[lastCorrectButton - 100].backgroundColor = UIColor.green
-					}
-				}
-				if lastButtonPressed < 100  && !(lastButtonPressed == 2 && lastButtonFollowsTreble){
-					saveButtonArray[lastButtonPressed].backgroundColor = newColour
-				} else {
-					saveButtonTArray[(lastButtonPressed - ((lastButtonPressed / 100) * 100))].backgroundColor = newColour
-				}
-				if !currentTrebleChecking && lastButtonFollowsTreble {
-					saveButtonTArray[lastCorrectButton].backgroundColor = UIColor.green
-				}
 			}
 		}
+		
+		// Set colour of button pressed, and if wrong, the correct one. Also show if following treble.
+		if lastButtonPressed == lastCorrectButton {
+			newColour = UIColor.green
+			if !currentTrebleChecking && lastButtonFollowsTreble {
+				saveButtonTArray[lastButtonPressed].backgroundColor = UIColor.green
+			}
+		} else {
+			newColour = UIColor.red
+			if lastCorrectButton < 100 {
+				saveButtonArray[lastCorrectButton].backgroundColor = UIColor.green
+			} else {
+				saveButtonTArray[lastCorrectButton].backgroundColor = UIColor.green
+			}
+		}
+		if lastButtonPressed < 100  {
+			saveButtonArray[lastButtonPressed].backgroundColor = newColour
+		} else {
+			saveButtonTArray[(lastButtonPressed - ((lastButtonPressed / 100) * 100))].backgroundColor = newColour
+		}
+
+			
+			
+			//					newColour = UIColor.green
+			//				} else {
+			//					newColour = UIColor.red
+			//					if lastCorrectButton < 100 {
+			//						saveButtonArray[lastCorrectButton].backgroundColor = UIColor.green
+			//					} else {
+			//						saveButtonTArray[lastCorrectButton - 100].backgroundColor = UIColor.green
+			//					}
+			//				}
+			//				if lastButtonPressed < 100  {
+			//					saveButtonArray[lastButtonPressed].backgroundColor = newColour
+			//				} else {
+			//					saveButtonTArray[(lastButtonPressed - ((lastButtonPressed / 100) * 100))].backgroundColor = newColour
+			//				}
+			//				if !currentTrebleChecking && lastButtonFollowsTreble {
+			//					saveButtonTArray[lastCorrectButton].backgroundColor = UIColor.green
+			//				}
+			//			}   //&& !(lastButtonPressed == 2 && lastButtonFollowsTreble)
 		
 		if !bobRequested {
 			bobButton.backgroundColor = UIColor.clear
@@ -561,6 +591,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 		} else {
 			print("trebleOption: check treble now inactive")
 			currentTrebleChecking = false
+			if lastButtonPressed > 100 {
+				lastButtonPressed = lastButtonPressed - 100
+			}
 		}
 		
 		refreshDisplay()
@@ -569,11 +602,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 	//------------------------------------------------------------------------------------------------
 	@IBAction func longPressSeen(_ sender: UILongPressGestureRecognizer) {
 		
-//		if (sender.state == UIGestureRecognizer.State.ended) {
-//			print("Long press Ended")
-//		}
+		//		if (sender.state == UIGestureRecognizer.State.ended) {
+		//			print("Long press Ended")
+		//		}
 		if (sender.state == UIGestureRecognizer.State.began) {
-//			print("Long press detected.") // buttonStarted=", buttonStarted)
+			//			print("Long press detected.") // buttonStarted=", buttonStarted)
 			// Prevent long press on disabled button.
 			if buttonDownDetected {
 				saveButtonArray[currentPlaceBell].layer.borderWidth = 0
@@ -594,7 +627,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 		print("button down", sender.tag)
 		if sender.tag != 99 {  // Tag 99 is the "FollowTreble" button. Long press ignored.
 			buttonDownDetected = true
-		//  self.showCurrentPlace.textColor = UIColor.black
+			//  self.showCurrentPlace.textColor = UIColor.black
 		}
 	}
 	
@@ -604,6 +637,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 	@IBAction func buttonPressed(_ sender: UIButton) {
 		
 		print("++++++++++button Pressed++++++++++")
+		buttonDownDetected = false
 		
 		sender.setTitleColor(UIColor.black, for: .normal)
 		sender.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
@@ -613,10 +647,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 			sender.setTitleColor(UIColor.blue, for: .normal)
 		}
 		
-//		print("longPressDetected", longPressDetected, buttonDownDetected, currentPlaceBell)
-//------------------------------------------------------------------------------------------------
-// Handle long press.
-//------------------------------------------------------------------------------------------------
+		//		print("longPressDetected", longPressDetected, buttonDownDetected, currentPlaceBell)
+		//------------------------------------------------------------------------------------------------
+		// Handle long press.
+		//------------------------------------------------------------------------------------------------
 		
 		if longPressDetected {
 			currentSelectedBell = sender.tag
@@ -625,17 +659,20 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 			}
 			if currentSelectedBell == 2 {
 				lastButtonFollowsTreble = true
+				if currentTrebleChecking {
+					currentSelectedBell = 102
+				}
 			}
-				
+			
 			resetNewRequest()
 			refreshDisplay()
 			
 			longPressDetected = false
 			
-
-//------------------------------------------------------------------------------------------------
-// Handle normal press.
-//------------------------------------------------------------------------------------------------
+			
+			//------------------------------------------------------------------------------------------------
+			// Handle normal press.
+			//------------------------------------------------------------------------------------------------
 		} else {
 			if callActive {
 				print("ViewController: reset bob/single buttons.")
@@ -712,7 +749,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 			}
 			
 			currentBellPosition = newBellPosition
-			buttonDownDetected = false
+//			buttonDownDetected = false
 			print("callStarted#2", callActive)
 			
 			refreshDisplay()
@@ -721,20 +758,20 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 		}
 	}
 	
-//----------------------------------------------------------------------------
-//	func setButtonColour(senderCode: UIButton, colourWanted: UIColor) {
-//		(senderCode as UIButton).backgroundColor = colourWanted
-//		(senderCode as UIButton).setTitleColor(UIColor.black, for: .normal)
-//		(senderCode as UIButton).titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-//
-//		DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//			(senderCode as UIButton).titleLabel?.font = UIFont.systemFont(ofSize: 15)
-//			(senderCode as UIButton).setTitleColor(UIColor.blue, for: .normal)
-//
-//		}
-//
-//
-//	}
+	//----------------------------------------------------------------------------
+	//	func setButtonColour(senderCode: UIButton, colourWanted: UIColor) {
+	//		(senderCode as UIButton).backgroundColor = colourWanted
+	//		(senderCode as UIButton).setTitleColor(UIColor.black, for: .normal)
+	//		(senderCode as UIButton).titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+	//
+	//		DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+	//			(senderCode as UIButton).titleLabel?.font = UIFont.systemFont(ofSize: 15)
+	//			(senderCode as UIButton).setTitleColor(UIColor.blue, for: .normal)
+	//
+	//		}
+	//
+	//
+	//	}
 	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()

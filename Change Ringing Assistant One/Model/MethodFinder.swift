@@ -84,8 +84,9 @@ struct MethodFinder {
 		]
 	]
 	
-	mutating func loadXMLData(cccbrData: [CCCBRData]) {
-		print("loadXMLData: Start")
+	mutating func extractXMLData(cccbrData: [CCCBRData]) {
+		
+		print("++++++++++extractXMLData++++++++++")
 		
 		var tempPlaceBellCode: String
 		var tempBobArray: [Int]
@@ -95,13 +96,15 @@ struct MethodFinder {
 			stageName = stageFinder.findStageName(requestStage: i)
 				for j in 0..<placeBellData[i].count {
 
-				if (placeBellData[i][j].methodSymmetry == nil || placeBellData[i][j].placeBellCode == nil || placeBellData[i][j].bobArray == nil || placeBellData[i][j].singleArray == nil) {
+// See if all data present. "Symmetry" only needed if other data missing.
+					// placeBellData[i][j].methodSymmetry == nil
+				if ( placeBellData[i][j].placeBellCode == nil || placeBellData[i][j].bobArray == nil || placeBellData[i][j].singleArray == nil) {
 					let fullName = placeBellData[i][j].methodName.lowercased() + " " + stageName.lowercased()
-					print(fullName)
+//					print(fullName)
 					let xmlIndex = cccbrData.firstIndex(where: { $0.cccbrTitle.lowercased() == fullName})
 //						placeBellData[i][j].methodName.lowercased()})
 					if xmlIndex != nil {
-						print("Extracting details for", placeBellData[i][j].methodName, "from", cccbrData[xmlIndex!])
+						print("Extracting details for", placeBellData[i][j].methodName, stageName) //, "from", cccbrData[xmlIndex!])
 						
 						if placeBellData[i][j].methodSymmetry == nil {
 							placeBellData[i][j].methodSymmetry = cccbrData[xmlIndex!].cccbrSymmetry
@@ -142,14 +145,15 @@ struct MethodFinder {
 							placeBellData[i][j].singleArray = tempSingleArray
 						}
 						
-						print(placeBellData[i][j].placeBellCode as Any, placeBellData[i][j].bobArray as Any, placeBellData[i][j].singleArray as Any)
+//						print(placeBellData[i][j].placeBellCode as Any, placeBellData[i][j].bobArray as Any, placeBellData[i][j].singleArray as Any)
 						
 					} else {
-						print("!!!!!method not found in XML :", placeBellData[i][j].methodName)
+						print("!!!!!method not found in XML :", placeBellData[i][j].methodName, stageName)
 					}
 				}
 			}
 		}
+		print("----------extractXMLData----------")
 	}
 	
 	
