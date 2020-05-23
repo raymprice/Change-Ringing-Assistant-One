@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -49,13 +49,13 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="RkC-7Z-qhU" userLabel="Stack All Buttons">
-                                        <rect key="frame" x="0.0" y="38" width="808" height="104"/>
+                                        <rect key="frame" x="0.0" y="38" width="808" height="98.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="G2Y-sA-HX7" userLabel="Stack Top Buttons">
-                                                <rect key="frame" x="0.0" y="0.0" width="808" height="48"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="808" height="45.5"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYD-Fm-n3D">
-                                                        <rect key="frame" x="0.0" y="0.0" width="94" height="48"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="94" height="45.5"/>
                                                         <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <state key="normal" title="Lead">
@@ -70,7 +70,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Jj-gf-wgC">
-                                                        <rect key="frame" x="102" y="0.0" width="94" height="48"/>
+                                                        <rect key="frame" x="102" y="0.0" width="94" height="45.5"/>
                                                         <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="2nd">
                                                             <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -81,7 +81,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YUn-Wf-Mc0">
-                                                        <rect key="frame" x="204" y="0.0" width="94" height="48"/>
+                                                        <rect key="frame" x="204" y="0.0" width="94" height="45.5"/>
                                                         <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="3rd"/>
                                                         <connections>
@@ -90,7 +90,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Yq-2Z-816">
-                                                        <rect key="frame" x="306" y="0.0" width="94" height="48"/>
+                                                        <rect key="frame" x="306" y="0.0" width="94" height="45.5"/>
                                                         <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="4th"/>
                                                         <connections>
@@ -99,7 +99,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTX-6z-oSm">
-                                                        <rect key="frame" x="408" y="0.0" width="94" height="48"/>
+                                                        <rect key="frame" x="408" y="0.0" width="94" height="45.5"/>
                                                         <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="5th"/>
                                                         <connections>
@@ -108,7 +108,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="6" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCE-yU-Qey">
-                                                        <rect key="frame" x="510" y="0.0" width="94" height="48"/>
+                                                        <rect key="frame" x="510" y="0.0" width="94" height="45.5"/>
                                                         <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="6th"/>
                                                         <connections>
@@ -117,7 +117,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="7" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYx-al-AYe">
-                                                        <rect key="frame" x="612" y="0.0" width="94" height="48"/>
+                                                        <rect key="frame" x="612" y="0.0" width="94" height="45.5"/>
                                                         <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="7th"/>
                                                         <connections>
@@ -126,7 +126,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="8" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UMQ-HN-TeZ">
-                                                        <rect key="frame" x="714" y="0.0" width="94" height="48"/>
+                                                        <rect key="frame" x="714" y="0.0" width="94" height="45.5"/>
                                                         <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="8th"/>
                                                         <connections>
@@ -137,10 +137,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wcf-aI-dWf" userLabel="Stack Bottom Buttons">
-                                                <rect key="frame" x="0.0" y="56" width="808" height="48"/>
+                                                <rect key="frame" x="0.0" y="53.5" width="808" height="45"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="99" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="gsQ-AV-cIF">
-                                                        <rect key="frame" x="0.0" y="0.0" width="94" height="48"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="94" height="45"/>
                                                         <state key="normal">
                                                             <string key="title">Follow
 Treble:</string>
@@ -151,7 +151,7 @@ Treble:</string>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WhZ-VN-5Gm">
-                                                        <rect key="frame" x="102" y="0.0" width="94" height="48"/>
+                                                        <rect key="frame" x="102" y="0.0" width="94" height="45"/>
                                                         <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="2nd"/>
                                                         <connections>
@@ -160,7 +160,7 @@ Treble:</string>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBU-2A-29f">
-                                                        <rect key="frame" x="204" y="0.0" width="94" height="48"/>
+                                                        <rect key="frame" x="204" y="0.0" width="94" height="45"/>
                                                         <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="3rd"/>
                                                         <connections>
@@ -169,7 +169,7 @@ Treble:</string>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqK-Ui-KPJ">
-                                                        <rect key="frame" x="306" y="0.0" width="94" height="48"/>
+                                                        <rect key="frame" x="306" y="0.0" width="94" height="45"/>
                                                         <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="4th"/>
                                                         <connections>
@@ -178,7 +178,7 @@ Treble:</string>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="105" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BXN-ql-7XC">
-                                                        <rect key="frame" x="408" y="0.0" width="94" height="48"/>
+                                                        <rect key="frame" x="408" y="0.0" width="94" height="45"/>
                                                         <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="5th"/>
                                                         <connections>
@@ -187,7 +187,7 @@ Treble:</string>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="106" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8b8-VA-4a1">
-                                                        <rect key="frame" x="510" y="0.0" width="94" height="48"/>
+                                                        <rect key="frame" x="510" y="0.0" width="94" height="45"/>
                                                         <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="6th"/>
                                                         <connections>
@@ -196,7 +196,7 @@ Treble:</string>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="107" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDv-9D-8ai">
-                                                        <rect key="frame" x="612" y="0.0" width="94" height="48"/>
+                                                        <rect key="frame" x="612" y="0.0" width="94" height="45"/>
                                                         <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="7th"/>
                                                         <connections>
@@ -205,7 +205,7 @@ Treble:</string>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="108" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y76-qI-qOu">
-                                                        <rect key="frame" x="714" y="0.0" width="94" height="48"/>
+                                                        <rect key="frame" x="714" y="0.0" width="94" height="45"/>
                                                         <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="8th"/>
                                                         <connections>
@@ -222,34 +222,52 @@ Treble:</string>
                                         </connections>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6aF-er-P2K" userLabel="Stack Place and Stroke">
-                                        <rect key="frame" x="0.0" y="150" width="808" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="144.5" width="808" height="50"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Place Bell: 1." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6D-is-OgZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="564" height="20.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="1234567890" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4eV-oP-pne" userLabel="Bell Sequence">
+                                                <rect key="frame" x="0.0" y="0.0" width="613.5" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="1234567890" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4eV-oP-pne" userLabel="Bell Sequence">
-                                                <rect key="frame" x="572" y="0.0" width="99.5" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dk-ww-u1c" userLabel="Lead End">
+                                                <rect key="frame" x="621.5" y="0.0" width="50" height="50"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Handstroke Next" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1Y-kV-jV1">
-                                                <rect key="frame" x="679.5" y="0.0" width="128.5" height="20.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Handstroke Next" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1Y-kV-jV1">
+                                                <rect key="frame" x="679.5" y="0.0" width="128.5" height="50"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                </accessibility>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mtr-or-8CN" userLabel="Stack Picker">
-                                        <rect key="frame" x="0.0" y="178.5" width="808" height="214.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mtr-or-8CN" userLabel="Stack Picker">
+                                        <rect key="frame" x="0.0" y="202.5" width="808" height="162"/>
                                         <subviews>
                                             <pickerView contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="8pc-iU-kFn">
-                                                <rect key="frame" x="244" y="0.0" width="320" height="214.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="808" height="162"/>
                                             </pickerView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="8pc-iU-kFn" firstAttribute="leading" secondItem="mtr-or-8CN" secondAttribute="leading" id="0bc-Cx-Bpa"/>
+                                            <constraint firstAttribute="trailing" secondItem="8pc-iU-kFn" secondAttribute="trailing" id="WmG-WB-MmP"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TKH-zZ-4JM">
+                                        <rect key="frame" x="0.0" y="372.5" width="808" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozT-kb-FBs" userLabel="Method Notation">
+                                                <rect key="frame" x="0.0" y="0.0" width="808" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -283,9 +301,10 @@ Treble:</string>
                         <outlet property="button8" destination="UMQ-HN-TeZ" id="X0g-is-RAi"/>
                         <outlet property="button8t" destination="y76-qI-qOu" id="m3x-Nl-JYT"/>
                         <outlet property="followTreble" destination="gsQ-AV-cIF" id="3hh-8T-qY9"/>
+                        <outlet property="leadEnd" destination="5dk-ww-u1c" id="2bO-Qf-UTf"/>
                         <outlet property="pickerView" destination="8pc-iU-kFn" id="Eq8-xU-dQT"/>
-                        <outlet property="showCurrentPlace" destination="H6D-is-OgZ" id="Evm-oy-fDc"/>
                         <outlet property="showHandOrBack" destination="j1Y-kV-jV1" id="YmE-c3-YRa"/>
+                        <outlet property="showNotation" destination="ozT-kb-FBs" id="i7v-Z2-f2c"/>
                         <outlet property="singleButton" destination="vdb-ie-o8K" id="YZf-po-bai"/>
                     </connections>
                 </viewController>
@@ -296,7 +315,7 @@ Treble:</string>
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1602" y="-1755"/>
+            <point key="canvasLocation" x="1312" y="-2622"/>
         </scene>
     </scenes>
 </document>

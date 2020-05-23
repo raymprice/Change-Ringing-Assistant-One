@@ -107,7 +107,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 			if component == 1 {
 				
 				//		pickerLabel?.font = UIFont.systemFont(ofSize: 20.0)
-				pickerLabel?.textAlignment = .center
+				pickerLabel?.textAlignment = .left
 				
 				
 				pickerLabel?.text = stageFinder.findStageName(requestStage: row)
@@ -182,9 +182,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 	@IBOutlet weak var bobButton: UIButton!
 	@IBOutlet weak var singleButton: UIButton!
 	
-	@IBOutlet weak var showCurrentPlace: UILabel!
+//	@IBOutlet weak var showCurrentPlace: UILabel!
 	@IBOutlet weak var bellSequence: UILabel!
+	@IBOutlet weak var leadEnd: UILabel!
 	@IBOutlet weak var showHandOrBack: UILabel!
+	@IBOutlet weak var showNotation: UILabel!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -423,8 +425,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 		singleButton.isEnabled = currentMethodData.singleValid
 		
 		print(currentMethodData)
-		self.showCurrentPlace.text = currentMethodData.methodStructure
-		print(self.showCurrentPlace.text as Any)
+		self.showNotation.text = currentMethodData.methodStructure
+		print(self.showNotation.text as Any)
 		
 		
 		bellSequence.text = String(currentBellSequence.prefix(currentStageBellCount))
@@ -713,23 +715,24 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 			currentMethodArray = newMethodArray
 			
 			if newPlaceBell != 0 {
-				
 				print("new place bell was", currentPlaceBell, "now", newPlaceBell)
-				showHandOrBack.text = " >>>Lead End<<<"
-				showHandOrBack.layer.borderWidth = 1
-				showHandOrBack.layer.borderColor = UIColor.red.cgColor
-				
+				leadEnd.text = " >>>Lead End<<<"
+				leadEnd.layer.borderWidth = 1
+				leadEnd.layer.borderColor = UIColor.red.cgColor
 				currentPlaceBell = newPlaceBell
 				currentChangeNumber = 0
 				currentMethodArray = currentMethodData.methodArray
 			} else {
+				leadEnd.text = "               "
+				leadEnd.layer.borderWidth = 0
+//				leadEnd.layer.borderColor = UIColor.red.cgColor
 				currentChangeNumber = currentChangeNumber + 1
-				showHandOrBack.layer.borderWidth = 0
-				if self.showHandOrBack.text == "Backstroke next" {
-					self.showHandOrBack.text = "Handstroke next"
-				} else {
-					self.showHandOrBack.text = "Backstroke next"
-				}
+			}
+			showHandOrBack.layer.borderWidth = 0
+			if self.showHandOrBack.text == "Backstroke next" {
+				self.showHandOrBack.text = "Handstroke next"
+			} else {
+				self.showHandOrBack.text = "Backstroke next"
 			}
 			
 			if callActive {

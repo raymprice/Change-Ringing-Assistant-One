@@ -44,4 +44,19 @@ struct StageFinder {
 //        print("findStageName: ", requestStage, returnBellCount)
         return returnBellCount
     }
+	
+
+	//--------------------------------------------------
+	// Receive stage as name, return stage number.
+	//--------------------------------------------------
+	func findStageIndex(requestStage: String) -> Int {
+		var returnStageIndex: Int = 0
+		for i in 0..<stageData.count {
+			if stageData[i].stageName == requestStage {
+				returnStageIndex = stageData[i].stageIndex
+			}
+		}
+//		print("findStageIndex: ", requestStage, returnStageIndex)
+		return returnStageIndex
+	}
 }
