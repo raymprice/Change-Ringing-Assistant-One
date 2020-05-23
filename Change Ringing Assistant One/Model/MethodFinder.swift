@@ -110,7 +110,7 @@ struct MethodFinder {
 			var placeBellDataCount = placeBellData[i].count
 //			for ixCount in 0..<placeBellData[i].count {
 			repeat {
-				print("ixCount", ixCount)
+//				print("ixCount", ixCount)
 				// See if all data present. "Symmetry" only needed if other data missing.
 				// placeBellData[i][j].methodSymmetry == nil
 				if ( placeBellData[i][ixCount].placeBellCode == nil || placeBellData[i][ixCount].bobArray == nil || placeBellData[i][ixCount].singleArray == nil) {
