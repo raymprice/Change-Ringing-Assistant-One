@@ -247,17 +247,24 @@ Treble:</string>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mtr-or-8CN" userLabel="Stack Picker">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mtr-or-8CN" userLabel="Stack Picker">
                                         <rect key="frame" x="0.0" y="202.5" width="808" height="162"/>
                                         <subviews>
-                                            <pickerView contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="8pc-iU-kFn">
-                                                <rect key="frame" x="0.0" y="0.0" width="808" height="162"/>
+                                            <pickerView tag="1" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="8pc-iU-kFn">
+                                                <rect key="frame" x="0.0" y="0.0" width="400" height="162"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="LWJ-4Q-dzG"/>
+                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="yac-pE-VYO"/>
+                                                </connections>
+                                            </pickerView>
+                                            <pickerView tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yTU-Js-6da" userLabel="Picker View2">
+                                                <rect key="frame" x="408" y="0.0" width="400" height="162"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Tjd-oS-bRl"/>
+                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="EUJ-gQ-aL4"/>
+                                                </connections>
                                             </pickerView>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="8pc-iU-kFn" firstAttribute="leading" secondItem="mtr-or-8CN" secondAttribute="leading" id="0bc-Cx-Bpa"/>
-                                            <constraint firstAttribute="trailing" secondItem="8pc-iU-kFn" secondAttribute="trailing" id="WmG-WB-MmP"/>
-                                        </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TKH-zZ-4JM">
                                         <rect key="frame" x="0.0" y="372.5" width="808" height="20.5"/>
@@ -302,7 +309,8 @@ Treble:</string>
                         <outlet property="button8t" destination="y76-qI-qOu" id="m3x-Nl-JYT"/>
                         <outlet property="followTreble" destination="gsQ-AV-cIF" id="3hh-8T-qY9"/>
                         <outlet property="leadEnd" destination="5dk-ww-u1c" id="2bO-Qf-UTf"/>
-                        <outlet property="pickerView" destination="8pc-iU-kFn" id="Eq8-xU-dQT"/>
+                        <outlet property="pickerView1" destination="8pc-iU-kFn" id="Eq8-xU-dQT"/>
+                        <outlet property="pickerView2" destination="yTU-Js-6da" id="Mzh-Pi-ide"/>
                         <outlet property="showHandOrBack" destination="j1Y-kV-jV1" id="YmE-c3-YRa"/>
                         <outlet property="showNotation" destination="ozT-kb-FBs" id="i7v-Z2-f2c"/>
                         <outlet property="singleButton" destination="vdb-ie-o8K" id="YZf-po-bai"/>
@@ -315,7 +323,7 @@ Treble:</string>
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1312" y="-2622"/>
+            <point key="canvasLocation" x="1613" y="-2709"/>
         </scene>
     </scenes>
 </document>

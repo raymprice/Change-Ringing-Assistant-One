@@ -29,3 +29,4 @@ Little Bob Major
 Cambridge Surprise Major;&-38-4-258-36-4-58-6-78,2;[32,0,12];[32,0,1234]
 made up doubles
 April Day Doubles
+Little Bob minor
