@@ -147,6 +147,7 @@ Treble:</string>
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
+                                                            <action selector="buttonDown:" destination="BYZ-38-t0r" eventType="touchDown" id="IRc-vP-Gyl"/>
                                                             <action selector="trebleOption:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RFL-gw-gu8"/>
                                                         </connections>
                                                     </button>
@@ -221,23 +222,23 @@ Treble:</string>
                                             <outletCollection property="gestureRecognizers" destination="bhu-Tp-n5W" appends="YES" id="R1R-sN-JKU"/>
                                         </connections>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6aF-er-P2K" userLabel="Stack Place and Stroke">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6aF-er-P2K" userLabel="Stack Place and Stroke">
                                         <rect key="frame" x="0.0" y="144.5" width="808" height="50"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="1234567890" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4eV-oP-pne" userLabel="Bell Sequence">
-                                                <rect key="frame" x="0.0" y="0.0" width="613.5" height="50"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234567890" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4eV-oP-pne" userLabel="Bell Sequence">
+                                                <rect key="frame" x="0.0" y="0.0" width="215.5" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dk-ww-u1c" userLabel="Lead End">
-                                                <rect key="frame" x="621.5" y="0.0" width="50" height="50"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dk-ww-u1c" userLabel="Lead End">
+                                                <rect key="frame" x="223.5" y="0.0" width="314.5" height="50"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Handstroke Next" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1Y-kV-jV1">
-                                                <rect key="frame" x="679.5" y="0.0" width="128.5" height="50"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Handstroke Next" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1Y-kV-jV1">
+                                                <rect key="frame" x="546" y="0.0" width="262" height="50"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                                 </accessibility>
@@ -314,6 +315,7 @@ Treble:</string>
                         <outlet property="showHandOrBack" destination="j1Y-kV-jV1" id="YmE-c3-YRa"/>
                         <outlet property="showNotation" destination="ozT-kb-FBs" id="i7v-Z2-f2c"/>
                         <outlet property="singleButton" destination="vdb-ie-o8K" id="YZf-po-bai"/>
+                        <outlet property="titleLabel" destination="45g-Qk-Euh" id="vhW-kL-CMW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -323,7 +325,7 @@ Treble:</string>
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1613" y="-2709"/>
+            <point key="canvasLocation" x="1420" y="-2888"/>
         </scene>
     </scenes>
 </document>

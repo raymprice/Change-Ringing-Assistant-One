@@ -391,6 +391,7 @@ struct MethodFinder {
 		print("++++++++++findNextPosition++++++++++")
 		print("newplacecode", newPlaceCode, "currentMethodArray", currentMethodArray, "currentUserBell", currentUserBell, "currentBellPosition", currentBellPosition, "currentChangeNumber", currentChangeNumber, "currentBellSequence", currentBellSequence, "currentPlaceBell", currentPlaceBell,"bob", bobRequested, "singler", singleRequested)
 		let stringPlaceCode = String(newPlaceCode)
+		let stringUserBell = String(currentUserBell)
 		var returnBellSequence = currentBellSequence
 		var returnPlaceBell: Int = 0
 		var returnMethodArray = currentMethodArray
@@ -415,24 +416,33 @@ struct MethodFinder {
 					let save2 = returnBellSequence[index1...index1]
 					let save3 = returnBellSequence[index2...index2]
 					let save4 = returnBellSequence.suffix(returnBellSequence.count - ix - 1)
+					print("save1324", save1, save3, save2, save4)
 					returnBellSequence = String(save1 + save3 + save2 + save4)
 					
 					if ix == currentBellPosition {
 						returnBellPosition = currentBellPosition + 1
-						if save3 == "1" {
-							returnFollowsTreble = true
-						}
+//						if save3 == "1" {
+//							returnFollowsTreble = true
+//						}
 					}
 					if ix + 1 == currentBellPosition {
 						returnBellPosition = currentBellPosition - 1
-						if save1.suffix(1) == "1" {
-							returnFollowsTreble = true
-						}
+//						if save1.suffix(1) == "1" {
+//							returnFollowsTreble = true
+//						}
 					}
 				}
 				ix = ix + 2
 			}
 		} while ix <= returnBellSequence.count
+		
+		let ix1 = returnBellSequence.firstIndex(of: "1") ?? returnBellSequence.endIndex
+		let work1 = returnBellSequence.suffix(from: ix1)
+		let work2 = work1.suffix(work1.count - 1)
+		if stringUserBell == work2.prefix(1) {
+			returnFollowsTreble = true
+		}
+		
 		
 		// Check for final change in array, which implies a new place bell.
 		if currentChangeNumber == currentMethodArray[0].count - 1 {
