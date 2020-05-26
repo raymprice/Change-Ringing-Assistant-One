@@ -21,7 +21,7 @@ struct MethodFinder {
 		
 		readMethodList()
 		
-		print("++++++++++extractXMLData++++++++++")
+//		print("++++++++++extractXMLData++++++++++")
 		
 		var tempPlaceBellCode: String
 		var tempBobArray: [Int]
@@ -39,13 +39,14 @@ struct MethodFinder {
 //				print("ixCount", ixCount)
 				// See if all data present. "Symmetry" only needed if other data missing.
 				// placeBellData[i][j].methodSymmetry == nil
+//				print(placeBellData[i][ixCount])
 				if ( placeBellData[i][ixCount].placeBellCode == nil || placeBellData[i][ixCount].bobArray == nil || placeBellData[i][ixCount].singleArray == nil) {
 					let fullName = placeBellData[i][ixCount].methodName.lowercased() + " " + stageName.lowercased()
 //					print(fullName)
 					let xmlIndex = cccbrData.firstIndex(where: { $0.cccbrTitle.lowercased() == fullName})
 					//						placeBellData[i][j].methodName.lowercased()})
 					if xmlIndex != nil {
-						print("Extracting details for", placeBellData[i][ixCount].methodName, stageName) //, "from", cccbrData[xmlIndex!])
+//						print("Extracting details for", placeBellData[i][ixCount].methodName, stageName) //, "from", cccbrData[xmlIndex!])
 						if placeBellData[i][ixCount].methodSymmetry == nil {
 							placeBellData[i][ixCount].methodSymmetry = cccbrData[xmlIndex!].cccbrSymmetry
 						}
@@ -85,19 +86,19 @@ struct MethodFinder {
 						ixCount += 1
 					} else {
 //						print(placeBellData[i].count)
-						print("!!!!!method not found in XML :", placeBellData[i][ixCount].methodName, stageName)
+//						print("!!!!!method not found in XML :", placeBellData[i][ixCount].methodName, stageName)
 						placeBellData[i].remove(at: ixCount)
 //						print(placeBellData[i].count)
 //						ixCount = ixCount - 1
 					}
 				} else {
-					print("No XML data needed for", placeBellData[i][ixCount].methodName, stageName)
+//					print("No XML data needed for", placeBellData[i][ixCount].methodName, stageName)
 					ixCount += 1
 				}
 				placeBellDataCount -= 1
 			} while placeBellDataCount > 0
 		}
-		print("----------extractXMLData----------")
+//		print("----------extractXMLData----------")
 	}
 	
 	//--------------------------------------------------
@@ -111,7 +112,9 @@ struct MethodFinder {
 		var bobForArray: [Int]? = nil
 		var singleForArray: [Int]? = nil
 		var symmetryForArray: String? = nil
-		print("++++++++++readMethodList++++++++++")
+		var workWord:String = ""
+		var firstLetter: String = ""
+//		print("++++++++++readMethodList++++++++++")
 		
 		if let path = Bundle.main.url(forResource: "MethodList", withExtension: "txt") {
 			do {
@@ -124,7 +127,7 @@ struct MethodFinder {
 			let inputLines = inputMethodFile.split(separator: "\n")
 			for inputLine in inputLines {
 				if inputLine.prefix(1) == "*" {  // Ignore comments.
-					print("Comment", inputLine)
+//					print("Comment", inputLine)
 					continue
 				}
 				methodForArray = ""
@@ -135,14 +138,17 @@ struct MethodFinder {
 				let methodWords = inputItems[0].split(separator: " ")
 //				print("methodWords", methodWords, methodWords.count)
 				for ix in 0..<methodWords.count {
+					workWord = String(methodWords[ix])
+					firstLetter = String(workWord.prefix(1))
+					workWord = firstLetter.uppercased() + workWord.suffix(workWord.count - 1)
 					if ix == methodWords.count - 1 {
-						inputStageName = String(methodWords[ix])
+						inputStageName = workWord // String(methodWords[ix])
 					} else {
-						methodForArray = methodForArray + methodWords[ix] + " "
+						methodForArray = methodForArray + workWord + " " //methodWords[ix] + " "
 					}
 				}
-				let firstLetter = inputStageName.prefix(1).uppercased()
-				inputStageName = firstLetter + inputStageName.suffix(inputStageName.count - 1)
+//				let firstLetter = inputStageName.prefix(1).uppercased()
+//				inputStageName = firstLetter + inputStageName.suffix(inputStageName.count - 1)
 //				print("Stage", inputStageName)
 //				print("methodForArray", methodForArray, methodForArray.count)
 				methodForArray = methodForArray.trimmingCharacters(in: .whitespaces)
@@ -181,7 +187,7 @@ struct MethodFinder {
 			placeBellData[i].sort{$0.methodName < $1.methodName}
 //			print("After" , placeBellData[i])
 		}
-		print("----------readMethodList----------")
+//		print("----------readMethodList----------")
 	}
 	
 	//--------------------------------------------------
@@ -200,6 +206,7 @@ struct MethodFinder {
 //			print(bitInt ?? 0)
 			returnArray.append(bitInt ?? 0)
 		}
+//		print("returnArray", returnArray)
 		return returnArray
 	}
 	
@@ -216,7 +223,7 @@ struct MethodFinder {
 	//--------------------------------------------------
 	func methodNameSearch(requestStage: Int, requestName: String) -> Int {
 		let returnIX = placeBellData[requestStage].firstIndex(where: { $0.methodName == requestName }) ?? -1
-		print("methodNameSearch:", requestStage, requestName, returnIX)
+//		print("methodNameSearch:", requestStage, requestName, returnIX)
 		return returnIX
 	}
 	
@@ -249,7 +256,7 @@ struct MethodFinder {
 		
 		(returnMethodData.bobValid, returnMethodData.singleValid) = findValidCalls(requestStage: requestStage, requestRow: requestRow)
 		
-		print("findMethodData:", returnMethodData)
+//		print("findMethodData:", returnMethodData)
 		
 		return returnMethodData
 	}
@@ -388,8 +395,8 @@ struct MethodFinder {
 						  singleRequested: Bool) -> ([[Int]], Int, Bool, String, Int, Bool) {
 		
 		let newPlaceCode = currentMethodArray[0][currentChangeNumber]
-		print("++++++++++findNextPosition++++++++++")
-		print("newplacecode", newPlaceCode, "currentMethodArray", currentMethodArray, "currentUserBell", currentUserBell, "currentBellPosition", currentBellPosition, "currentChangeNumber", currentChangeNumber, "currentBellSequence", currentBellSequence, "currentPlaceBell", currentPlaceBell,"bob", bobRequested, "singler", singleRequested)
+//		print("++++++++++findNextPosition++++++++++")
+//		print("newplacecode", newPlaceCode, "currentMethodArray", currentMethodArray, "currentUserBell", currentUserBell, "currentBellPosition", currentBellPosition, "currentChangeNumber", currentChangeNumber, "currentBellSequence", currentBellSequence, "currentPlaceBell", currentPlaceBell,"bob", bobRequested, "single", singleRequested)
 		let stringPlaceCode = String(newPlaceCode)
 		let stringUserBell = String(currentUserBell)
 		var returnBellSequence = currentBellSequence
@@ -416,7 +423,7 @@ struct MethodFinder {
 					let save2 = returnBellSequence[index1...index1]
 					let save3 = returnBellSequence[index2...index2]
 					let save4 = returnBellSequence.suffix(returnBellSequence.count - ix - 1)
-					print("save1324", save1, save3, save2, save4)
+//					print("save1324", save1, save3, save2, save4)
 					returnBellSequence = String(save1 + save3 + save2 + save4)
 					
 					if ix == currentBellPosition {
@@ -478,13 +485,18 @@ struct MethodFinder {
 			if (currentChangeNumber == singleCallFirst || currentChangeNumber == singleCallFirst + singleCallFrequency) {
 				returnCallStarted = true
 				for i in 1...returnMethodArray[2].count - 2 {
-					returnMethodArray[0][currentChangeNumber + i + 1] = returnMethodArray[2][i + 1]
-					print("----------->", returnMethodArray[0])
+					if returnMethodArray[2][i + 1] < 0 {
+						let stedman = (returnMethodArray[0][currentChangeNumber + i + 1] * 100) - returnMethodArray[2][i + 1]
+						returnMethodArray[0][currentChangeNumber + i + 1] = stedman
+						print("----------->", returnMethodArray[0])
+					} else {
+						returnMethodArray[0][currentChangeNumber + i + 1] = returnMethodArray[2][i + 1]
+					}
 				}
 			}
 		}
-		print("return",returnMethodArray, returnBellPosition, returnFollowsTreble, returnBellSequence, returnPlaceBell, returnCallStarted)
-		print("----------findNextPosition----------")
+//		print("return",returnMethodArray, returnBellPosition, returnFollowsTreble, returnBellSequence, returnPlaceBell, returnCallStarted)
+//		print("----------findNextPosition----------")
 		return (returnMethodArray, returnBellPosition, returnFollowsTreble, returnBellSequence, returnPlaceBell, returnCallStarted)
 	}
 }

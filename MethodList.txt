@@ -3,12 +3,14 @@ Plain Hunt minimus;x1x1x1x1;[0];[0]
 Plain Bob minimus;x4x4x4x2;[0];[0]
 Reverse Bob minimus;&-1-3,14;[0];[0]
 Plain Hunt Doubles;5.1.5.1.5.1.5.1.5.1;[0];[0]
-Plain Bob doubles;&5.1.5.1.5,25;[10,0,145];[0]
+*Plain Bob doubles;&5.1.5.1.5,25;[10,0,145];[0]
+plain bob doubles
 Reverse Bob doubles
 St Simon's Bob Doubles;&5.1.5.3.5,25;[10,0,145];[0]
 St Martin's Bob Doubles;&5.1.5.23.5,25;[10,0,145];[0]
 Grandsire Doubles;&3,1.5.1.5.1;[10,9,3];[10,9,3,123]
-Stedman Doubles;3.1.5.3.1.3.1.3.5.1.3.1;[0];[6,0,345])
+* Stedman Doubles;3.1.5.3.1.3.1.3.5.1.3.1;[0];[6,0,345]
+Stedman Doubles;3.1.5.3.1.3.1.3.5.1.3.1;[0];[6,0,-45]
 Plain Hunt Minor;x6x6x6x6x6x6;[0];[0]
 Plain Bob Minor;a x1x1x1x1x1x.12;[12,0,14];[12,0,1234]
 St Clement's College Bob minor
