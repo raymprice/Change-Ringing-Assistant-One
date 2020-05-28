@@ -30,9 +30,6 @@ struct MethodFinder {
 		
 		for i in 0..<placeBellData.count {
 			stageName = stageFinder.findStageName(requestStage: i)
-//			print("count", placeBellData[i].count)
-//			print("i", i)
-
 			var ixCount: Int = 0
 			var placeBellDataCount = placeBellData[i].count
 			repeat {
@@ -46,7 +43,7 @@ struct MethodFinder {
 					let xmlIndex = cccbrData.firstIndex(where: { $0.cccbrTitle.lowercased() == fullName})
 					//						placeBellData[i][j].methodName.lowercased()})
 					if xmlIndex != nil {
-//						print("Extracting details for", placeBellData[i][ixCount].methodName, stageName) //, "from", cccbrData[xmlIndex!])
+//						print("Extracting details for", placeBellData[i][ixCount].methodName, stageName, "from", cccbrData[xmlIndex!])
 						if placeBellData[i][ixCount].methodSymmetry == nil {
 							placeBellData[i][ixCount].methodSymmetry = cccbrData[xmlIndex!].cccbrSymmetry
 						}
@@ -74,7 +71,7 @@ struct MethodFinder {
 							let tempLOLS = Int(cccbrData[xmlIndex!].cccbrLengthOfLead)!
 							switch cccbrData[xmlIndex!].cccbrNumberOfHunts {
 							case "1":
-								tempSingleArray = [tempLOLS, 0, 14]
+								tempSingleArray = [tempLOLS, 0, 1234]
 							case "2":
 								tempSingleArray = [tempLOLS, tempLOLS - 1, 3, 123]
 							default:
@@ -147,10 +144,7 @@ struct MethodFinder {
 						methodForArray = methodForArray + workWord + " " //methodWords[ix] + " "
 					}
 				}
-//				let firstLetter = inputStageName.prefix(1).uppercased()
-//				inputStageName = firstLetter + inputStageName.suffix(inputStageName.count - 1)
-//				print("Stage", inputStageName)
-//				print("methodForArray", methodForArray, methodForArray.count)
+
 				methodForArray = methodForArray.trimmingCharacters(in: .whitespaces)
 //				print("methodForArray", methodForArray, methodForArray.count)
 				if inputItems.count < 5 {
@@ -181,17 +175,14 @@ struct MethodFinder {
 				placeBellData[stageIndex].append(arrayObject)
 			}
 		}
-//		print("placeBellData.count", placeBellData.count)
 		for i in 0..<placeBellData.count {
-//			print("Before", placeBellData[i])
 			placeBellData[i].sort{$0.methodName < $1.methodName}
-//			print("After" , placeBellData[i])
 		}
 //		print("----------readMethodList----------")
 	}
 	
 	//--------------------------------------------------
-	// Split String reprsentation of Array into actual Integer Array.
+	// Split String reprsentation of Array into Integer Array.
 	//--------------------------------------------------
 	func splitCallData(callData: String) -> [Int] {
 		var returnArray: [Int] = []
@@ -279,7 +270,6 @@ struct MethodFinder {
 		
 		repeat {
 			work1 = String(tempStructure.prefix(1))
-			//    break
 			switch work1 {
 			case _ where (work1 == "&"):
 				foundAnd = true
@@ -488,7 +478,7 @@ struct MethodFinder {
 					if returnMethodArray[2][i + 1] < 0 {
 						let stedman = (returnMethodArray[0][currentChangeNumber + i + 1] * 100) - returnMethodArray[2][i + 1]
 						returnMethodArray[0][currentChangeNumber + i + 1] = stedman
-						print("----------->", returnMethodArray[0])
+//						print("----------->", returnMethodArray[0])
 					} else {
 						returnMethodArray[0][currentChangeNumber + i + 1] = returnMethodArray[2][i + 1]
 					}
