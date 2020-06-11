@@ -13,6 +13,20 @@
 		574EF2F92459FA24003A7635 /* bob.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 574EF2F82459FA24003A7635 /* bob.mp3 */; };
 		574EF2FB2459FA31003A7635 /* single.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 574EF2FA2459FA30003A7635 /* single.mp3 */; };
 		5758379324647ADD00E8D47C /* StageFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5758379224647ADD00E8D47C /* StageFinder.swift */; };
+		576D4208249121C100D758DE /* bell8-2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 576D41FA249121BF00D758DE /* bell8-2.wav */; };
+		576D4209249121C100D758DE /* bell8-8.wav in Resources */ = {isa = PBXBuildFile; fileRef = 576D41FB249121BF00D758DE /* bell8-8.wav */; };
+		576D420A249121C100D758DE /* bell8-3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 576D41FC249121C000D758DE /* bell8-3.wav */; };
+		576D420B249121C100D758DE /* bell6-2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 576D41FD249121C000D758DE /* bell6-2.wav */; };
+		576D420C249121C100D758DE /* bell8-7.wav in Resources */ = {isa = PBXBuildFile; fileRef = 576D41FE249121C000D758DE /* bell8-7.wav */; };
+		576D420D249121C100D758DE /* bell6-4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 576D41FF249121C000D758DE /* bell6-4.wav */; };
+		576D420E249121C100D758DE /* bell8-4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 576D4200249121C000D758DE /* bell8-4.wav */; };
+		576D420F249121C100D758DE /* bell8-6.wav in Resources */ = {isa = PBXBuildFile; fileRef = 576D4201249121C000D758DE /* bell8-6.wav */; };
+		576D4210249121C100D758DE /* bell6-1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 576D4202249121C000D758DE /* bell6-1.wav */; };
+		576D4211249121C100D758DE /* bell6-3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 576D4203249121C100D758DE /* bell6-3.wav */; };
+		576D4212249121C100D758DE /* bell6-6.wav in Resources */ = {isa = PBXBuildFile; fileRef = 576D4204249121C100D758DE /* bell6-6.wav */; };
+		576D4213249121C100D758DE /* bell6-5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 576D4205249121C100D758DE /* bell6-5.wav */; };
+		576D4214249121C100D758DE /* bell8-1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 576D4206249121C100D758DE /* bell8-1.wav */; };
+		576D4215249121C100D758DE /* bell8-5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 576D4207249121C100D758DE /* bell8-5.wav */; };
 		57731456245EC9130032EAFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57731455245EC9130032EAFA /* Assets.xcassets */; };
 		5784001B2472C8CB00C7A78A /* XML Info.md in Resources */ = {isa = PBXBuildFile; fileRef = 5784001A2472C8CB00C7A78A /* XML Info.md */; };
 		578452712471C4F700A33ED1 /* CCCBRData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 578452702471C4F700A33ED1 /* CCCBRData.xml */; };
@@ -34,6 +48,20 @@
 		574EF2F82459FA24003A7635 /* bob.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bob.mp3; sourceTree = "<group>"; };
 		574EF2FA2459FA30003A7635 /* single.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = single.mp3; sourceTree = "<group>"; };
 		5758379224647ADD00E8D47C /* StageFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageFinder.swift; sourceTree = "<group>"; };
+		576D41FA249121BF00D758DE /* bell8-2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "bell8-2.wav"; sourceTree = "<group>"; };
+		576D41FB249121BF00D758DE /* bell8-8.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "bell8-8.wav"; sourceTree = "<group>"; };
+		576D41FC249121C000D758DE /* bell8-3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "bell8-3.wav"; sourceTree = "<group>"; };
+		576D41FD249121C000D758DE /* bell6-2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "bell6-2.wav"; sourceTree = "<group>"; };
+		576D41FE249121C000D758DE /* bell8-7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "bell8-7.wav"; sourceTree = "<group>"; };
+		576D41FF249121C000D758DE /* bell6-4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "bell6-4.wav"; sourceTree = "<group>"; };
+		576D4200249121C000D758DE /* bell8-4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "bell8-4.wav"; sourceTree = "<group>"; };
+		576D4201249121C000D758DE /* bell8-6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "bell8-6.wav"; sourceTree = "<group>"; };
+		576D4202249121C000D758DE /* bell6-1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "bell6-1.wav"; sourceTree = "<group>"; };
+		576D4203249121C100D758DE /* bell6-3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "bell6-3.wav"; sourceTree = "<group>"; };
+		576D4204249121C100D758DE /* bell6-6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "bell6-6.wav"; sourceTree = "<group>"; };
+		576D4205249121C100D758DE /* bell6-5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "bell6-5.wav"; sourceTree = "<group>"; };
+		576D4206249121C100D758DE /* bell8-1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "bell8-1.wav"; sourceTree = "<group>"; };
+		576D4207249121C100D758DE /* bell8-5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "bell8-5.wav"; sourceTree = "<group>"; };
 		57731455245EC9130032EAFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5784001A2472C8CB00C7A78A /* XML Info.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "XML Info.md"; sourceTree = "<group>"; };
 		578452702471C4F700A33ED1 /* CCCBRData.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CCCBRData.xml; sourceTree = "<group>"; };
@@ -64,6 +92,20 @@
 		574EF2FC2459FA3E003A7635 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				576D4202249121C000D758DE /* bell6-1.wav */,
+				576D41FD249121C000D758DE /* bell6-2.wav */,
+				576D4203249121C100D758DE /* bell6-3.wav */,
+				576D41FF249121C000D758DE /* bell6-4.wav */,
+				576D4205249121C100D758DE /* bell6-5.wav */,
+				576D4204249121C100D758DE /* bell6-6.wav */,
+				576D4206249121C100D758DE /* bell8-1.wav */,
+				576D41FA249121BF00D758DE /* bell8-2.wav */,
+				576D41FC249121C000D758DE /* bell8-3.wav */,
+				576D4200249121C000D758DE /* bell8-4.wav */,
+				576D4207249121C100D758DE /* bell8-5.wav */,
+				576D4201249121C000D758DE /* bell8-6.wav */,
+				576D41FE249121C000D758DE /* bell8-7.wav */,
+				576D41FB249121BF00D758DE /* bell8-8.wav */,
 				5715221724688BA700AA208C /* single.wav */,
 				574EF2F82459FA24003A7635 /* bob.mp3 */,
 				574EF2FA2459FA30003A7635 /* single.mp3 */,
@@ -195,17 +237,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				576D420B249121C100D758DE /* bell6-2.wav in Resources */,
+				576D4212249121C100D758DE /* bell6-6.wav in Resources */,
 				5715221A24688BB500AA208C /* bob.wav in Resources */,
+				576D420C249121C100D758DE /* bell8-7.wav in Resources */,
+				576D4211249121C100D758DE /* bell6-3.wav in Resources */,
+				576D420E249121C100D758DE /* bell8-4.wav in Resources */,
 				578452712471C4F700A33ED1 /* CCCBRData.xml in Resources */,
 				5784001B2472C8CB00C7A78A /* XML Info.md in Resources */,
+				576D4210249121C100D758DE /* bell6-1.wav in Resources */,
 				57E1A16D24718130009027A9 /* XML6.xml in Resources */,
 				5788A8302476C6CB001D1CEB /* MethodList.txt in Resources */,
 				574EF2F92459FA24003A7635 /* bob.mp3 in Resources */,
+				576D4214249121C100D758DE /* bell8-1.wav in Resources */,
+				576D420A249121C100D758DE /* bell8-3.wav in Resources */,
+				576D4215249121C100D758DE /* bell8-5.wav in Resources */,
+				576D4209249121C100D758DE /* bell8-8.wav in Resources */,
 				57EA25051FC703AB001B222E /* LaunchScreen.storyboard in Resources */,
 				5715221824688BA700AA208C /* single.wav in Resources */,
+				576D4213249121C100D758DE /* bell6-5.wav in Resources */,
 				574EF2FB2459FA31003A7635 /* single.mp3 in Resources */,
+				576D4208249121C100D758DE /* bell8-2.wav in Resources */,
 				57731456245EC9130032EAFA /* Assets.xcassets in Resources */,
+				576D420D249121C100D758DE /* bell6-4.wav in Resources */,
 				57EA25001FC703AB001B222E /* Main.storyboard in Resources */,
+				576D420F249121C100D758DE /* bell8-6.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
