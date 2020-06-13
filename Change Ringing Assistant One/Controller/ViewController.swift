@@ -21,7 +21,7 @@ struct CCCBRData {
 	var cccbrLeadHeadCode: String
 }
 
-class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, XMLParserDelegate{
+class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, XMLParserDelegate, AVAudioPlayerDelegate{
 	
 	var cccbrMethods: [CCCBRData] = []
 	var elementName: String = String()
@@ -57,6 +57,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 	}
 	
 	var player: AVAudioPlayer!
+	var player2: AVAudioPlayer!
 	var methodFinder = MethodFinder()
 	var stageFinder = StageFinder()
 	
@@ -112,6 +113,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 	var teachingMode: Bool = false
 	var timerStarted:Bool = false
 	var timeSpace: Double = 0.3
+//	let semaphore = DispatchSemaphore(value: 0)
+	var soundInProgress: Bool = false
 	
 	var lastButtonPressed: Int = 1
 	var lastButtonFollowsTreble: Bool = false
@@ -688,7 +691,12 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 	// Action when a button is releaased.
 	//------------------------------------------------------------------------------------------------
 	@IBAction func buttonPressed(_ sender: UIButton) {
-		processButton()
+		print("button", sender.titleLabel?.text as Any, "pressed.", soundInProgress)
+		if soundInProgress {
+			print("ignored - sound is in progress.")
+		} else {
+			processButton()
+		}
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -696,6 +704,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 		//		print("++++++++++processButton++++++++++")
 		buttonDownDetected = false
 		lastAnimate = true
+		
+		let df = DateFormatter()
+		df.dateFormat = "y-MM-dd H:m:ss.SSSS"
+		
 		// Put BOLD on pressed button for 0.5 seconds.
 		//		saveSender.setTitleColor(UIColor.red, for: .normal)
 		saveSender.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
@@ -790,8 +802,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 			//			}
 			
 			
-			
-			
+			print("soundInProgress = true")
+			soundInProgress = true
 			var tempSeq = lastBellSequence
 			if tempSeq.count == 5 {
 				tempSeq = tempSeq + "6"
@@ -801,20 +813,30 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 			}
 			var bellSoundName: String = ""
 			var bobOrSingle: String = ""
-//			var url1: String = ""
+			//			var url1: String = ""
 			
 			
 			//Announce BOB or SINGLE.
 			if callActive {
 				
-				//				print("ViewController: Say Bob or Single")
+				print("ViewController: Say Bob or Single")
 				if bobRequested == true {
 					bobOrSingle = "bob"
 				} else {
 					bobOrSingle = "single"
 				}
-//				let url1 = Bundle.main.url(forResource: mp3Name, withExtension: "wav")
-				print("CALL!!!!")
+				let url2 = Bundle.main.url(forResource: bobOrSingle, withExtension: "wav")
+				print("CALL", bobOrSingle)
+				
+				self.player2?.delegate = nil
+				self.player2?.stop()
+				
+				self.player2 = try! AVAudioPlayer(contentsOf: url2!)
+				self.player2.delegate = self
+				self.player2.prepareToPlay()
+				self.player2.play()
+				bobOrSingle = ""
+				
 				//					self.player = try! AVAudioPlayer(contentsOf: url1!)
 				//					DispatchQueue.main.sync {
 				//						self.player.play()
@@ -823,56 +845,62 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 			
 			//			for _ in 1...lastBellSequence.count {
 			Timer.scheduledTimer(withTimeInterval: timeSpace, repeats: true) { (timer) in
-
-				let d = Date()
-				let df = DateFormatter()
-				df.dateFormat = "y-MM-dd H:m:ss.SSSS"
-
-				print(df.string(from: d)) // -> "2016-11-17 17:51:15.1720"
+				// timeSpace
 				
-				if bobOrSingle != "" {
-					bellSoundName = bobOrSingle
-					bobOrSingle = ""
-				} else {
-					let bell1 = tempSeq.prefix(1)
-					tempSeq = String(tempSeq.suffix(tempSeq.count - 1))
-					if self.currentStageBellCount > 6 {
-						switch bell1 {
-						case "1": bellSoundName = "bell8-1"
-						case "2": bellSoundName = "bell8-2"
-						case "3": bellSoundName = "bell8-3"
-						case "4": bellSoundName = "bell8-4"
-						case "5": bellSoundName = "bell8-5"
-						case "6": bellSoundName = "bell8-6"
-						case "7": bellSoundName = "bell8-7"
-						case "8": bellSoundName = "bell8-8"
-						default: break
-						}
-					}else {
-						switch bell1 {
-						case "1": bellSoundName = "bell6-1"
-						case "2": bellSoundName = "bell6-2"
-						case "3": bellSoundName = "bell6-3"
-						case "4": bellSoundName = "bell6-4"
-						case "5": bellSoundName = "bell6-5"
-						case "6": bellSoundName = "bell6-6"
-						default: break
-						}
+				let d1 = Date()
+				print("Timer loop.", df.string(from: d1), tempSeq)
+				
+				
+				let bell1 = tempSeq.prefix(1)
+				tempSeq = String(tempSeq.suffix(tempSeq.count - 1))
+				if self.currentStageBellCount > 6 {
+					switch bell1 {
+					case "1": bellSoundName = "bell8-1"
+					case "2": bellSoundName = "bell8-2"
+					case "3": bellSoundName = "bell8-3"
+					case "4": bellSoundName = "bell8-4"
+					case "5": bellSoundName = "bell8-5"
+					case "6": bellSoundName = "bell8-6"
+					case "7": bellSoundName = "bell8-7"
+					case "8": bellSoundName = "bell8-8"
+					default: break
 					}
-					
-					//				Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { (timer) in }
+				}else {
+					switch bell1 {
+					case "1": bellSoundName = "bell6-1"
+					case "2": bellSoundName = "bell6-2"
+					case "3": bellSoundName = "bell6-3"
+					case "4": bellSoundName = "bell6-4"
+					case "5": bellSoundName = "bell6-5"
+					case "6": bellSoundName = "bell6-6"
+					default: break
+					}
 				}
+				
+				//				Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { (timer) in }
+				
 				let url1 = Bundle.main.url(forResource: bellSoundName, withExtension: "wav")
 				//					print("Bell sound", bellSoundName, bell1, tempSeq)
+				
+				
+				self.player?.delegate = nil
+				self.player?.stop()
+				
 				self.player = try! AVAudioPlayer(contentsOf: url1!)
+				self.player.delegate = self
+				self.player.prepareToPlay()
 				self.player.play()
-					
+				
+				//				let d1 = Date()
+				//				print("self.semaphore.wait()", df.string(from: d1), tempSeq)
+				//				self.semaphore.wait()
+				//				let d2 = Date()
+				//				print("self.semaphore.go()", df.string(from: d2), tempSeq)
 				
 				if tempSeq == "" {
 					timer.invalidate()
 				}
 			}
-			
 			
 			
 			
@@ -883,6 +911,22 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 			findNextButton()
 		}
 	}
+	
+	
+	
+	func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) { // *
+		//        self.delegate?.soundFinished(self)
+		
+		let df = DateFormatter()
+		df.dateFormat = "y-MM-dd H:m:ss.SSSS"
+		let d3 = Date()
+		print("audioPlayerDidFinishPlaying", df.string(from: d3))
+		print("soundInProgress = false")
+		soundInProgress = false
+//		semaphore.signal()
+	}
+	
+	
 	
 	//----------------------------------------------------------------------------------
 	// Find next button to be pressed.
