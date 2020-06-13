@@ -844,12 +844,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 			
 			
 			//			for _ in 1...lastBellSequence.count {
+			print(df.string(from: Date()), "Timer loop  starting...", tempSeq)
+
 			Timer.scheduledTimer(withTimeInterval: timeSpace, repeats: true) { (timer) in
-				// timeSpace
-				
-				let d1 = Date()
-				print("Timer loop.", df.string(from: d1), tempSeq)
-				
+				print(df.string(from: Date()), "Timer loop.", tempSeq)
 				
 				let bell1 = tempSeq.prefix(1)
 				tempSeq = String(tempSeq.suffix(tempSeq.count - 1))
@@ -876,28 +874,20 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 					default: break
 					}
 				}
-				
-				//				Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { (timer) in }
-				
 				let url1 = Bundle.main.url(forResource: bellSoundName, withExtension: "wav")
 				//					print("Bell sound", bellSoundName, bell1, tempSeq)
-				
-				
 				self.player?.delegate = nil
 				self.player?.stop()
-				
 				self.player = try! AVAudioPlayer(contentsOf: url1!)
 				self.player.delegate = self
 				self.player.prepareToPlay()
+				print(df.string(from: Date()), "self.player.play()", tempSeq)
+
 				self.player.play()
 				
-				//				let d1 = Date()
-				//				print("self.semaphore.wait()", df.string(from: d1), tempSeq)
-				//				self.semaphore.wait()
-				//				let d2 = Date()
-				//				print("self.semaphore.go()", df.string(from: d2), tempSeq)
-				
 				if tempSeq == "" {
+
+					print(df.string(from: Date()), "timer.invalidate()", tempSeq)
 					timer.invalidate()
 				}
 			}
@@ -919,8 +909,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 		
 		let df = DateFormatter()
 		df.dateFormat = "y-MM-dd H:m:ss.SSSS"
-		let d3 = Date()
-		print("audioPlayerDidFinishPlaying", df.string(from: d3))
+		print(df.string(from: Date()), "audioPlayerDidFinishPlaying.")
 		print("soundInProgress = false")
 		soundInProgress = false
 //		semaphore.signal()
